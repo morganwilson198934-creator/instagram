@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Online Giveaway</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="Nav logo.png" alt="Logo" class="nav-logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#how-to-enter">How to Enter</a></li>
+        <li><a href="winners.html">Winning List</a></li>
+        <li><a href="#entry-form">Enter Now</a></li>
+        <li><a href="#customer-care">Customer Care</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#entry-form" class="btn btn-primary nav-cta">Enter Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#how-to-enter">How to Enter</a></li>
+        <li><a href="winners.html">Winning List</a></li>
+        <li><a href="#entry-form">Enter Now</a></li>
+        <li><a href="#customer-care">Customer Care</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#entry-form" class="btn btn-primary btn-full">Enter Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <!-- Full-screen background slider -->
+    <div class="hero-bg-slider">
+      <div class="hero-bg-slide active">
+        <img src="Winner 1.png" alt="Winner" />
+      </div>
+      <div class="hero-bg-slide">
+        <img src="Winner 3.png" alt="Winner" />
+      </div>
+      <div class="hero-bg-slide">
+        <img src="Winner 4.png" alt="Winner" />
+      </div>
+      <div class="hero-bg-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="badge animate-pop">LIMITED TIME OFFER</div>
+        <div class="prize-amount animate-pop-delay-1">
+          <div class="sparkle sparkle-1"></div>
+          <div class="sparkle sparkle-2"></div>
+          <div class="sparkle sparkle-3"></div>
+          <div class="sparkle sparkle-4"></div>
+          <div class="sparkle sparkle-5"></div>
+          <div class="sparkle sparkle-6"></div>
+          <span class="prize-dollar">$</span><span class="prize-value" id="prizeValue">320,000.00</span>
+          <span class="prize-label">To Be Won</span>
+        </div>
+        <h1 class="hero-title animate-pop-delay-2">
+          <span class="gradient-text">Instagram</span>
+          <br />Online Giveaway
+        </h1>
+        <p class="hero-subtitle animate-pop-delay-3">
+          Win amazing prizes just by following a few simple steps!
+          Don't miss your chance to be a winner.
+        </p>
+        <div class="hero-cta animate-pop-delay-3">
+          <a href="#how-to-enter" class="btn btn-primary btn-glow">Enter Now</a>
+          <a href="#prizes" class="btn btn-secondary">View Prizes</a>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-slider-dots">
+          <button class="hero-dot active" data-index="0"></button>
+          <button class="hero-dot" data-index="1"></button>
+          <button class="hero-dot" data-index="2"></button>
+        </div>
+        <div class="countdown-wrapper">
+          <p class="countdown-label">Giveaway ends in</p>
+          <div class="countdown" id="countdown">
+            <div class="countdown-item">
+              <span class="countdown-number" id="days">07</span>
+              <span class="countdown-text">Days</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="hours">12</span>
+              <span class="countdown-text">Hours</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="minutes">45</span>
+              <span class="countdown-text">Mins</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <span class="countdown-number" id="seconds">30</span>
+              <span class="countdown-text">Secs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="stats-container">
+      <div class="stat-item">
+        <span class="stat-number" data-target="15420">0</span>
+        <span class="stat-label">Entries So Far</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="50">0</span>
+        <span class="stat-label">Winners Selected</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="5">0</span>
+        <span class="stat-label">Prize Categories</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prizes Section -->
+  <section class="prizes" id="prizes">
+    <div class="prizes-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What You Can Win</span>
+        <h2 class="section-title">Amazing Prizes</h2>
+        <p class="section-desc">We have incredible prizes up for grabs this giveaway season</p>
+      </div>
+      <div class="prizes-grid">
+        <div class="prize-card prize-grand">
+          <div class="prize-badge">Grand Prize</div>
+          <div class="prize-icon">🏆</div>
+          <h3 class="prize-name">iPhone 16 Pro Max</h3>
+          <p class="prize-desc">Latest Apple flagship phone with 256GB storage</p>
+          <div class="prize-quantity">1 Winner</div>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🎧</div>
+          <h3 class="prize-name">AirPods Pro 2</h3>
+          <p class="prize-desc">Active noise cancellation with spatial audio</p>
+          <div class="prize-quantity">3 Winners</div>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">⌚</div>
+          <h3 class="prize-name">Apple Watch SE</h3>
+          <p class="prize-desc">Stay connected and track your fitness</p>
+          <div class="prize-quantity">5 Winners</div>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🛍️</div>
+          <h3 class="prize-name">$100 Gift Card</h3>
+          <p class="prize-desc">Redeemable at your favorite online stores</p>
+          <div class="prize-quantity">10 Winners</div>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🎮</div>
+          <h3 class="prize-name">Merch Bundle</h3>
+          <p class="prize-desc">Exclusive branded merchandise pack</p>
+          <div class="prize-quantity">31 Winners</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Enter -->
+  <section class="how-to-enter" id="how-to-enter">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Easy Steps</span>
+        <h2 class="section-title">How to Enter</h2>
+        <p class="section-desc">Follow these simple steps to enter the giveaway</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon">❤️</div>
+          <h3 class="step-title">Like This Post</h3>
+          <p class="step-desc">Like our latest giveaway post on Instagram to show your support</p>
+        </div>
+        <div class="step-connector">
+          <svg viewBox="0 0 100 20" class="connector-arrow">
+            <path d="M0 10 H80 L70 3 M80 10 L70 17" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon">👤</div>
+          <h3 class="step-title">Follow Us</h3>
+          <p class="step-desc">Follow our Instagram account and stay tuned for winner announcements</p>
+        </div>
+        <div class="step-connector">
+          <svg viewBox="0 0 100 20" class="connector-arrow">
+            <path d="M0 10 H80 L70 3 M80 10 L70 17" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon">💬</div>
+          <h3 class="step-title">Tag 3 Friends</h3>
+          <p class="step-desc">Tag 3 friends in the comments for extra entries</p>
+        </div>
+        <div class="step-connector">
+          <svg viewBox="0 0 100 20" class="connector-arrow">
+            <path d="M0 10 H80 L70 3 M80 10 L70 17" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-icon">🔄</div>
+          <h3 class="step-title">Share the Post</h3>
+          <p class="step-desc">Share the giveaway post to your story for 5 bonus entries</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonial" id="testimonial">
+    <div class="testimonial-glow"></div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Real Winner Stories</span>
+        <h2 class="section-title">Life-Changing Wins</h2>
+        <p class="section-desc">Hear from real people whose lives were transformed</p>
+      </div>
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <div class="testimonial-track" id="testimonialTrack">
+
+          <!-- Slide 1 - Geraldine Emily -->
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img src="Winner 1.png" alt="Geraldine Emily" />
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Geraldine Emily</h3>
+                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-date">June 12, 2026</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"I had to double-check: 'How many zeros are there?'"</p>
+                <p>A woman says she's on "cloud nine" after winning a $320,000 prize through our Instagram Online Giveaway that prompted her to move up her retirement plans by months.</p>
+                <p>"December 25 was supposed to be my last day to work, but as soon as I realized I had this kind of money, I figured I can do it now," Geraldine said. "I went in and said goodbye to everybody and turned my computer in."</p>
+                <div class="testimonial-expand">
+                  <span class="testimonial-more">Once the reality set in, Geraldine was so happy when she got a message from our online agent about how she can claim her wins. But any hope of a restful night quickly disappeared.</span>
+                  <span class="testimonial-more">"I was up all night," she said. "I couldn't sleep. I didn't let anybody know until the next day. I was pacing up and down, trying to figure out what I should do next."</span>
+                  <span class="testimonial-more">Geraldine, who worked for a computer services company for 26 years, said the chance to help her family is even more meaningful than the win itself. A mother of two and grandmother of five, she plans to share the winnings with her family.</span>
+                  <span class="testimonial-quote-final">"Thanks Instagram, this is so amazing!!"</span>
+                </div>
+                <button class="testimonial-read-more" onclick="toggleTestimonial(this)">Read Full Story</button>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#WinnerStory</span>
+                <span class="tag">#InstagramGiveaway</span>
+                <span class="tag">#LifeChanging</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 - Mark Newmarket -->
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img src="Winner 2.png" alt="Mark Newmarket" />
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Mark Newmarket</h3>
+                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-date">May 30, 2026</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"I stared at my phone for five minutes — I couldn't believe what I was seeing."</p>
+                <p>Mark Newmarket, a carpenter from Newmarket, won $320,000 through the Instagram Online Giveaway. He entered on a Saturday morning while having his coffee and completely forgot about it.</p>
+                <p>"I was scrolling through my messages and saw the notification. I thought it was spam at first," Mark laughed. "Then I clicked on it and read it three times. My coffee got cold because I just sat there frozen."</p>
+                <div class="testimonial-expand">
+                  <span class="testimonial-more">Mark has been working as a carpenter for over 20 years, building furniture and cabinets. He always dreamed of opening his own workshop but could never afford the startup costs.</span>
+                  <span class="testimonial-more">"I called my wife and told her to sit down. She didn't believe me until I showed her the email. Then she started screaming so loud the neighbors came over to check on us," he shared with a big smile.</span>
+                  <span class="testimonial-more">Mark plans to finally open his own custom woodworking shop and has already started looking at commercial spaces. He also wants to put money aside for his two children's college funds.</span>
+                  <span class="testimonial-quote-final">"After all these years of hard work, this feels like a miracle. Thank you Instagram!"</span>
+                </div>
+                <button class="testimonial-read-more" onclick="toggleTestimonial(this)">Read Full Story</button>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#DreamBuilder</span>
+                <span class="tag">#GiveawayReal</span>
+                <span class="tag">#NewChapter</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 - Daljit Brampton -->
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img src="Winner 3.png" alt="Daljit Brampton" />
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Daljit Brampton</h3>
+                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-date">October 4, 2022</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"My wife thought I was joking — I had to show her the screen three times!"</p>
+                <p>Daljit Brampton, a truck driver from Brampton, won $320,000 through the Instagram Online Giveaway. He entered during a rest stop on a long haul and didn't think much of it after.</p>
+                <p>"I was parked at a truck stop in Ohio when I got the message. I read it and my heart started racing," Daljit recalled. "I called my wife right away and she said 'Daljit, stop fooling around.' I had to FaceTime her just to prove it."</p>
+                <div class="testimonial-expand">
+                  <span class="testimonial-more">Daljit has been driving trucks for 15 years, spending long weeks on the road away from his family. He always dreamed of bringing his parents from India to Canada but could never afford it.</span>
+                  <span class="testimonial-more">"I Facetimed my parents back home. When I told them, my mother put her hands together and started praying. My father had tears in his eyes. It was the most beautiful moment of my life," he shared.</span>
+                  <span class="testimonial-more">The family is now planning a trip to India to bring his parents over, and Daljit has already started building a new home with a dedicated room for them.</span>
+                  <span class="testimonial-quote-final">"God answers prayers in ways you never expect. This is a blessing beyond words."</span>
+                </div>
+                <button class="testimonial-read-more" onclick="toggleTestimonial(this)">Read Full Story</button>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#FamilyReunion</span>
+                <span class="tag">#Blessed</span>
+                <span class="tag">#DreamComeTrue</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 - Rose Murphy -->
+          <div class="testimonial-card">
+            <div class="testimonial-image">
+              <img src="Winner 4.png" alt="Rose Murphy" />
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Rose Murphy</h3>
+                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-date">March 3, 2026</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"My daughter grabbed my phone and screamed — we'd won $320,000!"</p>
+                <p>Rose Murphy, a nurse from Canada, entered the giveaway while on her night shift break. She'd been following the page for weeks and finally decided to fill out the form.</p>
+                <p>"I was so tired that night. I almost didn't enter. Something just told me to do it," Rose said. "Three days later, my daughter saw the winning notification before I did."</p>
+                <div class="testimonial-expand">
+                  <span class="testimonial-more">Rose has worked 12-hour shifts at the hospital for over a decade. The money will help her open the small bakery she's always dreamed of — a dream she put on hold when she became a single mother.</span>
+                  <span class="testimonial-more">"I used to bake cakes for my daughter's school events and everyone always said they were the best. Now I can finally make it a business," she said with tears in her eyes.</span>
+                  <span class="testimonial-more">Rose also plans to put money aside for her daughter's university education. "She wants to study medicine like me, but I want her to do it without the debt I had."</span>
+                  <span class="testimonial-quote-final">"From one mom to another — never give up on your dreams."</span>
+                </div>
+                <button class="testimonial-read-more" onclick="toggleTestimonial(this)">Read Full Story</button>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#NurseWins</span>
+                <span class="tag">#DreamBig</span>
+                <span class="tag">#SingleMom</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="testimonial-arrow testimonial-prev" id="testimonialPrev" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="testimonial-arrow testimonial-next" id="testimonialNext" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+
+        <div class="testimonial-dots" id="testimonialDots">
+          <button class="testimonial-dot active" data-index="0"></button>
+          <button class="testimonial-dot" data-index="1"></button>
+          <button class="testimonial-dot" data-index="2"></button>
+          <button class="testimonial-dot" data-index="3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entry Form -->
+  <section class="entry-section" id="entry-form">
+    <div class="container">
+      <div class="entry-card">
+        <div class="entry-content">
+          <div class="section-header">
+            <img src="Nav logo.png" alt="Logo" class="form-logo" />
+            <span class="section-tag">Enter Now</span>
+            <h2 class="section-title">Fill The Form Now</h2>
+            <p class="section-desc">Complete the form below to enter the giveaway</p>
+          </div>
+          <form class="giveaway-form" id="giveawayForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email address" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Street address" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="region">Region</label>
+                <select id="region" required onchange="updateStates()">
+                  <option value="" disabled selected>Select your region</option>
+                  <option value="america">America (US / Canada)</option>
+                  <option value="europe">Europe</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label for="cityInput">City</label>
+                <div id="cityContainer">
+                  <input type="text" id="cityInput" name="city" placeholder="City" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="state">State / Province / Country</label>
+                <select id="state" required onchange="updateCities()">
+                  <option value="" disabled selected>Select region first</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="zip">Zip / Postal Code</label>
+                <input type="text" id="zip" placeholder="Zip code" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <input type="text" id="occupation" placeholder="Your occupation" />
+              </div>
+            </div>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Age" min="18" required />
+              </div>
+              <div class="form-group">
+                <label for="maritalStatus">Single or Married</label>
+                <select id="maritalStatus" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="single">Single</option>
+                  <option value="married">Married</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="homeOwner">Do You Own a House</label>
+                <select id="homeOwner" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="prizePreference">Do You Want Cash or Check</label>
+              <select id="prizePreference" required>
+                <option value="" disabled selected>Select preference</option>
+                <option value="cash">Cash</option>
+                <option value="check">Check</option>
+              </select>
+            </div>
+            <div class="form-checkbox">
+              <input type="checkbox" id="terms" required />
+              <label for="terms">I agree to the <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Submit Entry</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="entry-visual">
+          <div class="visual-pattern"></div>
+          <div class="visual-text">
+            <img src="Nav logo.png" alt="Logo" class="visual-logo" />
+            <span class="visual-big">15K+</span>
+            <span class="visual-sub">People Have Already Entered</span>
+            <div class="visual-avatars">
+              <img class="avatar" src="https://i.pravatar.cc/80?img=32" alt="User" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=47" alt="User" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=12" alt="User" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=56" alt="User" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=23" alt="User" />
+              <div class="avatar avatar-more">+15K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Care -->
+  <section class="customer-care" id="customer-care">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">We're Here to Help</span>
+        <h2 class="section-title">Customer Care Support</h2>
+        <p class="section-desc">Reach out to us anytime — our team is ready to assist you</p>
+      </div>
+      <div class="care-grid">
+        <div class="care-card">
+          <div class="care-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <h3 class="care-title">Phone Support</h3>
+          <p class="care-info">+1 (800) 555-0199</p>
+          <p class="care-hours">Mon – Fri, 9AM – 6PM EST</p>
+        </div>
+        <div class="care-card">
+          <div class="care-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3 class="care-title">Email Support</h3>
+          <p class="care-info">support@yourgiveaway.com</p>
+          <p class="care-hours">Response within 24 hours</p>
+        </div>
+        <div class="care-card">
+          <div class="care-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <h3 class="care-title">Live Chat</h3>
+          <p class="care-info">Chat with us online</p>
+          <p class="care-hours">Available 24/7</p>
+        </div>
+        <div class="care-card">
+          <div class="care-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="care-title">Help Center</h3>
+          <p class="care-info">Browse FAQs & Guides</p>
+          <p class="care-hours">Self-service resources</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>When will the winners be announced?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Winners will be announced on our Instagram page within 48 hours after the giveaway ends. Make sure you have notifications turned on so you don't miss it!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I enter multiple times?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Each person can submit one entry through the form. However, you can earn bonus entries by tagging friends and sharing the post to your story!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Who is eligible to participate?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>The giveaway is open to all Instagram users aged 18 and above. Participants must have a public Instagram account to be eligible for prize fulfillment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How are winners selected?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Winners are selected randomly using a verified random selection tool to ensure fairness and transparency. All entries have an equal chance of winning.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>When will I receive my prize?</span>
+            <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Prizes will be delivered within 14 business days after the winner has been verified and contact details have been confirmed via DM.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="Nav logo.png" alt="Logo" style="height: 36px; width: auto; object-fit: contain;" />
+          </div>
+          <p class="footer-desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#prizes">Prizes</a>
+          <a href="#how-to-enter">How to Enter</a>
+          <a href="winners.html">Winning List</a>
+          <a href="#entry-form">Enter Now</a>
+          <a href="#customer-care">Customer Care</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Instagram Online Giveaway. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48v-7.1a8.16 8.16 0 005.58 2.18v-3.45a4.85 4.85 0 01-5.58-2.72z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h3>Entry Submitted!</h3>
+      <p>Your giveaway entry has been successfully submitted. Good luck!</p>
+      <button class="btn btn-primary" onclick="closeModal()">Got it!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="chat-widget.js"></script>
+</body>
+</html>

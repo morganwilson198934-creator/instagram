@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winning List - Instagram Online Giveaway</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .winners-hero {
+      padding: 140px 0 60px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(225, 48, 108, 0.1), var(--bg-primary));
+      position: relative;
+    }
+
+    .winners-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ig-orange), var(--ig-red), var(--ig-purple), transparent);
+    }
+
+    .winners-page-section {
+      padding: 40px 0 100px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ig-orange);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--ig-red);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="Nav logo.png" alt="Logo" class="nav-logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter">How to Enter</a></li>
+        <li><a href="winners.html">Winning List</a></li>
+        <li><a href="index.html#entry-form">Enter Now</a></li>
+        <li><a href="index.html#customer-care">Customer Care</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <a href="index.html#entry-form" class="btn btn-primary nav-cta">Enter Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="index.html#prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter">How to Enter</a></li>
+        <li><a href="winners.html">Winning List</a></li>
+        <li><a href="index.html#entry-form">Enter Now</a></li>
+        <li><a href="index.html#customer-care">Customer Care</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <a href="index.html#entry-form" class="btn btn-primary btn-full">Enter Now</a>
+    </div>
+  </nav>
+
+  <!-- Winners Hero -->
+  <section class="winners-hero">
+    <div class="container">
+      <span class="section-tag">Congratulations</span>
+      <h1 class="section-title">Winning List</h1>
+      <p class="section-desc" style="margin: 12px auto 0;">Check out our verified winners from the Instagram Online Giveaway</p>
+    </div>
+  </section>
+
+  <!-- Winning List -->
+  <section class="winners-page-section">
+    <div class="container">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+      <div class="winners-search">
+        <input type="text" id="winnerSearch" placeholder="Search by name, state, or IG number..." class="winner-search-input" />
+      </div>
+      <div class="winners-table-wrapper">
+        <table class="winners-table" id="winnersTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>State / Location</th>
+              <th>IG – S/N</th>
+            </tr>
+          </thead>
+          <tbody id="winnersBody">
+          </tbody>
+        </table>
+      </div>
+      <p class="winners-count" id="winnersCount"></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="Nav logo.png" alt="Logo" style="height: 36px; width: auto; object-fit: contain;" />
+          </div>
+          <p class="footer-desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="index.html#prizes">Prizes</a>
+          <a href="index.html#how-to-enter">How to Enter</a>
+          <a href="winners.html">Winning List</a>
+          <a href="index.html#entry-form">Enter Now</a>
+          <a href="index.html#customer-care">Customer Care</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Instagram Online Giveaway. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48v-7.1a8.16 8.16 0 005.58 2.18v-3.45a4.85 4.85 0 01-5.58-2.72z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="chat-widget.js"></script>
+  <script>
+    // Navbar
+    (function() {
+      const toggle = document.getElementById('navToggle');
+      const mobile = document.getElementById('navMobile');
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        mobile.classList.toggle('active');
+      });
+      mobile.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          toggle.classList.remove('active');
+          mobile.classList.remove('active');
+        });
+      });
+    })();
+
+    // Winning List
+    (function() {
+      const winners = [
+        { name: "Austin Christian", state: "Texas", sn: "IG – 001" },
+        { name: "James Peterson", state: "Ohio", sn: "IG – 002" },
+        { name: "Teena Maxey", state: "Illinois", sn: "IG – 003" },
+        { name: "Mark Douglas Miller", state: "Minnesota", sn: "IG – 004" },
+        { name: "Lawrence", state: "Texas", sn: "IG – 005" },
+        { name: "Mitchell", state: "South Dakota", sn: "IG – 006" },
+        { name: "James Brown", state: "New York", sn: "IG – 007" },
+        { name: "Tuulikki Slatvik", state: "Finland", sn: "IG – 008" },
+        { name: "Caroline Thomas", state: "New Jersey", sn: "IG – 009" },
+        { name: "Kimijo Smith", state: "Lexington", sn: "IG – 010" },
+        { name: "Rose Murphy", state: "Canada", sn: "IG – 011" },
+        { name: "John Carter", state: "Florida", sn: "IG – 012" },
+        { name: "Matter Joseph", state: "South Carolina", sn: "IG – 013" },
+        { name: "Crystal Kennedy Bradley", state: "West Virginia", sn: "IG – 014" },
+        { name: "Josephine Jackson", state: "Ohio", sn: "IG – 015" },
+        { name: "Anna Silva", state: "Texas", sn: "IG – 016" },
+        { name: "Jere E Farmer", state: "Tennessee", sn: "IG – 017" },
+        { name: "Austin Williams", state: "Florida", sn: "IG – 018" },
+        { name: "Mandy Podvorec", state: "Pennsylvania", sn: "IG – 019" },
+        { name: "Cathy M Finley", state: "Huntersville NC", sn: "IG – 020" },
+        { name: "Liliana James", state: "California", sn: "IG – 021" },
+        { name: "Kevin Manning", state: "Massachusetts", sn: "IG – 022" },
+        { name: "Tina Williams", state: "Florida", sn: "IG – 023" },
+        { name: "Donna Jones", state: "Pennsylvania", sn: "IG – 024" },
+        { name: "Moses James", state: "South Carolina", sn: "IG – 025" },
+        { name: "Jean Perry", state: "Illinois", sn: "IG – 026" },
+        { name: "Sarah Maxwell", state: "Florida", sn: "IG – 027" },
+        { name: "Evans Sanchez", state: "New York", sn: "IG – 028" },
+        { name: "Richard IV Taylor", state: "Lawrenceville Georgia", sn: "IG – 029" },
+        { name: "Anita Blake", state: "Colorado", sn: "IG – 030" },
+        { name: "Thelma Jackson", state: "Georgia", sn: "IG – 031" },
+        { name: "Austin Anderson", state: "Mississippi", sn: "IG – 032" },
+        { name: "Mary Magdalene", state: "Oklahoma", sn: "IG – 033" },
+        { name: "Williams Maxwell", state: "Florida", sn: "IG – 034" },
+        { name: "Patricia Torres", state: "Oklahoma", sn: "IG – 035" },
+        { name: "Annie Hannah", state: "Beverly Hill", sn: "IG – 036" },
+        { name: "Terry Lackey", state: "Illinois", sn: "IG – 037" },
+        { name: "Kathy Nadine", state: "South Dakota", sn: "IG – 038" },
+        { name: "Sherry Montoya", state: "San Francisco", sn: "IG – 039" },
+        { name: "Franklin Donald", state: "Mississippi", sn: "IG – 040" },
+        { name: "Florence Michael", state: "New York", sn: "IG – 041" },
+        { name: "Michelle Wade", state: "Mississippi", sn: "IG – 042" },
+        { name: "Dubois Yves", state: "Toulouse", sn: "IG – 043" },
+        { name: "Redford Alex", state: "Texas", sn: "IG – 044" },
+        { name: "Evans John", state: "Germany", sn: "IG – 045" },
+        { name: "Vladimír Salay", state: "Slovakia", sn: "IG – 046" },
+        { name: "Sarah Rose", state: "New Jersey", sn: "IG – 047" },
+        { name: "Tony Devine", state: "Italy", sn: "IG – 048" },
+        { name: "Rosana Mariel Rodrigo", state: "Sant Fe, Argentina", sn: "IG – 049" },
+        { name: "Evans Jefferson", state: "UK", sn: "IG – 050" },
+        { name: "Charles E Floyd", state: "Tulsa Oklahoma", sn: "IG – 051" },
+        { name: "Mary Joseph", state: "Texas", sn: "IG – 052" },
+        { name: "Matter", state: "Texas", sn: "IG – 053" },
+        { name: "Patrick Johnson", state: "San Antonio", sn: "IG – 054" },
+        { name: "Fedrick Williams", state: "Florida", sn: "IG – 056" },
+        { name: "David Maxwell", state: "Beverly Hills", sn: "IG – 057" },
+        { name: "Andrew", state: "Georgia", sn: "IG – 058" },
+        { name: "Barbra", state: "Beverly Hills", sn: "IG – 059" },
+        { name: "Jane DeMay", state: "Beverly Hills", sn: "IG – 060" },
+        { name: "Wendy Ann", state: "San Diego", sn: "IG – 061" },
+        { name: "Janet", state: "Texas", sn: "IG – 062" },
+        { name: "Melissa Rondinone", state: "Chicago", sn: "IG – 063" },
+        { name: "Joan M Armet", state: "Oklahoma", sn: "IG – 064" },
+        { name: "Amy Pollock", state: "New Jersey", sn: "IG – 065" },
+        { name: "Linda Martin", state: "New York", sn: "IG – 066" },
+        { name: "Sandi K Pann", state: "Florida", sn: "IG – 067" },
+        { name: "Megan Shepherd", state: "Texas", sn: "IG – 068" },
+        { name: "Laura Fell", state: "Oklahoma", sn: "IG – 069" },
+        { name: "Cathy Dunn", state: "Florida", sn: "IG – 070" }
+      ];
+
+      const tbody = document.getElementById('winnersBody');
+      const searchInput = document.getElementById('winnerSearch');
+      const countEl = document.getElementById('winnersCount');
+
+      function renderWinners(list) {
+        tbody.innerHTML = list.map((w, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${w.name}</td>
+            <td>${w.state}</td>
+            <td class="ig-sn">${w.sn}</td>
+          </tr>
+        `).join('');
+        countEl.textContent = `Showing ${list.length} of ${winners.length} winners`;
+      }
+
+      renderWinners(winners);
+
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase().trim();
+        if (!q) {
+          renderWinners(winners);
+          return;
+        }
+        const filtered = winners.filter(w =>
+          w.name.toLowerCase().includes(q) ||
+          w.state.toLowerCase().includes(q) ||
+          w.sn.toLowerCase().includes(q)
+        );
+        renderWinners(filtered);
+      });
+    })();
+  </script>
+</body>
+</html>

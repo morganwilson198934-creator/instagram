@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Instagram Online Giveaway</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(225, 48, 108, 0.06), transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(131, 58, 180, 0.06), transparent 50%),
+        var(--bg-primary);
+    }
+
+    .dash-header {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .dash-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .dash-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .dash-header-left h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .dash-header-left .admin-badge {
+      padding: 4px 12px;
+      background: var(--gradient);
+      border-radius: 50px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .dash-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dash-stats {
+      padding: 40px 0 20px;
+    }
+
+    .dash-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .dash-stat-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .dash-stat-card .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .dash-stat-card .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dash-stat-card .stat-lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .dash-content {
+      padding: 20px 0 60px;
+    }
+
+    .dash-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .dash-toolbar h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .dash-toolbar-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .dash-search {
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-xl);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+      width: 260px;
+    }
+
+    .dash-search::placeholder {
+      color: var(--text-muted);
+    }
+
+    .dash-search:focus {
+      border-color: var(--ig-red);
+      box-shadow: 0 0 0 3px rgba(225, 48, 108, 0.15);
+    }
+
+    .dash-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--bg-card);
+    }
+
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1050px;
+    }
+
+    .dash-table thead {
+      background: rgba(225, 48, 108, 0.1);
+    }
+
+    .dash-table th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      white-space: nowrap;
+    }
+
+    .dash-table td {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .dash-table tbody tr {
+      transition: var(--transition);
+    }
+
+    .dash-table tbody tr:hover {
+      background: rgba(225, 48, 108, 0.05);
+    }
+
+    .dash-table tbody tr:hover td {
+      color: var(--text-primary);
+    }
+
+    .dash-table .email-col {
+      color: var(--ig-orange);
+      font-weight: 500;
+    }
+
+    .dash-table .date-col {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .dash-empty {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .dash-empty .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+
+    .dash-empty p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .dash-count {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-primary);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      border-radius: var(--radius-xl);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: rgba(225, 48, 108, 0.15);
+      border-color: rgba(225, 48, 108, 0.3);
+    }
+
+    .btn-danger {
+      background: rgba(225, 48, 108, 0.15);
+      color: var(--ig-red);
+      border: 1px solid rgba(225, 48, 108, 0.3);
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      border-radius: var(--radius-xl);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-danger:hover {
+      background: rgba(225, 48, 108, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .dash-header .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dash-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .dash-search {
+        width: 100%;
+      }
+
+      .dash-toolbar-actions {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="container">
+      <div class="dash-header-left">
+        <img src="Nav logo.png" alt="Logo" style="height: 32px; width: auto; object-fit: contain;" />
+        <h1>Admin Dashboard</h1>
+        <span class="admin-badge">Admin</span>
+      </div>
+      <div class="dash-header-right">
+        <a href="index.html" class="btn-outline">View Site</a>
+        <button class="btn-danger" id="logoutBtn">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="dash-stats">
+    <div class="container">
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-num" id="totalSubmissions">0</div>
+          <div class="stat-lbl">Total Submissions</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="stat-icon">📧</div>
+          <div class="stat-num" id="uniqueEmails">0</div>
+          <div class="stat-lbl">Unique Emails</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-num">70</div>
+          <div class="stat-lbl">Winners Listed</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-num" id="todaySubmissions">0</div>
+          <div class="stat-lbl">Today's Entries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table -->
+  <section class="dash-content">
+    <div class="container">
+      <div class="dash-toolbar">
+        <h2>Visitor Submissions</h2>
+        <div class="dash-toolbar-actions">
+          <input type="text" class="dash-search" id="dashSearch" placeholder="Search name, email, state..." />
+          <button class="btn-outline" id="exportBtn">Export CSV</button>
+        </div>
+      </div>
+      <div class="dash-table-wrapper">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Region</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Age</th>
+              <th>Marital</th>
+              <th>Home Owner</th>
+              <th>Prize Pref</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="dashTableBody">
+          </tbody>
+        </table>
+      </div>
+      <p class="dash-count" id="dashCount"></p>
+    </div>
+  </section>
+
+  <script>
+    // Auth check
+    if (sessionStorage.getItem('adminAuth') !== 'true') {
+      window.location.href = 'admin.html';
+    }
+
+    const allSubmissions = JSON.parse(localStorage.getItem('giveawaySubmissions') || '[]');
+
+    function getStats() {
+      const total = allSubmissions.length;
+      const emails = [...new Set(allSubmissions.map(s => s.email))];
+      const today = new Date().toDateString();
+      const todayCount = allSubmissions.filter(s => new Date(s.timestamp).toDateString() === today).length;
+
+      document.getElementById('totalSubmissions').textContent = total;
+      document.getElementById('uniqueEmails').textContent = emails.length;
+      document.getElementById('todaySubmissions').textContent = todayCount;
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('dashTableBody');
+      if (list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="14">
+              <div class="dash-empty">
+                <div class="empty-icon">📭</div>
+                <p>No submissions found</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      } else {
+        tbody.innerHTML = list.map((s, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${s.fullName}</td>
+            <td class="email-col">${s.email}</td>
+            <td>${s.phone}</td>
+            <td>${s.address}</td>
+            <td>${s.region || '-'}</td>
+            <td>${s.city}</td>
+            <td>${s.state}</td>
+            <td>${s.zip}</td>
+            <td>${s.age}</td>
+            <td>${s.maritalStatus}</td>
+            <td>${s.homeOwner}</td>
+            <td>${s.prizePreference}</td>
+            <td class="date-col">${formatDate(s.timestamp)}</td>
+          </tr>
+        `).join('');
+      }
+      document.getElementById('dashCount').textContent = `Showing ${list.length} of ${allSubmissions.length} submissions`;
+    }
+
+    getStats();
+    renderTable(allSubmissions);
+
+    // Search
+    document.getElementById('dashSearch').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      if (!q) {
+        renderTable(allSubmissions);
+        return;
+      }
+      const filtered = allSubmissions.filter(s =>
+        s.fullName.toLowerCase().includes(q) ||
+        s.email.toLowerCase().includes(q) ||
+        s.state.toLowerCase().includes(q) ||
+        s.city.toLowerCase().includes(q) ||
+        s.phone.includes(q) ||
+        s.zip.includes(q) ||
+        (s.region && s.region.toLowerCase().includes(q))
+      );
+      renderTable(filtered);
+    });
+
+    // Export CSV
+    document.getElementById('exportBtn').addEventListener('click', function() {
+      if (allSubmissions.length === 0) {
+        alert('No submissions to export');
+        return;
+      }
+      const headers = ['Full Name','Email','Phone','Address','Region','City','State','Zip','Age','Marital Status','Home Owner','Prize Preference','Date'];
+      const rows = allSubmissions.map(s => [
+        s.fullName, s.email, s.phone, s.address, s.region || '', s.city, s.state, s.zip,
+        s.age, s.maritalStatus, s.homeOwner, s.prizePreference, formatDate(s.timestamp)
+      ]);
+      const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'giveaway-submissions.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      sessionStorage.removeItem('adminAuth');
+      window.location.href = 'admin.html';
+    });
+  </script>
+</body>
+</html>
