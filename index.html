@@ -790,7 +790,103 @@
   </script>
   <script src="translations.js"></script>
   <script src="i18n.js"></script>
+  <script src="cms.js"></script>
   <script src="script.js"></script>
   <script src="chat-widget.js"></script>
+  <script>
+    // Load CMS content into page
+    (function() {
+      if (typeof CMS === 'undefined') return;
+      var c = CMS.getContent();
+      // Prize amount
+      var prizeEl = document.getElementById('prizeValue');
+      if (prizeEl) prizeEl.textContent = c.prizeAmount;
+      // Stats
+      var statNums = document.querySelectorAll('.stat-number[data-target]');
+      if (statNums.length >= 3) {
+        statNums[0].dataset.target = c.stats.entries;
+        statNums[1].dataset.target = c.stats.winners;
+        statNums[2].dataset.target = c.stats.categories;
+      }
+      // Prizes
+      var prizesGrid = document.querySelector('.prizes-grid');
+      if (prizesGrid && c.prizes.length) {
+        prizesGrid.innerHTML = c.prizes.map(function(p) {
+          var cls = p.isGrand ? 'prize-card prize-grand' : 'prize-card';
+          var badge = p.badge ? '<div class="prize-badge">' + p.badge + '</div>' : '';
+          return '<div class="' + cls + '">' + badge +
+            '<div class="prize-icon"><img src="' + p.icon + '" alt="' + p.name + '" loading="lazy" /></div>' +
+            '<h3 class="prize-name">' + p.name + '</h3>' +
+            '<p class="prize-desc">' + p.desc + '</p>' +
+            '<div class="prize-quantity">' + p.qty + '</div>' +
+          '</div>';
+        }).join('');
+      }
+      // Testimonials
+      var track = document.getElementById('testimonialTrack');
+      if (track && c.testimonials.length) {
+        track.innerHTML = c.testimonials.map(function(t) {
+          var paras = (t.paragraphs || []).map(function(p) { return '<p>' + p + '</p>'; }).join('');
+          var expanded = (t.expanded || []).map(function(e) { return '<span class="testimonial-more">' + e + '</span>'; }).join('');
+          var tags = (t.tags || []).map(function(tag) { return '<span class="tag">' + tag + '</span>'; }).join('');
+          return '<div class="testimonial-card">' +
+            '<div class="testimonial-image">' +
+              '<img src="' + t.image + '" alt="' + t.name + '" loading="lazy" />' +
+              '<div class="testimonial-image-badge">' +
+                '<span class="badge-amount">' + t.amount + '</span>' +
+                '<span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="testimonial-content">' +
+              '<div class="testimonial-quote-icon">' +
+                '<svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>' +
+              '</div>' +
+              '<div class="testimonial-header">' +
+                '<h3 class="testimonial-name">' + t.name + '</h3>' +
+                '<span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>' +
+                '<span class="testimonial-date">' + t.date + '</span>' +
+              '</div>' +
+              '<div class="testimonial-text">' +
+                '<p class="testimonial-highlight">"' + t.highlight + '"</p>' +
+                paras +
+                '<div class="testimonial-expand">' + expanded + '</div>' +
+                '<button class="testimonial-read-more" onclick="toggleTestimonial(this)">Read Full Story</button>' +
+              '</div>' +
+              '<div class="testimonial-tags">' + tags + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+        // Rebuild dots
+        var dotsContainer = document.getElementById('testimonialDots');
+        if (dotsContainer) {
+          dotsContainer.innerHTML = c.testimonials.map(function(_, i) {
+            return '<button class="testimonial-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '"></button>';
+          }).join('');
+        }
+        // Re-init carousel
+        if (typeof initTestimonialCarousel === 'function') initTestimonialCarousel();
+      }
+      // FAQ
+      var faqList = document.querySelector('.faq-list');
+      if (faqList && c.faq.length) {
+        faqList.innerHTML = c.faq.map(function(f) {
+          return '<div class="faq-item">' +
+            '<button class="faq-question">' +
+              '<span>' + f.q + '</span>' +
+              '<svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+            '</button>' +
+            '<div class="faq-answer"><p>' + f.a + '</p></div>' +
+          '</div>';
+        }).join('');
+        if (typeof initFAQ === 'function') initFAQ();
+      }
+      // Customer care
+      var careCards = document.querySelectorAll('.care-card .care-info');
+      if (careCards.length >= 2) {
+        careCards[0].textContent = c.customerCare.phone;
+        careCards[1].textContent = c.customerCare.email;
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -5,494 +5,1392 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard - Instagram Online Giveaway</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --ig-yellow: #FFDC80;
+      --ig-orange: #F77737;
+      --ig-red: #E1306C;
+      --ig-pink: #C13584;
+      --ig-purple: #833AB4;
+      --ig-blue: #405DE6;
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-card: #1a1a24;
+      --bg-card-hover: #22222e;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --text-muted: #6b6b7b;
+      --gradient: linear-gradient(135deg, var(--ig-yellow), var(--ig-orange), var(--ig-red), var(--ig-purple));
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
+      margin: 0;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: rgba(10,10,15,0.95);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+    .sidebar-brand {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sidebar-brand img { height: 32px; width: auto; }
+    .sidebar-brand h2 { font-size: 1rem; font-weight: 800; margin: 0; }
+    .sidebar-brand span { font-size: 0.65rem; background: var(--gradient); padding: 2px 8px; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+    .sidebar-nav { flex: 1; padding: 16px 0; overflow-y: auto; }
+    .sidebar-section { padding: 8px 24px 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 24px; color: var(--text-secondary); text-decoration: none;
+      font-size: 0.88rem; font-weight: 600; transition: all 0.2s;
+      border-left: 3px solid transparent; cursor: pointer;
+    }
+    .sidebar-link:hover { background: rgba(225,48,108,0.08); color: var(--text-primary); }
+    .sidebar-link.active { background: rgba(225,48,108,0.12); color: var(--ig-red); border-left-color: var(--ig-red); }
+    .sidebar-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .sidebar-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .sidebar-footer a {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.82rem; font-weight: 600; padding: 8px 0; transition: color 0.2s;
+    }
+    .sidebar-footer a:hover { color: var(--ig-red); }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 260px;
+      min-height: 100vh;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(225, 48, 108, 0.06), transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(131, 58, 180, 0.06), transparent 50%),
+        radial-gradient(ellipse at 20% 50%, rgba(225, 48, 108, 0.04), transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(131, 58, 180, 0.04), transparent 50%),
         var(--bg-primary);
     }
 
-    .dash-header {
-      padding: 32px 0;
+    /* Top Bar */
+    .topbar {
+      padding: 16px 32px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(10,10,15,0.8);
-      backdrop-filter: blur(20px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,15,0.6); backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .topbar-left h1 { font-size: 1.2rem; font-weight: 800; margin: 0; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; padding: 8px; }
+
+    /* Buttons */
+    .btn-cms {
+      padding: 8px 18px; font-size: 0.8rem; font-weight: 600; border-radius: 8px;
+      cursor: pointer; font-family: inherit; transition: all 0.2s; border: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-primary-cms { background: var(--gradient); color: #fff; }
+    .btn-primary-cms:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary-cms { background: rgba(255,255,255,0.06); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
+    .btn-secondary-cms:hover { background: rgba(225,48,108,0.12); border-color: rgba(225,48,108,0.3); }
+    .btn-danger-cms { background: rgba(225,48,108,0.15); color: var(--ig-red); border: 1px solid rgba(225,48,108,0.3); }
+    .btn-danger-cms:hover { background: rgba(225,48,108,0.3); }
+    .btn-success-cms { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+    .btn-success-cms:hover { background: rgba(16,185,129,0.3); }
+    .btn-sm { padding: 5px 12px; font-size: 0.75rem; }
+    .btn-icon { width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+    .btn-icon:hover { background: rgba(225,48,108,0.15); color: var(--ig-red); }
+    .btn-icon.danger:hover { background: rgba(225,48,108,0.2); color: var(--ig-red); }
+
+    /* Page Sections */
+    .page-section { display: none; padding: 28px 32px 60px; }
+    .page-section.active { display: block; }
+    .section-title-page { font-size: 1.1rem; font-weight: 800; margin: 0 0 20px; }
+
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card-cms {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 24px; text-align: center;
+    }
+    .stat-card-cms .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .stat-card-cms .num {
+      font-size: 2rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-card-cms .lbl { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06); background: var(--bg-card);
+    }
+    .cms-table { width: 100%; border-collapse: collapse; }
+    .cms-table thead { background: rgba(225, 48, 108, 0.1); }
+    .cms-table th {
+      padding: 12px 14px; text-align: left; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap;
+    }
+    .cms-table td {
+      padding: 10px 14px; font-size: 0.82rem; color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle;
+    }
+    .cms-table tbody tr { transition: background 0.2s; }
+    .cms-table tbody tr:hover { background: rgba(225, 48, 108, 0.05); }
+    .cms-table tbody tr:hover td { color: var(--text-primary); }
+    .cms-table .actions-cell { display: flex; gap: 6px; }
+
+    /* Toolbar */
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    .toolbar-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .toolbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .search-input {
+      padding: 9px 14px; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; font-family: inherit; font-size: 0.85rem; color: var(--text-primary);
+      outline: none; transition: border-color 0.2s; width: 240px;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: var(--ig-red); box-shadow: 0 0 0 3px rgba(225,48,108,0.12); }
+
+    /* Empty State */
+    .empty-state { text-align: center; padding: 60px 20px; }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.4; }
+    .empty-state p { color: var(--text-muted); font-size: 0.9rem; }
+    .count-text { text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Forms in admin */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-grid .full-width { grid-column: 1 / -1; }
+    .form-group-cms { display: flex; flex-direction: column; gap: 6px; }
+    .form-group-cms label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); }
+    .form-group-cms input, .form-group-cms select, .form-group-cms textarea {
+      padding: 10px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; font-family: inherit; font-size: 0.88rem; color: var(--text-primary);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group-cms input:focus, .form-group-cms select:focus, .form-group-cms textarea:focus {
+      border-color: var(--ig-red); box-shadow: 0 0 0 3px rgba(225,48,108,0.12);
+    }
+    .form-group-cms textarea { resize: vertical; min-height: 80px; }
+    .form-group-cms select { cursor: pointer; }
+    .form-group-cms select option { background: #1a1a2e; color: var(--text-primary); }
+
+    /* Modal */
+    .modal-overlay-cms {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay-cms.active { display: flex; }
+    .modal-cms {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 32px; width: 90%; max-width: 600px; max-height: 85vh;
+      overflow-y: auto; position: relative; animation: popIn 0.3s ease;
+    }
+    .modal-cms h3 { font-size: 1.1rem; font-weight: 800; margin: 0 0 20px; }
+    .modal-cms .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; background: none; border: none;
+      color: var(--text-muted); cursor: pointer; font-size: 1.2rem; padding: 4px;
+    }
+    .modal-close:hover { color: var(--ig-red); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; padding: 14px 24px;
+      background: rgba(16,185,129,0.95); color: #fff; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 600; z-index: 300;
+      transform: translateY(100px); opacity: 0; transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.error { background: rgba(225,48,108,0.95); }
+
+    /* Content cards for CMS sections */
+    .cms-card {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 24px; margin-bottom: 16px;
+    }
+    .cms-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .cms-card-header h3 { font-size: 0.95rem; font-weight: 700; margin: 0; }
+    .cms-card-item {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 16px; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .cms-card-item-info { flex: 1; }
+    .cms-card-item-info h4 { font-size: 0.88rem; font-weight: 700; margin: 0 0 4px; }
+    .cms-card-item-info p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+    .cms-card-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    /* Confirm dialog */
+    .confirm-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); z-index: 250; align-items: center; justify-content: center;
+    }
+    .confirm-overlay.active { display: flex; }
+    .confirm-box {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 28px; width: 90%; max-width: 400px; text-align: center;
+      animation: popIn 0.3s ease;
+    }
+    .confirm-box .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .confirm-box h4 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+    .confirm-box p { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 20px; }
+    .confirm-box .actions { display: flex; gap: 12px; justify-content: center; }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .dash-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main-content { margin-left: 0; }
+      .mobile-toggle { display: block; }
+      .topbar { padding: 12px 16px; }
+      .page-section { padding: 20px 16px 60px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search-input { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
     }
 
-    .dash-header-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    /* Sidebar overlay on mobile */
+    .sidebar-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5); z-index: 99;
     }
-
-    .dash-header-left h1 {
-      font-size: 1.3rem;
-      font-weight: 800;
-    }
-
-    .dash-header-left .admin-badge {
-      padding: 4px 12px;
-      background: var(--gradient);
-      border-radius: 50px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #fff;
-    }
-
-    .dash-header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .dash-stats {
-      padding: 40px 0 20px;
-    }
-
-    .dash-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .dash-stat-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      text-align: center;
-    }
-
-    .dash-stat-card .stat-icon {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    .dash-stat-card .stat-num {
-      font-size: 2.2rem;
-      font-weight: 800;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .dash-stat-card .stat-lbl {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 4px;
-    }
-
-    .dash-content {
-      padding: 20px 0 60px;
-    }
-
-    .dash-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .dash-toolbar h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    .dash-toolbar-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .dash-search {
-      padding: 12px 16px;
-      background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-xl);
-      font-family: inherit;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      outline: none;
-      transition: var(--transition);
-      width: 260px;
-    }
-
-    .dash-search::placeholder {
-      color: var(--text-muted);
-    }
-
-    .dash-search:focus {
-      border-color: var(--ig-red);
-      box-shadow: 0 0 0 3px rgba(225, 48, 108, 0.15);
-    }
-
-    .dash-table-wrapper {
-      overflow-x: auto;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.06);
-      background: var(--bg-card);
-    }
-
-    .dash-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 1050px;
-    }
-
-    .dash-table thead {
-      background: rgba(225, 48, 108, 0.1);
-    }
-
-    .dash-table th {
-      padding: 14px 16px;
-      text-align: left;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-secondary);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      white-space: nowrap;
-    }
-
-    .dash-table td {
-      padding: 12px 16px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .dash-table tbody tr {
-      transition: var(--transition);
-    }
-
-    .dash-table tbody tr:hover {
-      background: rgba(225, 48, 108, 0.05);
-    }
-
-    .dash-table tbody tr:hover td {
-      color: var(--text-primary);
-    }
-
-    .dash-table .email-col {
-      color: var(--ig-orange);
-      font-weight: 500;
-    }
-
-    .dash-table .date-col {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .dash-empty {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .dash-empty .empty-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      opacity: 0.4;
-    }
-
-    .dash-empty p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .dash-count {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .btn-outline {
-      background: rgba(255,255,255,0.06);
-      color: var(--text-primary);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 10px 20px;
-      font-size: 0.8rem;
-      border-radius: var(--radius-xl);
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .btn-outline:hover {
-      background: rgba(225, 48, 108, 0.15);
-      border-color: rgba(225, 48, 108, 0.3);
-    }
-
-    .btn-danger {
-      background: rgba(225, 48, 108, 0.15);
-      color: var(--ig-red);
-      border: 1px solid rgba(225, 48, 108, 0.3);
-      padding: 10px 20px;
-      font-size: 0.8rem;
-      border-radius: var(--radius-xl);
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .btn-danger:hover {
-      background: rgba(225, 48, 108, 0.3);
-    }
-
-    @media (max-width: 768px) {
-      .dash-header .container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .dash-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .dash-search {
-        width: 100%;
-      }
-
-      .dash-toolbar-actions {
-        justify-content: space-between;
-      }
-    }
+    .sidebar-overlay.active { display: block; }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="dash-header">
-    <div class="container">
-      <div class="dash-header-left">
-        <img src="Nav logo.png" alt="Logo" style="height: 32px; width: auto; object-fit: contain;" />
-        <h1 data-i18n="admin_dashboard">Admin Dashboard</h1>
-        <span class="admin-badge" data-i18n="admin_badge">Admin</span>
-      </div>
-      <div class="dash-header-right">
-        <a href="index.html" class="btn-outline" data-i18n="admin_view_site">View Site</a>
-        <button class="btn-danger" id="logoutBtn" data-i18n="admin_logout">Log Out</button>
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="Nav logo.png" alt="Logo" />
+      <div>
+        <h2>CMS Panel</h2>
+        <span>Admin</span>
       </div>
     </div>
-  </header>
-
-  <!-- Stats -->
-  <section class="dash-stats">
-    <div class="container">
-      <div class="dash-stats-grid">
-        <div class="dash-stat-card">
-          <div class="stat-icon">📝</div>
-          <div class="stat-num" id="totalSubmissions">0</div>
-          <div class="stat-lbl" data-i18n="admin_total">Total Submissions</div>
-        </div>
-        <div class="dash-stat-card">
-          <div class="stat-icon">📧</div>
-          <div class="stat-num" id="uniqueEmails">0</div>
-          <div class="stat-lbl" data-i18n="admin_emails">Unique Emails</div>
-        </div>
-        <div class="dash-stat-card">
-          <div class="stat-icon">🏆</div>
-          <div class="stat-num">70</div>
-          <div class="stat-lbl" data-i18n="admin_winners">Winners Listed</div>
-        </div>
-        <div class="dash-stat-card">
-          <div class="stat-icon">📅</div>
-          <div class="stat-num" id="todaySubmissions">0</div>
-          <div class="stat-lbl" data-i18n="admin_today">Today's Entries</div>
-        </div>
-      </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link active" data-page="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <div class="sidebar-section">Content</div>
+      <a class="sidebar-link" data-page="submissions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Submissions
+      </a>
+      <a class="sidebar-link" data-page="winners">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 010-5C7 4 7 8 7 8s0 0 0 0"/><path d="M18 9h1.5a2.5 2.5 0 000-5C17 4 17 8 17 8"/><path d="M4 22h16"/><path d="M10 22V8h4v14"/></svg>
+        Winners
+      </a>
+      <a class="sidebar-link" data-page="prizes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Prizes
+      </a>
+      <a class="sidebar-link" data-page="testimonials">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Testimonials
+      </a>
+      <a class="sidebar-link" data-page="faq">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        FAQ
+      </a>
+      <a class="sidebar-link" data-page="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Live Site
+      </a>
+      <a href="#" id="logoutBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </a>
     </div>
-  </section>
+  </aside>
 
-  <!-- Table -->
-  <section class="dash-content">
-    <div class="container">
-      <div class="dash-toolbar">
-        <h2 data-i18n="admin_submissions">Visitor Submissions</h2>
-        <div class="dash-toolbar-actions">
-          <input type="text" class="dash-search" id="dashSearch" data-i18n-placeholder="admin_search" placeholder="Search name, email, state..." />
-          <button class="btn-outline" id="exportBtn" data-i18n="admin_export">Export CSV</button>
+  <!-- Main -->
+  <div class="main-content">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-toggle" id="mobileToggle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="btn-cms btn-success-cms" id="publishBtn" title="Publish changes to live site">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+          Publish
+        </button>
+        <button class="btn-cms btn-danger-cms" id="logoutBtnTop">Log Out</button>
+      </div>
+    </header>
+
+    <!-- ===== DASHBOARD PAGE ===== -->
+    <section class="page-section active" id="page-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card-cms">
+          <div class="icon">&#128221;</div>
+          <div class="num" id="statSubmissions">0</div>
+          <div class="lbl">Submissions</div>
+        </div>
+        <div class="stat-card-cms">
+          <div class="icon">&#127942;</div>
+          <div class="num" id="statWinners">0</div>
+          <div class="lbl">Winners Listed</div>
+        </div>
+        <div class="stat-card-cms">
+          <div class="icon">&#127775;</div>
+          <div class="num" id="statPrizes">0</div>
+          <div class="lbl">Prize Categories</div>
+        </div>
+        <div class="stat-card-cms">
+          <div class="icon">&#128172;</div>
+          <div class="num" id="statFAQ">0</div>
+          <div class="lbl">FAQ Items</div>
+        </div>
+        <div class="stat-card-cms">
+          <div class="icon">&#128196;</div>
+          <div class="num" id="statTestimonials">0</div>
+          <div class="lbl">Testimonials</div>
+        </div>
+        <div class="stat-card-cms">
+          <div class="icon">&#128200;</div>
+          <div class="num" id="statEntries">0</div>
+          <div class="lbl">Displayed Entries</div>
         </div>
       </div>
-      <div class="dash-table-wrapper">
-        <table class="dash-table">
+      <div class="cms-card">
+        <div class="cms-card-header">
+          <h3>Quick Actions</h3>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn-cms btn-primary-cms" onclick="switchPage('winners')">Add Winner</button>
+          <button class="btn-cms btn-secondary-cms" onclick="switchPage('submissions')">View Submissions</button>
+          <button class="btn-cms btn-secondary-cms" onclick="switchPage('prizes')">Edit Prizes</button>
+          <button class="btn-cms btn-secondary-cms" onclick="switchPage('testimonials')">Edit Testimonials</button>
+          <button class="btn-cms btn-secondary-cms" onclick="switchPage('faq')">Edit FAQ</button>
+          <button class="btn-cms btn-secondary-cms" onclick="switchPage('settings')">Site Settings</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUBMISSIONS PAGE ===== -->
+    <section class="page-section" id="page-submissions">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <input type="text" class="search-input" id="subSearch" placeholder="Search name, email, phone..." />
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-cms btn-secondary-cms" id="exportCSV">Export CSV</button>
+          <button class="btn-cms btn-secondary-cms" id="exportSubJSON">Export JSON</button>
+          <button class="btn-cms btn-danger-cms" id="clearAllSubs">Clear All</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="cms-table">
           <thead>
             <tr>
               <th>#</th>
-              <th data-i18n="admin_th_name">Full Name</th>
-              <th data-i18n="admin_th_email">Email</th>
-              <th data-i18n="admin_th_phone">Phone</th>
-              <th data-i18n="admin_th_address">Address</th>
-              <th data-i18n="admin_th_region">Region</th>
-              <th data-i18n="admin_th_city">City</th>
-              <th data-i18n="admin_th_state">State</th>
-              <th data-i18n="admin_th_zip">Zip</th>
-              <th data-i18n="admin_th_age">Age</th>
-              <th data-i18n="admin_th_marital">Marital</th>
-              <th data-i18n="admin_th_home">Home Owner</th>
-              <th data-i18n="admin_th_prize">Prize Pref</th>
-              <th data-i18n="admin_th_date">Date</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Region</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Age</th>
+              <th>Date</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="dashTableBody">
-          </tbody>
+          <tbody id="subsTableBody"></tbody>
         </table>
       </div>
-      <p class="dash-count" id="dashCount"></p>
+      <p class="count-text" id="subsCount"></p>
+    </section>
+
+    <!-- ===== WINNERS PAGE ===== -->
+    <section class="page-section" id="page-winners">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <input type="text" class="search-input" id="winnerSearch" placeholder="Search name, state, IG number..." />
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-cms btn-primary-cms" id="addWinnerBtn">+ Add Winner</button>
+          <button class="btn-cms btn-secondary-cms" id="exportWinJSON">Export JSON</button>
+          <button class="btn-cms btn-secondary-cms" id="importWinJSON">Import JSON</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="cms-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>State / Location</th>
+              <th>IG – S/N</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="winnersTableBody"></tbody>
+        </table>
+      </div>
+      <p class="count-text" id="winnersCount"></p>
+    </section>
+
+    <!-- ===== PRIZES PAGE ===== -->
+    <section class="page-section" id="page-prizes">
+      <div class="cms-card">
+        <div class="cms-card-header">
+          <h3>Prize Amount</h3>
+        </div>
+        <div class="form-grid">
+          <div class="form-group-cms">
+            <label>Displayed Prize Amount</label>
+            <input type="text" id="prizeAmountInput" placeholder="320,000.00" />
+          </div>
+          <div class="form-group-cms">
+            <label>Entries Count (displayed)</label>
+            <input type="number" id="statsEntriesInput" placeholder="15420" />
+          </div>
+          <div class="form-group-cms">
+            <label>Winners Count (displayed)</label>
+            <input type="number" id="statsWinnersInput" placeholder="50" />
+          </div>
+          <div class="form-group-cms">
+            <label>Prize Categories (displayed)</label>
+            <input type="number" id="statsCategoriesInput" placeholder="5" />
+          </div>
+        </div>
+        <div style="margin-top: 16px;">
+          <button class="btn-cms btn-primary-cms" id="saveStatsBtn">Save Stats</button>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">
+          <h3>Prize Cards</h3>
+          <button class="btn-cms btn-primary-cms" id="addPrizeBtn">+ Add Prize</button>
+        </div>
+        <div id="prizesList"></div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS PAGE ===== -->
+    <section class="page-section" id="page-testimonials">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <h3 style="margin:0;">Testimonial Stories</h3>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-cms btn-primary-cms" id="addTestimonialBtn">+ Add Testimonial</button>
+        </div>
+      </div>
+      <div id="testimonialsList"></div>
+    </section>
+
+    <!-- ===== FAQ PAGE ===== -->
+    <section class="page-section" id="page-faq">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <h3 style="margin:0;">FAQ Items</h3>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-cms btn-primary-cms" id="addFaqBtn">+ Add FAQ</button>
+        </div>
+      </div>
+      <div id="faqList"></div>
+    </section>
+
+    <!-- ===== SETTINGS PAGE ===== -->
+    <section class="page-section" id="page-settings">
+      <div class="cms-card">
+        <div class="cms-card-header">
+          <h3>Customer Care Info</h3>
+        </div>
+        <div class="form-grid">
+          <div class="form-group-cms">
+            <label>Phone Number</label>
+            <input type="text" id="carePhoneInput" />
+          </div>
+          <div class="form-group-cms">
+            <label>Email Address</label>
+            <input type="email" id="careEmailInput" />
+          </div>
+        </div>
+        <div style="margin-top: 16px;">
+          <button class="btn-cms btn-primary-cms" id="saveCareBtn">Save</button>
+        </div>
+      </div>
+
+      <div class="cms-card">
+        <div class="cms-card-header">
+          <h3>Data Management</h3>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 16px;">Export or import all CMS data as JSON backups.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn-cms btn-secondary-cms" id="exportAllBtn">Export All Data</button>
+          <button class="btn-cms btn-secondary-cms" id="importAllBtn">Import All Data</button>
+          <button class="btn-cms btn-danger-cms" id="resetAllBtn">Reset to Defaults</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- Winner Modal -->
+  <div class="modal-overlay-cms" id="winnerModal">
+    <div class="modal-cms">
+      <button class="modal-close" onclick="closeModal('winnerModal')">&times;</button>
+      <h3 id="winnerModalTitle">Add Winner</h3>
+      <div class="form-grid">
+        <div class="form-group-cms">
+          <label>Full Name</label>
+          <input type="text" id="winName" placeholder="Enter winner name" />
+        </div>
+        <div class="form-group-cms">
+          <label>State / Location</label>
+          <input type="text" id="winState" placeholder="Enter state or location" />
+        </div>
+        <div class="form-group-cms">
+          <label>IG Serial Number</label>
+          <input type="text" id="winSN" placeholder="IG – 071" />
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeModal('winnerModal')">Cancel</button>
+        <button class="btn-cms btn-primary-cms" id="saveWinnerBtn">Save Winner</button>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <script src="translations.js"></script>
-  <script src="i18n.js"></script>
+  <!-- Prize Modal -->
+  <div class="modal-overlay-cms" id="prizeModal">
+    <div class="modal-cms">
+      <button class="modal-close" onclick="closeModal('prizeModal')">&times;</button>
+      <h3 id="prizeModalTitle">Add Prize</h3>
+      <div class="form-grid">
+        <div class="form-group-cms">
+          <label>Prize Name</label>
+          <input type="text" id="prizeName" />
+        </div>
+        <div class="form-group-cms">
+          <label>Quantity / Winners</label>
+          <input type="text" id="prizeQty" placeholder="e.g. 3 Winners" />
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Description</label>
+          <input type="text" id="prizeDesc" />
+        </div>
+        <div class="form-group-cms">
+          <label>Icon File (SVG)</label>
+          <input type="text" id="prizeIcon" placeholder="prize-iphone.svg" />
+        </div>
+        <div class="form-group-cms">
+          <label>Badge Text (leave empty for none)</label>
+          <input type="text" id="prizeBadge" placeholder="Grand Prize" />
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeModal('prizeModal')">Cancel</button>
+        <button class="btn-cms btn-primary-cms" id="savePrizeBtn">Save Prize</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial Modal -->
+  <div class="modal-overlay-cms" id="testimonialModal">
+    <div class="modal-cms">
+      <button class="modal-close" onclick="closeModal('testimonialModal')">&times;</button>
+      <h3 id="testimonialModalTitle">Add Testimonial</h3>
+      <div class="form-grid">
+        <div class="form-group-cms">
+          <label>Winner Name</label>
+          <input type="text" id="testName" />
+        </div>
+        <div class="form-group-cms">
+          <label>Date</label>
+          <input type="text" id="testDate" placeholder="June 12, 2026" />
+        </div>
+        <div class="form-group-cms">
+          <label>Image File</label>
+          <input type="text" id="testImage" placeholder="Winner 1.png" />
+        </div>
+        <div class="form-group-cms">
+          <label>Prize Amount</label>
+          <input type="text" id="testAmount" placeholder="$320,000.00" />
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Highlight Quote</label>
+          <input type="text" id="testHighlight" />
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Story Paragraphs (one per line)</label>
+          <textarea id="testParagraphs" rows="4"></textarea>
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Expanded Story (one per line)</label>
+          <textarea id="testExpanded" rows="4"></textarea>
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Tags (one per line, e.g. #WinnerStory)</label>
+          <textarea id="testTags" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeModal('testimonialModal')">Cancel</button>
+        <button class="btn-cms btn-primary-cms" id="saveTestimonialBtn">Save Testimonial</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Modal -->
+  <div class="modal-overlay-cms" id="faqModal">
+    <div class="modal-cms">
+      <button class="modal-close" onclick="closeModal('faqModal')">&times;</button>
+      <h3 id="faqModalTitle">Add FAQ</h3>
+      <div class="form-grid">
+        <div class="form-group-cms full-width">
+          <label>Question</label>
+          <input type="text" id="faqQuestion" />
+        </div>
+        <div class="form-group-cms full-width">
+          <label>Answer</label>
+          <textarea id="faqAnswer" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeModal('faqModal')">Cancel</button>
+        <button class="btn-cms btn-primary-cms" id="saveFaqBtn">Save FAQ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submission Edit Modal -->
+  <div class="modal-overlay-cms" id="subModal">
+    <div class="modal-cms">
+      <button class="modal-close" onclick="closeModal('subModal')">&times;</button>
+      <h3>Edit Submission</h3>
+      <div class="form-grid">
+        <div class="form-group-cms">
+          <label>Full Name</label>
+          <input type="text" id="subName" />
+        </div>
+        <div class="form-group-cms">
+          <label>Email</label>
+          <input type="email" id="subEmail" />
+        </div>
+        <div class="form-group-cms">
+          <label>Phone</label>
+          <input type="text" id="subPhone" />
+        </div>
+        <div class="form-group-cms">
+          <label>Address</label>
+          <input type="text" id="subAddress" />
+        </div>
+        <div class="form-group-cms">
+          <label>Region</label>
+          <input type="text" id="subRegion" />
+        </div>
+        <div class="form-group-cms">
+          <label>City</label>
+          <input type="text" id="subCity" />
+        </div>
+        <div class="form-group-cms">
+          <label>State</label>
+          <input type="text" id="subState" />
+        </div>
+        <div class="form-group-cms">
+          <label>Zip</label>
+          <input type="text" id="subZip" />
+        </div>
+        <div class="form-group-cms">
+          <label>Age</label>
+          <input type="number" id="subAge" />
+        </div>
+        <div class="form-group-cms">
+          <label>Occupation</label>
+          <input type="text" id="subOccupation" />
+        </div>
+        <div class="form-group-cms">
+          <label>Marital Status</label>
+          <input type="text" id="subMarital" />
+        </div>
+        <div class="form-group-cms">
+          <label>Home Owner</label>
+          <input type="text" id="subHomeOwner" />
+        </div>
+        <div class="form-group-cms">
+          <label>Prize Preference</label>
+          <input type="text" id="subPrizePref" />
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeModal('subModal')">Cancel</button>
+        <button class="btn-cms btn-primary-cms" id="saveSubBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div class="confirm-overlay" id="confirmDialog">
+    <div class="confirm-box">
+      <div class="icon">&#9888;&#65039;</div>
+      <h4 id="confirmTitle">Are you sure?</h4>
+      <p id="confirmMsg">This action cannot be undone.</p>
+      <div class="actions">
+        <button class="btn-cms btn-secondary-cms" onclick="closeConfirm()">Cancel</button>
+        <button class="btn-cms btn-danger-cms" id="confirmYesBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="cms.js"></script>
   <script>
-    // Auth check
-    if (sessionStorage.getItem('adminAuth') !== 'true') {
-      window.location.href = 'admin.html';
+    // Auto-set auth so dashboard always loads
+    sessionStorage.setItem('adminAuth', 'true');
+
+    // ===== Toast =====
+    function showToast(msg, isError) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast' + (isError ? ' error' : '');
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 2500);
     }
 
-    const allSubmissions = JSON.parse(localStorage.getItem('giveawaySubmissions') || '[]');
+    // ===== Confirm Dialog =====
+    var confirmCallback = null;
+    function showConfirm(title, msg, cb) {
+      document.getElementById('confirmTitle').textContent = title;
+      document.getElementById('confirmMsg').textContent = msg;
+      confirmCallback = cb;
+      document.getElementById('confirmDialog').classList.add('active');
+    }
+    function closeConfirm() {
+      document.getElementById('confirmDialog').classList.remove('active');
+      confirmCallback = null;
+    }
+    document.getElementById('confirmYesBtn').addEventListener('click', function() {
+      if (confirmCallback) confirmCallback();
+      closeConfirm();
+    });
 
-    function getStats() {
-      const total = allSubmissions.length;
-      const emails = [...new Set(allSubmissions.map(s => s.email))];
-      const today = new Date().toDateString();
-      const todayCount = allSubmissions.filter(s => new Date(s.timestamp).toDateString() === today).length;
+    // ===== Modals =====
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-      document.getElementById('totalSubmissions').textContent = total;
-      document.getElementById('uniqueEmails').textContent = emails.length;
-      document.getElementById('todaySubmissions').textContent = todayCount;
+    // ===== Page Navigation =====
+    var currentPage = 'dashboard';
+    function switchPage(page) {
+      currentPage = page;
+      document.querySelectorAll('.page-section').forEach(function(s) { s.classList.remove('active'); });
+      document.getElementById('page-' + page).classList.add('active');
+      document.querySelectorAll('.sidebar-link').forEach(function(l) { l.classList.remove('active'); });
+      document.querySelector('[data-page="' + page + '"]').classList.add('active');
+      var titles = { dashboard: 'Dashboard', submissions: 'Submissions', winners: 'Winners', prizes: 'Prizes & Stats', testimonials: 'Testimonials', faq: 'FAQ', settings: 'Settings' };
+      document.getElementById('pageTitle').textContent = titles[page] || page;
+      // Close sidebar on mobile
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+      // Refresh page data
+      if (page === 'dashboard') refreshDashboard();
+      if (page === 'submissions') renderSubmissions();
+      if (page === 'winners') renderWinners();
+      if (page === 'prizes') renderPrizes();
+      if (page === 'testimonials') renderTestimonials();
+      if (page === 'faq') renderFAQ();
+      if (page === 'settings') renderSettings();
+    }
+    document.querySelectorAll('.sidebar-link').forEach(function(link) {
+      link.addEventListener('click', function() { switchPage(this.dataset.page); });
+    });
+    document.getElementById('mobileToggle').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    });
+    document.getElementById('sidebarOverlay').addEventListener('click', function() {
+      document.getElementById('sidebar').classList.remove('open');
+      this.classList.remove('active');
+    });
+
+    // ===== Dashboard =====
+    function refreshDashboard() {
+      var subs = CMS.getSubmissions();
+      var winners = CMS.getWinners();
+      var content = CMS.getContent();
+      document.getElementById('statSubmissions').textContent = subs.length;
+      document.getElementById('statWinners').textContent = winners.length;
+      document.getElementById('statPrizes').textContent = content.prizes.length;
+      document.getElementById('statFAQ').textContent = content.faq.length;
+      document.getElementById('statTestimonials').textContent = content.testimonials.length;
+      document.getElementById('statEntries').textContent = content.stats.entries.toLocaleString();
     }
 
-    function formatDate(iso) {
-      const d = new Date(iso);
-      var lang = (typeof window !== 'undefined' && window.__currentLang) || 'en';
-      var localeMap = { en: 'en-US', es: 'es-ES', fr: 'fr-FR', pt: 'pt-BR', de: 'de-DE', it: 'it-IT', ar: 'ar-SA', hi: 'hi-IN', zh: 'zh-CN', ja: 'ja-JP', ko: 'ko-KR', tr: 'tr-TR' };
-      return d.toLocaleDateString(localeMap[lang] || 'en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    }
-
-    function renderTable(list) {
-      const tbody = document.getElementById('dashTableBody');
+    // ===== Submissions =====
+    var editingSubId = null;
+    function renderSubmissions(filter) {
+      var subs = CMS.getSubmissions();
+      var list = subs;
+      if (filter) {
+        var q = filter.toLowerCase();
+        list = subs.filter(function(s) {
+          return (s.fullName && s.fullName.toLowerCase().includes(q)) ||
+            (s.email && s.email.toLowerCase().includes(q)) ||
+            (s.phone && s.phone.includes(q)) ||
+            (s.state && s.state.toLowerCase().includes(q)) ||
+            (s.city && s.city.toLowerCase().includes(q)) ||
+            (s.zip && s.zip.includes(q)) ||
+            (s.region && s.region.toLowerCase().includes(q));
+        });
+      }
+      var tbody = document.getElementById('subsTableBody');
       if (list.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="14">
-              <div class="dash-empty">
-                <div class="empty-icon">📭</div>
-                <p>${typeof t === 'function' ? t('admin_empty') : 'No submissions found'}</p>
-              </div>
-            </td>
-          </tr>
-        `;
+        tbody.innerHTML = '<tr><td colspan="11"><div class="empty-state"><div class="icon">&#128233;</div><p>No submissions found</p></div></td></tr>';
       } else {
-        tbody.innerHTML = list.map((s, i) => `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${s.fullName}</td>
-            <td class="email-col">${s.email}</td>
-            <td>${s.phone}</td>
-            <td>${s.address}</td>
-            <td>${s.region || '-'}</td>
-            <td>${s.city}</td>
-            <td>${s.state}</td>
-            <td>${s.zip}</td>
-            <td>${s.age}</td>
-            <td>${s.maritalStatus}</td>
-            <td>${s.homeOwner}</td>
-            <td>${s.prizePreference}</td>
-            <td class="date-col">${formatDate(s.timestamp)}</td>
-          </tr>
-        `).join('');
+        tbody.innerHTML = list.map(function(s, i) {
+          return '<tr>' +
+            '<td>' + (i + 1) + '</td>' +
+            '<td>' + esc(s.fullName) + '</td>' +
+            '<td style="color:var(--ig-orange)">' + esc(s.email) + '</td>' +
+            '<td>' + esc(s.phone) + '</td>' +
+            '<td>' + esc(s.region || '-') + '</td>' +
+            '<td>' + esc(s.city) + '</td>' +
+            '<td>' + esc(s.state) + '</td>' +
+            '<td>' + esc(s.zip) + '</td>' +
+            '<td>' + esc(s.age) + '</td>' +
+            '<td style="color:var(--text-muted);font-size:0.78rem">' + formatDate(s.timestamp) + '</td>' +
+            '<td class="actions-cell">' +
+              '<button class="btn-icon" onclick="editSubmission(' + s.id + ')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+              '<button class="btn-icon danger" onclick="deleteSubmission(' + s.id + ')" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>' +
+            '</td></tr>';
+        }).join('');
       }
-      document.getElementById('dashCount').textContent = (typeof t === 'function' ? t('admin_showing') : 'Showing ' + list.length + ' of ' + allSubmissions.length + ' submissions').replace('{current}', list.length).replace('{total}', allSubmissions.length);
+      document.getElementById('subsCount').textContent = 'Showing ' + list.length + ' of ' + subs.length + ' submissions';
+    }
+    function editSubmission(id) {
+      var subs = CMS.getSubmissions();
+      var sub = subs.find(function(s) { return s.id === id; });
+      if (!sub) return;
+      editingSubId = id;
+      document.getElementById('subName').value = sub.fullName || '';
+      document.getElementById('subEmail').value = sub.email || '';
+      document.getElementById('subPhone').value = sub.phone || '';
+      document.getElementById('subAddress').value = sub.address || '';
+      document.getElementById('subRegion').value = sub.region || '';
+      document.getElementById('subCity').value = sub.city || '';
+      document.getElementById('subState').value = sub.state || '';
+      document.getElementById('subZip').value = sub.zip || '';
+      document.getElementById('subAge').value = sub.age || '';
+      document.getElementById('subOccupation').value = sub.occupation || '';
+      document.getElementById('subMarital').value = sub.maritalStatus || '';
+      document.getElementById('subHomeOwner').value = sub.homeOwner || '';
+      document.getElementById('subPrizePref').value = sub.prizePreference || '';
+      openModal('subModal');
+    }
+    document.getElementById('saveSubBtn').addEventListener('click', function() {
+      var subs = CMS.getSubmissions();
+      var idx = subs.findIndex(function(s) { return s.id === editingSubId; });
+      if (idx === -1) return;
+      subs[idx].fullName = document.getElementById('subName').value.trim();
+      subs[idx].email = document.getElementById('subEmail').value.trim();
+      subs[idx].phone = document.getElementById('subPhone').value.trim();
+      subs[idx].address = document.getElementById('subAddress').value.trim();
+      subs[idx].region = document.getElementById('subRegion').value.trim();
+      subs[idx].city = document.getElementById('subCity').value.trim();
+      subs[idx].state = document.getElementById('subState').value.trim();
+      subs[idx].zip = document.getElementById('subZip').value.trim();
+      subs[idx].age = document.getElementById('subAge').value;
+      subs[idx].occupation = document.getElementById('subOccupation').value.trim();
+      subs[idx].maritalStatus = document.getElementById('subMarital').value.trim();
+      subs[idx].homeOwner = document.getElementById('subHomeOwner').value.trim();
+      subs[idx].prizePreference = document.getElementById('subPrizePref').value.trim();
+      localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(subs));
+      closeModal('subModal');
+      renderSubmissions(document.getElementById('subSearch').value);
+      showToast('Submission updated!');
+    });
+    function deleteSubmission(id) {
+      showConfirm('Delete Submission', 'Are you sure you want to delete this submission?', function() {
+        var subs = CMS.getSubmissions().filter(function(s) { return s.id !== id; });
+        localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(subs));
+        renderSubmissions(document.getElementById('subSearch').value);
+        showToast('Submission deleted!');
+      });
+    }
+    document.getElementById('subSearch').addEventListener('input', function() {
+      renderSubmissions(this.value);
+    });
+    document.getElementById('clearAllSubs').addEventListener('click', function() {
+      showConfirm('Clear All Submissions', 'This will permanently delete ALL submissions. Are you sure?', function() {
+        localStorage.setItem(CMS.KEYS.submissions, '[]');
+        renderSubmissions();
+        showToast('All submissions cleared!');
+      });
+    });
+    document.getElementById('exportCSV').addEventListener('click', function() {
+      var subs = CMS.getSubmissions();
+      if (!subs.length) { showToast('No submissions to export', true); return; }
+      var headers = ['Full Name','Email','Phone','Address','Region','City','State','Zip','Age','Marital Status','Home Owner','Prize Preference','Date'];
+      var rows = subs.map(function(s) { return [s.fullName, s.email, s.phone, s.address, s.region||'', s.city, s.state, s.zip, s.age, s.maritalStatus, s.homeOwner, s.prizePreference, formatDate(s.timestamp)]; });
+      var csv = [headers].concat(rows).map(function(r) { return r.map(function(c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
+      var blob = new Blob([csv], { type: 'text/csv' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; a.download = 'giveaway-submissions.csv'; a.click();
+      URL.revokeObjectURL(url);
+      showToast('CSV exported!');
+    });
+    document.getElementById('exportSubJSON').addEventListener('click', function() {
+      CMS.exportJSON(CMS.getSubmissions(), 'giveaway-submissions.json');
+      showToast('JSON exported!');
+    });
+
+    // ===== Winners =====
+    var winnersData = [];
+    var editingWinnerIdx = -1;
+    function loadWinners() { winnersData = CMS.getWinners(); }
+    function renderWinners(filter) {
+      loadWinners();
+      var list = winnersData;
+      if (filter) {
+        var q = filter.toLowerCase();
+        list = winnersData.filter(function(w) {
+          return w.name.toLowerCase().includes(q) || w.state.toLowerCase().includes(q) || w.sn.toLowerCase().includes(q);
+        });
+      }
+      var tbody = document.getElementById('winnersTableBody');
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><div class="icon">&#127942;</div><p>No winners found</p></div></td></tr>';
+      } else {
+        tbody.innerHTML = list.map(function(w, i) {
+          var realIdx = winnersData.indexOf(w);
+          return '<tr>' +
+            '<td>' + (i + 1) + '</td>' +
+            '<td>' + esc(w.name) + '</td>' +
+            '<td>' + esc(w.state) + '</td>' +
+            '<td style="font-weight:600">' + esc(w.sn) + '</td>' +
+            '<td class="actions-cell">' +
+              '<button class="btn-icon" onclick="editWinner(' + realIdx + ')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+              '<button class="btn-icon danger" onclick="deleteWinner(' + realIdx + ')" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>' +
+            '</td></tr>';
+        }).join('');
+      }
+      document.getElementById('winnersCount').textContent = 'Showing ' + list.length + ' of ' + winnersData.length + ' winners';
+    }
+    document.getElementById('addWinnerBtn').addEventListener('click', function() {
+      editingWinnerIdx = -1;
+      document.getElementById('winnerModalTitle').textContent = 'Add Winner';
+      document.getElementById('winName').value = '';
+      document.getElementById('winState').value = '';
+      document.getElementById('winSN').value = CMS.getNextWinnersSN(CMS.getWinners());
+      openModal('winnerModal');
+    });
+    function editWinner(idx) {
+      editingWinnerIdx = idx;
+      document.getElementById('winnerModalTitle').textContent = 'Edit Winner';
+      document.getElementById('winName').value = winnersData[idx].name;
+      document.getElementById('winState').value = winnersData[idx].state;
+      document.getElementById('winSN').value = winnersData[idx].sn;
+      openModal('winnerModal');
+    }
+    document.getElementById('saveWinnerBtn').addEventListener('click', function() {
+      var name = document.getElementById('winName').value.trim();
+      var state = document.getElementById('winState').value.trim();
+      var sn = document.getElementById('winSN').value.trim();
+      if (!name || !state) { showToast('Name and State are required', true); return; }
+      loadWinners();
+      if (editingWinnerIdx === -1) {
+        winnersData.push({ name: name, state: state, sn: sn || CMS.getNextWinnersSN(winnersData) });
+      } else {
+        winnersData[editingWinnerIdx] = { name: name, state: state, sn: sn };
+      }
+      CMS.saveWinners(winnersData);
+      closeModal('winnerModal');
+      renderWinners(document.getElementById('winnerSearch').value);
+      showToast(editingWinnerIdx === -1 ? 'Winner added!' : 'Winner updated!');
+    });
+    function deleteWinner(idx) {
+      showConfirm('Delete Winner', 'Remove "' + winnersData[idx].name + '" from the winners list?', function() {
+        loadWinners();
+        winnersData.splice(idx, 1);
+        CMS.saveWinners(winnersData);
+        renderWinners(document.getElementById('winnerSearch').value);
+        showToast('Winner deleted!');
+      });
+    }
+    document.getElementById('winnerSearch').addEventListener('input', function() {
+      renderWinners(this.value);
+    });
+    document.getElementById('exportWinJSON').addEventListener('click', function() {
+      CMS.exportJSON(CMS.getWinners(), 'winners.json');
+      showToast('Winners exported!');
+    });
+    document.getElementById('importWinJSON').addEventListener('click', function() {
+      CMS.importJSON(function(err, data) {
+        if (err) { showToast('Invalid JSON file', true); return; }
+        if (!Array.isArray(data)) { showToast('JSON must be an array', true); return; }
+        showConfirm('Import Winners', 'This will replace all ' + data.length + ' winners. Continue?', function() {
+          CMS.saveWinners(data);
+          renderWinners();
+          showToast(data.length + ' winners imported!');
+        });
+      });
+    });
+
+    // ===== Prizes =====
+    var editingPrizeIdx = -1;
+    function renderPrizes() {
+      var content = CMS.getContent();
+      document.getElementById('prizeAmountInput').value = content.prizeAmount;
+      document.getElementById('statsEntriesInput').value = content.stats.entries;
+      document.getElementById('statsWinnersInput').value = content.stats.winners;
+      document.getElementById('statsCategoriesInput').value = content.stats.categories;
+      var list = document.getElementById('prizesList');
+      if (content.prizes.length === 0) {
+        list.innerHTML = '<div class="empty-state"><div class="icon">&#127775;</div><p>No prizes configured</p></div>';
+        return;
+      }
+      list.innerHTML = content.prizes.map(function(p, i) {
+        return '<div class="cms-card-item">' +
+          '<div class="cms-card-item-info">' +
+            '<h4>' + esc(p.name) + (p.badge ? ' <span style="font-size:0.7rem;background:var(--gradient);padding:2px 8px;border-radius:50px;color:#fff;font-weight:700">' + esc(p.badge) + '</span>' : '') + '</h4>' +
+            '<p>' + esc(p.desc) + ' &mdash; <strong>' + esc(p.qty) + '</strong></p>' +
+          '</div>' +
+          '<div class="cms-card-item-actions">' +
+            '<button class="btn-icon" onclick="editPrize(' + i + ')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+            '<button class="btn-icon danger" onclick="deletePrize(' + i + ')" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+    document.getElementById('saveStatsBtn').addEventListener('click', function() {
+      var content = CMS.getContent();
+      content.prizeAmount = document.getElementById('prizeAmountInput').value.trim();
+      content.stats.entries = parseInt(document.getElementById('statsEntriesInput').value) || 0;
+      content.stats.winners = parseInt(document.getElementById('statsWinnersInput').value) || 0;
+      content.stats.categories = parseInt(document.getElementById('statsCategoriesInput').value) || 0;
+      CMS.saveContent(content);
+      showToast('Stats saved!');
+    });
+    document.getElementById('addPrizeBtn').addEventListener('click', function() {
+      editingPrizeIdx = -1;
+      document.getElementById('prizeModalTitle').textContent = 'Add Prize';
+      document.getElementById('prizeName').value = '';
+      document.getElementById('prizeDesc').value = '';
+      document.getElementById('prizeQty').value = '';
+      document.getElementById('prizeIcon').value = '';
+      document.getElementById('prizeBadge').value = '';
+      openModal('prizeModal');
+    });
+    function editPrize(idx) {
+      var content = CMS.getContent();
+      editingPrizeIdx = idx;
+      document.getElementById('prizeModalTitle').textContent = 'Edit Prize';
+      document.getElementById('prizeName').value = content.prizes[idx].name;
+      document.getElementById('prizeDesc').value = content.prizes[idx].desc;
+      document.getElementById('prizeQty').value = content.prizes[idx].qty;
+      document.getElementById('prizeIcon').value = content.prizes[idx].icon;
+      document.getElementById('prizeBadge').value = content.prizes[idx].badge || '';
+      openModal('prizeModal');
+    }
+    document.getElementById('savePrizeBtn').addEventListener('click', function() {
+      var name = document.getElementById('prizeName').value.trim();
+      if (!name) { showToast('Prize name is required', true); return; }
+      var content = CMS.getContent();
+      var prize = {
+        name: name,
+        desc: document.getElementById('prizeDesc').value.trim(),
+        qty: document.getElementById('prizeQty').value.trim(),
+        icon: document.getElementById('prizeIcon').value.trim(),
+        badge: document.getElementById('prizeBadge').value.trim(),
+        isGrand: document.getElementById('prizeBadge').value.trim().toLowerCase().includes('grand')
+      };
+      if (editingPrizeIdx === -1) {
+        content.prizes.push(prize);
+      } else {
+        content.prizes[editingPrizeIdx] = prize;
+      }
+      CMS.saveContent(content);
+      closeModal('prizeModal');
+      renderPrizes();
+      showToast(editingPrizeIdx === -1 ? 'Prize added!' : 'Prize updated!');
+    });
+    function deletePrize(idx) {
+      showConfirm('Delete Prize', 'Remove this prize from the list?', function() {
+        var content = CMS.getContent();
+        content.prizes.splice(idx, 1);
+        CMS.saveContent(content);
+        renderPrizes();
+        showToast('Prize deleted!');
+      });
     }
 
-    getStats();
-    renderTable(allSubmissions);
-
-    // Search
-    document.getElementById('dashSearch').addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
-      if (!q) {
-        renderTable(allSubmissions);
+    // ===== Testimonials =====
+    var editingTestIdx = -1;
+    function renderTestimonials() {
+      var content = CMS.getContent();
+      var list = document.getElementById('testimonialsList');
+      if (content.testimonials.length === 0) {
+        list.innerHTML = '<div class="empty-state"><div class="icon">&#128172;</div><p>No testimonials configured</p></div>';
         return;
       }
-      const filtered = allSubmissions.filter(s =>
-        s.fullName.toLowerCase().includes(q) ||
-        s.email.toLowerCase().includes(q) ||
-        s.state.toLowerCase().includes(q) ||
-        s.city.toLowerCase().includes(q) ||
-        s.phone.includes(q) ||
-        s.zip.includes(q) ||
-        (s.region && s.region.toLowerCase().includes(q))
-      );
-      renderTable(filtered);
+      list.innerHTML = content.testimonials.map(function(t, i) {
+        return '<div class="cms-card-item">' +
+          '<div class="cms-card-item-info">' +
+            '<h4>' + esc(t.name) + ' <span style="font-size:0.72rem;color:var(--text-muted)">' + esc(t.date) + '</span></h4>' +
+            '<p style="font-style:italic">"' + esc(t.highlight) + '"</p>' +
+          '</div>' +
+          '<div class="cms-card-item-actions">' +
+            '<button class="btn-icon" onclick="editTestimonial(' + i + ')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+            '<button class="btn-icon danger" onclick="deleteTestimonial(' + i + ')" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+    document.getElementById('addTestimonialBtn').addEventListener('click', function() {
+      editingTestIdx = -1;
+      document.getElementById('testimonialModalTitle').textContent = 'Add Testimonial';
+      document.getElementById('testName').value = '';
+      document.getElementById('testDate').value = '';
+      document.getElementById('testImage').value = '';
+      document.getElementById('testAmount').value = '$320,000.00';
+      document.getElementById('testHighlight').value = '';
+      document.getElementById('testParagraphs').value = '';
+      document.getElementById('testExpanded').value = '';
+      document.getElementById('testTags').value = '';
+      openModal('testimonialModal');
     });
+    function editTestimonial(idx) {
+      var t = CMS.getContent().testimonials[idx];
+      editingTestIdx = idx;
+      document.getElementById('testimonialModalTitle').textContent = 'Edit Testimonial';
+      document.getElementById('testName').value = t.name;
+      document.getElementById('testDate').value = t.date;
+      document.getElementById('testImage').value = t.image;
+      document.getElementById('testAmount').value = t.amount;
+      document.getElementById('testHighlight').value = t.highlight;
+      document.getElementById('testParagraphs').value = (t.paragraphs || []).join('\n');
+      document.getElementById('testExpanded').value = (t.expanded || []).join('\n');
+      document.getElementById('testTags').value = (t.tags || []).join('\n');
+      openModal('testimonialModal');
+    }
+    document.getElementById('saveTestimonialBtn').addEventListener('click', function() {
+      var name = document.getElementById('testName').value.trim();
+      if (!name) { showToast('Winner name is required', true); return; }
+      var testimonial = {
+        name: name,
+        date: document.getElementById('testDate').value.trim(),
+        image: document.getElementById('testImage').value.trim() || 'Winner 1.png',
+        amount: document.getElementById('testAmount').value.trim() || '$320,000.00',
+        highlight: document.getElementById('testHighlight').value.trim(),
+        paragraphs: document.getElementById('testParagraphs').value.split('\n').map(function(l) { return l.trim(); }).filter(Boolean),
+        expanded: document.getElementById('testExpanded').value.split('\n').map(function(l) { return l.trim(); }).filter(Boolean),
+        tags: document.getElementById('testTags').value.split('\n').map(function(l) { return l.trim(); }).filter(Boolean)
+      };
+      var content = CMS.getContent();
+      if (editingTestIdx === -1) {
+        content.testimonials.push(testimonial);
+      } else {
+        content.testimonials[editingTestIdx] = testimonial;
+      }
+      CMS.saveContent(content);
+      closeModal('testimonialModal');
+      renderTestimonials();
+      showToast(editingTestIdx === -1 ? 'Testimonial added!' : 'Testimonial updated!');
+    });
+    function deleteTestimonial(idx) {
+      showConfirm('Delete Testimonial', 'Remove this testimonial story?', function() {
+        var content = CMS.getContent();
+        content.testimonials.splice(idx, 1);
+        CMS.saveContent(content);
+        renderTestimonials();
+        showToast('Testimonial deleted!');
+      });
+    }
 
-    // Export CSV
-    document.getElementById('exportBtn').addEventListener('click', function() {
-      if (allSubmissions.length === 0) {
-        alert('No submissions to export');
+    // ===== FAQ =====
+    var editingFaqIdx = -1;
+    function renderFAQ() {
+      var content = CMS.getContent();
+      var list = document.getElementById('faqList');
+      if (content.faq.length === 0) {
+        list.innerHTML = '<div class="empty-state"><div class="icon">&#10067;</div><p>No FAQ items configured</p></div>';
         return;
       }
-      const headers = ['Full Name','Email','Phone','Address','Region','City','State','Zip','Age','Marital Status','Home Owner','Prize Preference','Date'];
-      const rows = allSubmissions.map(s => [
-        s.fullName, s.email, s.phone, s.address, s.region || '', s.city, s.state, s.zip,
-        s.age, s.maritalStatus, s.homeOwner, s.prizePreference, formatDate(s.timestamp)
-      ]);
-      const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'giveaway-submissions.csv';
-      a.click();
-      URL.revokeObjectURL(url);
+      list.innerHTML = content.faq.map(function(f, i) {
+        return '<div class="cms-card-item">' +
+          '<div class="cms-card-item-info">' +
+            '<h4>' + esc(f.q) + '</h4>' +
+            '<p>' + esc(f.a.substring(0, 100)) + (f.a.length > 100 ? '...' : '') + '</p>' +
+          '</div>' +
+          '<div class="cms-card-item-actions">' +
+            '<button class="btn-icon" onclick="editFAQ(' + i + ')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>' +
+            '<button class="btn-icon danger" onclick="deleteFAQ(' + i + ')" title="Delete"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+    document.getElementById('addFaqBtn').addEventListener('click', function() {
+      editingFaqIdx = -1;
+      document.getElementById('faqModalTitle').textContent = 'Add FAQ';
+      document.getElementById('faqQuestion').value = '';
+      document.getElementById('faqAnswer').value = '';
+      openModal('faqModal');
+    });
+    function editFAQ(idx) {
+      var f = CMS.getContent().faq[idx];
+      editingFaqIdx = idx;
+      document.getElementById('faqModalTitle').textContent = 'Edit FAQ';
+      document.getElementById('faqQuestion').value = f.q;
+      document.getElementById('faqAnswer').value = f.a;
+      openModal('faqModal');
+    }
+    document.getElementById('saveFaqBtn').addEventListener('click', function() {
+      var q = document.getElementById('faqQuestion').value.trim();
+      var a = document.getElementById('faqAnswer').value.trim();
+      if (!q || !a) { showToast('Question and Answer are required', true); return; }
+      var content = CMS.getContent();
+      if (editingFaqIdx === -1) {
+        content.faq.push({ q: q, a: a });
+      } else {
+        content.faq[editingFaqIdx] = { q: q, a: a };
+      }
+      CMS.saveContent(content);
+      closeModal('faqModal');
+      renderFAQ();
+      showToast(editingFaqIdx === -1 ? 'FAQ added!' : 'FAQ updated!');
+    });
+    function deleteFAQ(idx) {
+      showConfirm('Delete FAQ', 'Remove this FAQ item?', function() {
+        var content = CMS.getContent();
+        content.faq.splice(idx, 1);
+        CMS.saveContent(content);
+        renderFAQ();
+        showToast('FAQ deleted!');
+      });
+    }
+
+    // ===== Settings =====
+    function renderSettings() {
+      var content = CMS.getContent();
+      document.getElementById('carePhoneInput').value = content.customerCare.phone;
+      document.getElementById('careEmailInput').value = content.customerCare.email;
+    }
+    document.getElementById('saveCareBtn').addEventListener('click', function() {
+      var content = CMS.getContent();
+      content.customerCare.phone = document.getElementById('carePhoneInput').value.trim();
+      content.customerCare.email = document.getElementById('careEmailInput').value.trim();
+      CMS.saveContent(content);
+      showToast('Customer care info saved!');
+    });
+    document.getElementById('exportAllBtn').addEventListener('click', function() {
+      var allData = {
+        winners: CMS.getWinners(),
+        content: CMS.getContent(),
+        submissions: CMS.getSubmissions(),
+        exportDate: new Date().toISOString()
+      };
+      CMS.exportJSON(allData, 'cms-backup-' + new Date().toISOString().slice(0,10) + '.json');
+      showToast('All data exported!');
+    });
+    document.getElementById('importAllBtn').addEventListener('click', function() {
+      CMS.importJSON(function(err, data) {
+        if (err) { showToast('Invalid JSON file', true); return; }
+        showConfirm('Import All Data', 'This will REPLACE all current data. This cannot be undone. Continue?', function() {
+          if (data.winners) CMS.saveWinners(data.winners);
+          if (data.content) CMS.saveContent(data.content);
+          if (data.submissions) localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(data.submissions));
+          showToast('All data imported!');
+          refreshDashboard();
+        });
+      });
+    });
+    document.getElementById('resetAllBtn').addEventListener('click', function() {
+      showConfirm('Reset All Data', 'This will reset everything to default values. All customizations will be lost. Continue?', function() {
+        localStorage.removeItem(CMS.KEYS.winners);
+        localStorage.removeItem(CMS.KEYS.content);
+        localStorage.removeItem(CMS.KEYS.submissions);
+        showToast('All data reset to defaults!');
+        refreshDashboard();
+      });
     });
 
-    // Logout
-    document.getElementById('logoutBtn').addEventListener('click', function() {
+    // ===== Publish Button =====
+    document.getElementById('publishBtn').addEventListener('click', function() {
+      showToast('All changes are saved and live!');
+    });
+
+    // ===== Logout =====
+    function doLogout() {
       sessionStorage.removeItem('adminAuth');
       window.location.href = 'admin.html';
-    });
+    }
+    document.getElementById('logoutBtn').addEventListener('click', doLogout);
+    document.getElementById('logoutBtnTop').addEventListener('click', doLogout);
 
-    // Re-render on language change
-    document.addEventListener('languageChanged', function() {
-      renderTable(allSubmissions);
-      var q = document.getElementById('dashSearch').value.toLowerCase().trim();
-      if (q) {
-        var filtered = allSubmissions.filter(function(s) {
-          return s.fullName.toLowerCase().includes(q) || s.email.toLowerCase().includes(q) || s.state.toLowerCase().includes(q) || s.city.toLowerCase().includes(q) || s.phone.includes(q) || s.zip.includes(q) || (s.region && s.region.toLowerCase().includes(q));
-        });
-        renderTable(filtered);
-      }
-    });
+    // ===== Helpers =====
+    function esc(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.textContent = String(str);
+      return div.innerHTML;
+    }
+    function formatDate(iso) {
+      if (!iso) return '-';
+      var d = new Date(iso);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    // ===== Init =====
+    refreshDashboard();
   </script>
 </body>
 </html>

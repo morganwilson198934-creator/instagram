@@ -194,6 +194,7 @@
       audio.addEventListener('play', function() { sessionStorage.removeItem('bgMusicTime'); });
     })();
   </script>
+  <script src="cms.js"></script>
   <script src="chat-widget.js"></script>
   <script src="translations.js"></script>
   <script src="i18n.js"></script>
@@ -216,7 +217,7 @@
 
     // Winning List
     (function() {
-      const winners = [
+      var winners = (typeof CMS !== 'undefined') ? CMS.getWinners() : [
         { name: "Austin Christian", state: "Texas", sn: "IG – 001" },
         { name: "James Peterson", state: "Ohio", sn: "IG – 002" },
         { name: "Teena Maxey", state: "Illinois", sn: "IG – 003" },
@@ -289,7 +290,7 @@
         { name: "Cathy Dunn", state: "Florida", sn: "IG – 070" }
       ];
 
-      const tbody = document.getElementById('winnersBody');
+      var tbody = document.getElementById('winnersBody');
       const searchInput = document.getElementById('winnerSearch');
       const countEl = document.getElementById('winnersCount');
 
