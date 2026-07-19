@@ -339,15 +339,11 @@ section[id] {
 }
 
 .hero-bottom {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  right: 0;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  z-index: 2;
 }
 
 .hero-slider-dots {
@@ -398,11 +394,12 @@ section[id] {
 .prize-amount {
   display: flex;
   align-items: baseline;
-  gap: 4px;
-  margin-bottom: 16px;
+  justify-content: center;
   flex-wrap: wrap;
-  animation: floatGlow 3s ease-in-out infinite;
+  gap: 4px;
+  margin-bottom: 20px;
   position: relative;
+  animation: prizeFloat 3s ease-in-out infinite;
 }
 
 .sparkle {
@@ -430,35 +427,61 @@ section[id] {
 }
 
 .prize-dollar {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 900;
-  background: var(--gradient);
+  background: linear-gradient(90deg, var(--ig-yellow), var(--ig-orange), var(--ig-yellow));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: prizeShimmer 2s ease-in-out infinite;
   filter: drop-shadow(0 2px 10px rgba(225, 48, 108, 0.5));
 }
 
 .prize-value {
-  font-size: 4rem;
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
   font-weight: 900;
-  background: var(--gradient);
+  line-height: 1;
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, var(--ig-yellow), #fff, var(--ig-orange), #fff, var(--ig-yellow));
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1;
-  filter: drop-shadow(0 2px 15px rgba(225, 48, 108, 0.5));
+  animation: prizeShimmer 3s ease-in-out infinite, prizePulseGlow 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(225, 48, 108, 0.4));
+  position: relative;
+}
+
+@keyframes prizeShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes prizePulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(225, 48, 108, 0.3)) drop-shadow(0 0 40px rgba(225, 48, 108, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(225, 48, 108, 0.6)) drop-shadow(0 0 70px rgba(255, 200, 50, 0.3));
+  }
+}
+
+@keyframes prizeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .prize-label {
   display: block;
   width: 100%;
+  text-align: center;
   font-size: 1rem;
   font-weight: 600;
   color: rgba(255,255,255,0.9);
   text-transform: uppercase;
   letter-spacing: 3px;
-  margin-top: 4px;
+  margin-top: 6px;
   text-shadow: 0 2px 15px rgba(0,0,0,0.5);
 }
 
@@ -568,13 +591,77 @@ section[id] {
 
 .hero-cta {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.hero-cta .btn {
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 .btn-glow {
-  animation: btnGlow 2s ease-in-out infinite;
+  position: relative;
+  overflow: visible;
+  animation: ctaPulse 2s ease-in-out infinite, ctaEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--ig-yellow), var(--ig-red), var(--ig-purple), var(--ig-red), var(--ig-yellow));
+  background-size: 300% auto;
+  z-index: -1;
+  animation: borderShimmer 3s linear infinite;
+  opacity: 0.7;
+  filter: blur(8px);
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--ig-yellow), var(--ig-red), var(--ig-purple), var(--ig-red), var(--ig-yellow));
+  background-size: 300% auto;
+  z-index: -1;
+  animation: borderShimmer 3s linear infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(225, 48, 108, 0.4), 0 0 40px rgba(225, 48, 108, 0.2), 0 0 80px rgba(225, 48, 108, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(225, 48, 108, 0.6), 0 0 60px rgba(255, 200, 50, 0.3), 0 0 100px rgba(225, 48, 108, 0.2);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes ctaEntrance {
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes borderShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+.btn-glow:hover {
+  transform: scale(1.07) !important;
+  box-shadow: 0 8px 40px rgba(225, 48, 108, 0.7), 0 0 80px rgba(255, 200, 50, 0.4), 0 0 120px rgba(225, 48, 108, 0.3);
+}
+
+.btn-glow:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.1s;
 }
 
 @keyframes btnGlow {
@@ -962,6 +1049,86 @@ section[id] {
 .connector-arrow {
   width: 60px;
   height: 20px;
+}
+
+/* ========================================
+   Winner Video Section
+   ======================================== */
+.video-section {
+  padding: 100px 0;
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-primary), rgba(131, 58, 180, 0.06), var(--bg-primary));
+}
+
+.video-section .section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.video-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(225, 48, 108, 0.3);
+  box-shadow: 0 20px 60px rgba(225, 48, 108, 0.15);
+}
+
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  background: #000;
+}
+
+.video-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card-info {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.video-card-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--ig-red), var(--ig-purple));
+  color: #fff;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
 }
 
 /* ========================================
@@ -2179,11 +2346,11 @@ section[id] {
   }
 
   .prize-value {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 
   .prize-dollar {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .prize-label {
@@ -2197,13 +2364,6 @@ section[id] {
   .hero-cta .btn {
     padding: 14px 28px;
     font-size: 0.95rem;
-  }
-
-  .hero-bottom {
-    position: relative;
-    bottom: auto;
-    margin-top: 20px;
-    padding-bottom: 20px;
   }
 
   .countdown-item {
@@ -2322,11 +2482,11 @@ section[id] {
   }
 
   .prize-value {
-    font-size: 1.8rem;
+    font-size: clamp(1.8rem, 10vw, 2.5rem);
   }
 
   .prize-dollar {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .prize-label {
