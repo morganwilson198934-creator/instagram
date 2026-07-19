@@ -410,6 +410,66 @@
             </div>
           </div>
 
+          <!-- Video Testimonial 1 -->
+          <div class="testimonial-card testimonial-video-card">
+            <div class="testimonial-image">
+              <video src="test 1.mp4" poster="" preload="metadata" controls playsinline muted class="testimonial-video"></video>
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Video Testimonial</h3>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"Watch this real winner share their incredible experience!"</p>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#RealWinner</span>
+                <span class="tag">#Verified</span>
+                <span class="tag">#Giveaway</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Testimonial 2 -->
+          <div class="testimonial-card testimonial-video-card">
+            <div class="testimonial-image">
+              <video src="test 2.mp4" poster="" preload="metadata" controls playsinline muted class="testimonial-video"></video>
+              <div class="testimonial-image-badge">
+                <span class="badge-amount">$320,000.00</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
+              <div class="testimonial-header">
+                <h3 class="testimonial-name">Video Testimonial</h3>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
+              </div>
+              <div class="testimonial-text">
+                <p class="testimonial-highlight">"Another amazing winner shares their story!"</p>
+              </div>
+              <div class="testimonial-tags">
+                <span class="tag">#LifeChanger</span>
+                <span class="tag">#Blessed</span>
+                <span class="tag">#Winner</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Carousel Controls -->
@@ -429,6 +489,8 @@
           <button class="testimonial-dot" data-index="1"></button>
           <button class="testimonial-dot" data-index="2"></button>
           <button class="testimonial-dot" data-index="3"></button>
+          <button class="testimonial-dot" data-index="4"></button>
+          <button class="testimonial-dot" data-index="5"></button>
         </div>
       </div>
     </div>
@@ -578,7 +640,7 @@
             </svg>
           </div>
           <h3 class="care-title" data-i18n="care_phone">Phone Support</h3>
-          <p class="care-info">+1 (800) 555-0199</p>
+          <p class="care-info">+1 (719) 466-6623</p>
           <p class="care-hours" data-i18n="care_phone_hours">Mon – Fri, 9AM – 6PM EST</p>
         </div>
         <div class="care-card">
@@ -749,10 +811,16 @@
     (function() {
       var audio = document.getElementById('bgMusic');
       audio.volume = 0.5;
+      var savedTime = sessionStorage.getItem('bgMusicTime');
+      if (savedTime) audio.currentTime = parseFloat(savedTime);
       function tryPlay() { audio.play().catch(function(){}); }
       tryPlay();
       document.addEventListener('click', tryPlay, { once: false });
       document.addEventListener('touchstart', tryPlay, { once: false });
+      window.addEventListener('beforeunload', function() {
+        if (!audio.paused) sessionStorage.setItem('bgMusicTime', audio.currentTime);
+      });
+      audio.addEventListener('play', function() { sessionStorage.removeItem('bgMusicTime'); });
     })();
   </script>
   <script src="translations.js"></script>

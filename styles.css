@@ -1589,6 +1589,27 @@ img {
   background: linear-gradient(180deg, transparent 50%, rgba(26, 26, 36, 0.8) 100%);
 }
 
+.testimonial-video-card .testimonial-image {
+  min-height: 560px;
+}
+
+.testimonial-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+}
+
+.testimonial-video-card .testimonial-image::after {
+  background: linear-gradient(180deg, transparent 60%, rgba(26, 26, 36, 0.85) 100%);
+  z-index: 1;
+}
+
+.testimonial-video {
+  position: relative;
+  z-index: 0;
+}
+
 .testimonial-image-badge {
   position: absolute;
   bottom: 20px;
@@ -2127,6 +2148,10 @@ img {
 }
 
 @media (max-width: 768px) {
+  .hero-content {
+    padding-bottom: 20px;
+  }
+
   .nav-links {
     display: none;
   }
@@ -2140,19 +2165,41 @@ img {
   }
 
   .hero-title {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 28px;
   }
 
   .prize-value {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
 
   .prize-dollar {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+
+  .prize-label {
+    font-size: 0.85rem;
+  }
+
+  .hero-cta {
+    gap: 12px;
+  }
+
+  .hero-cta .btn {
+    padding: 14px 28px;
+    font-size: 0.95rem;
   }
 
   .hero-bottom {
-    bottom: 24px;
+    position: relative;
+    bottom: auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
   }
 
   .countdown-item {
@@ -2259,7 +2306,47 @@ img {
 
 @media (max-width: 480px) {
   .hero-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
     letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    padding: 0 8px;
+  }
+
+  .prize-value {
+    font-size: 1.8rem;
+  }
+
+  .prize-dollar {
+    font-size: 1.2rem;
+  }
+
+  .prize-label {
+    font-size: 0.78rem;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 6px 14px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    padding: 13px 24px;
+    font-size: 0.9rem;
+  }
+
+  .hero-content {
+    padding-top: 100px;
   }
 
   .prizes-grid {

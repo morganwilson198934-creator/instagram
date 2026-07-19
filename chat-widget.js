@@ -8,7 +8,7 @@
   }
 
   var agentResponses = {
-    greeting: function() { return typeof t === 'function' ? [t('chat_greeting1'), t('chat_greeting2')] : ["Hi there! Welcome to Instagram Online Giveaway! I'm Sarah, your support agent. How can I help you today?", "Hey! Thanks for reaching out. I'm here to help with any questions about the giveaway!"]; },
+    greeting: function() { return typeof t === 'function' ? [t('chat_greeting1'), t('chat_greeting2')] : ["Hi there! Welcome to Instagram Online Giveaway! I'm your support agent. How can I help you today?", "Hey! Thanks for reaching out. I'm here to help with any questions about the giveaway!"]; },
     "how to enter": function() { return typeof t === 'function' ? t('chat_howtoenter') : "To enter..."; },
     "when winners": function() { return typeof t === 'function' ? t('chat_whenwinners') : "Winners..."; },
     prize: function() { return typeof t === 'function' ? t('chat_prizes') : "Prizes..."; },
@@ -67,7 +67,7 @@
           <div class="online-dot"></div>
         </div>
         <div class="chat-agent-info">
-          <div class="chat-agent-name" data-i18n="chat_agent_name">Sarah — Support Agent</div>
+          <div class="chat-agent-name" data-i18n="chat_agent_name">Online Support</div>
           <div class="chat-agent-status" data-i18n="chat_online"><span class="status-dot"></span> Online now</div>
         </div>
       </div>
