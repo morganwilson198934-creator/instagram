@@ -179,8 +179,14 @@
       if (savedTime) audio.currentTime = parseFloat(savedTime);
       function tryPlay() { audio.play().catch(function(){}); }
       tryPlay();
-      document.addEventListener('click', tryPlay, { once: false });
-      document.addEventListener('touchstart', tryPlay, { once: false });
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('a[href^="#"]') || e.target.closest('.btn') || e.target.closest('.chat-send') || e.target.closest('.nav-toggle') || e.target.closest('button')) return;
+        tryPlay();
+      });
+      document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('a[href^="#"]') || e.target.closest('.btn') || e.target.closest('.chat-send') || e.target.closest('.nav-toggle') || e.target.closest('button')) return;
+        tryPlay();
+      });
       window.addEventListener('beforeunload', function() {
         if (!audio.paused) sessionStorage.setItem('bgMusicTime', audio.currentTime);
       });

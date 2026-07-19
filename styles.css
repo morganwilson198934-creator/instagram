@@ -265,6 +265,10 @@ img {
 /* ========================================
    Hero Section
    ======================================== */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
