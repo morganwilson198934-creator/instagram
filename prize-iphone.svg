@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="phone-body" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0a0a14"/>
+    </linearGradient>
+    <linearGradient id="phone-screen" x1="100" y1="15" x2="100" y2="185" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c1c3a"/>
+      <stop offset="50%" stop-color="#0f0f2a"/>
+      <stop offset="100%" stop-color="#1a1a35"/>
+    </linearGradient>
+    <linearGradient id="phone-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#feda75"/>
+      <stop offset="25%" stop-color="#fa7e1e"/>
+      <stop offset="50%" stop-color="#d62976"/>
+      <stop offset="75%" stop-color="#962fbf"/>
+      <stop offset="100%" stop-color="#4f5bd5"/>
+    </linearGradient>
+  </defs>
+  <!-- Phone body -->
+  <rect x="55" y="10" width="90" height="180" rx="16" fill="url(#phone-body)" stroke="#333" stroke-width="1.5"/>
+  <!-- Screen -->
+  <rect x="60" y="18" width="80" height="164" rx="10" fill="url(#phone-screen)"/>
+  <!-- Dynamic Island -->
+  <rect x="82" y="24" width="36" height="10" rx="5" fill="#000"/>
+  <!-- Screen content - gradient bar -->
+  <rect x="68" y="44" width="64" height="3" rx="1.5" fill="url(#phone-accent)" opacity="0.8"/>
+  <rect x="68" y="54" width="44" height="2" rx="1" fill="#fff" opacity="0.3"/>
+  <rect x="68" y="62" width="54" height="2" rx="1" fill="#fff" opacity="0.2"/>
+  <!-- Camera icon on screen -->
+  <circle cx="100" cy="110" r="18" stroke="url(#phone-accent)" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <circle cx="100" cy="110" r="10" stroke="url(#phone-accent)" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Bottom bar -->
+  <rect x="85" y="172" width="30" height="4" rx="2" fill="#fff" opacity="0.3"/>
+  <!-- Side buttons -->
+  <rect x="53" y="50" width="2.5" height="20" rx="1" fill="#444"/>
+  <rect x="53" y="80" width="2.5" height="30" rx="1" fill="#444"/>
+  <rect x="144.5" y="65" width="2.5" height="25" rx="1" fill="#444"/>
+  <!-- Titanium frame shine -->
+  <rect x="55" y="10" width="90" height="180" rx="16" fill="none" stroke="url(#phone-accent)" stroke-width="0.5" opacity="0.3"/>
+</svg>

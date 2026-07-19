@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="pod-body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5f7"/>
+      <stop offset="100%" stop-color="#d2d2d7"/>
+    </linearGradient>
+    <linearGradient id="pod-stem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8ed"/>
+      <stop offset="100%" stop-color="#c8c8cd"/>
+    </linearGradient>
+  </defs>
+  <!-- Case body -->
+  <rect x="58" y="50" width="84" height="90" rx="22" fill="url(#pod-body)" stroke="#bbb" stroke-width="1"/>
+  <!-- Case lid line -->
+  <path d="M62 82 C62 82 80 86 100 86 C120 86 138 82 138 82" stroke="#ccc" stroke-width="1" fill="none"/>
+  <!-- Case hinge -->
+  <rect x="58" y="78" width="84" height="1" fill="#ccc" opacity="0.5"/>
+  <!-- LED indicator -->
+  <circle cx="100" cy="100" r="3" fill="#34c759"/>
+  <!-- Left AirPod -->
+  <ellipse cx="78" cy="145" rx="12" ry="14" fill="url(#pod-body)" stroke="#ccc" stroke-width="0.8"/>
+  <rect x="74" y="155" width="8" height="22" rx="4" fill="url(#pod-stem)" stroke="#ccc" stroke-width="0.5"/>
+  <!-- Right AirPod -->
+  <ellipse cx="122" cy="145" rx="12" ry="14" fill="url(#pod-body)" stroke="#ccc" stroke-width="0.8"/>
+  <rect x="118" y="155" width="8" height="22" rx="4" fill="url(#pod-stem)" stroke="#ccc" stroke-width="0.5"/>
+  <!-- Speaker grilles -->
+  <circle cx="78" cy="141" r="2" fill="#999"/>
+  <circle cx="122" cy="141" r="2" fill="#999"/>
+</svg>
