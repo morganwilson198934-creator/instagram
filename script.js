@@ -172,66 +172,118 @@ function initFAQ() {
 // ========================================
 // Form Submission
 // ========================================
+function showFormError(fieldId, message) {
+  var field = document.getElementById(fieldId);
+  if (!field) return;
+  var group = field.closest('.form-group') || field.closest('.form-checkbox');
+  if (!group) return;
+  group.classList.add('has-error');
+  var existing = group.querySelector('.form-error-msg');
+  if (!existing) {
+    var msg = document.createElement('span');
+    msg.className = 'form-error-msg';
+    msg.textContent = message;
+    group.appendChild(msg);
+  }
+}
+
+function clearFormErrors() {
+  document.querySelectorAll('.has-error').forEach(function(el) {
+    el.classList.remove('has-error');
+  });
+  document.querySelectorAll('.form-error-msg').forEach(function(el) {
+    el.remove();
+  });
+}
+
 function initForm() {
-  const form = document.getElementById('giveawayForm');
+  var form = document.getElementById('giveawayForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
+    clearFormErrors();
 
-    const fullName = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const region = document.getElementById('region').value;
-    const city = getCityValue();
-    const state = document.getElementById('state').value;
-    const zip = document.getElementById('zip').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const age = document.getElementById('age').value;
-    const maritalStatus = document.getElementById('maritalStatus').value;
-    const homeOwner = document.getElementById('homeOwner').value;
-    const prizePreference = document.getElementById('prizePreference').value;
-    const terms = document.getElementById('terms').checked;
+    var fullName = document.getElementById('fullName').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var address = document.getElementById('address').value.trim();
+    var region = document.getElementById('region').value;
+    var city = getCityValue();
+    var state = document.getElementById('state').value;
+    var zip = document.getElementById('zip').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var age = document.getElementById('age').value;
+    var maritalStatus = document.getElementById('maritalStatus').value;
+    var homeOwner = document.getElementById('homeOwner').value;
+    var prizePreference = document.getElementById('prizePreference').value;
+    var terms = document.getElementById('terms').checked;
 
-    if (!fullName || !email || !address || !region || !city || !state || !zip || !phone || !age || !maritalStatus || !homeOwner || !prizePreference || !terms) {
+    var hasError = false;
+    var requiredMsg = typeof t === 'function' ? t('form_error_required') : 'This field is required';
+    var emailMsg = typeof t === 'function' ? t('form_error_email') : 'Please enter a valid email address';
+    var ageMsg = typeof t === 'function' ? t('form_error_age') : 'You must be at least 18 years old';
+    var termsMsg = typeof t === 'function' ? t('form_error_terms') : 'You must agree to the terms';
+
+    if (!fullName) { showFormError('fullName', requiredMsg); hasError = true; }
+    if (!email) { showFormError('email', requiredMsg); hasError = true; }
+    if (!address) { showFormError('address', requiredMsg); hasError = true; }
+    if (!region) { showFormError('region', requiredMsg); hasError = true; }
+    if (!city) { showFormError('cityContainer', requiredMsg); hasError = true; }
+    if (!state) { showFormError('state', requiredMsg); hasError = true; }
+    if (!zip) { showFormError('zip', requiredMsg); hasError = true; }
+    if (!phone) { showFormError('phone', requiredMsg); hasError = true; }
+    if (!age) { showFormError('age', requiredMsg); hasError = true; }
+    if (!maritalStatus) { showFormError('maritalStatus', requiredMsg); hasError = true; }
+    if (!homeOwner) { showFormError('homeOwner', requiredMsg); hasError = true; }
+    if (!prizePreference) { showFormError('prizePreference', requiredMsg); hasError = true; }
+    if (!terms) { showFormError('terms', termsMsg); hasError = true; }
+
+    if (hasError) {
+      var firstError = form.querySelector('.has-error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      showFormError('email', emailMsg);
       document.getElementById('email').focus();
       return;
     }
 
     if (parseInt(age) < 18) {
+      showFormError('age', ageMsg);
       document.getElementById('age').focus();
       return;
     }
 
-    const submission = {
+    var submission = {
       id: Date.now(),
-      fullName,
-      email,
-      address,
-      region,
-      city,
-      state,
-      zip,
-      phone,
+      fullName: fullName,
+      email: email,
+      address: address,
+      region: region,
+      city: city,
+      state: state,
+      zip: zip,
+      phone: phone,
       occupation: document.getElementById('occupation').value.trim(),
-      age,
-      maritalStatus,
-      homeOwner,
-      prizePreference,
+      age: age,
+      maritalStatus: maritalStatus,
+      homeOwner: homeOwner,
+      prizePreference: prizePreference,
       timestamp: new Date().toISOString()
     };
 
-    const submissions = JSON.parse(localStorage.getItem('giveawaySubmissions') || '[]');
+    var submissions = JSON.parse(localStorage.getItem('giveawaySubmissions') || '[]');
     submissions.push(submission);
     localStorage.setItem('giveawaySubmissions', JSON.stringify(submissions));
 
     document.getElementById('successModal').classList.add('active');
     form.reset();
+    resetCityToInput();
   });
 }
 
@@ -278,7 +330,7 @@ function initTestimonialCarousel() {
     // Collapse any open expand sections in the new card
     cards[current].querySelectorAll('.testimonial-expand.active').forEach(el => el.classList.remove('active'));
     const btn = cards[current].querySelector('.testimonial-read-more');
-    if (btn) btn.textContent = 'Read Full Story';
+    if (btn) btn.textContent = typeof t === 'function' ? t('testimonial_read_more') : 'Read Full Story';
   }
 
   function startAuto() {
@@ -304,10 +356,10 @@ function toggleTestimonial(btn) {
   const expand = card.querySelector('.testimonial-expand');
   if (expand.classList.contains('active')) {
     expand.classList.remove('active');
-    btn.textContent = 'Read Full Story';
+    btn.textContent = typeof t === 'function' ? t('testimonial_read_more') : 'Read Full Story';
   } else {
     expand.classList.add('active');
-    btn.textContent = 'Show Less';
+    btn.textContent = typeof t === 'function' ? t('testimonial_show_less') : 'Show Less';
   }
 }
 
@@ -397,7 +449,8 @@ function updateStates() {
   stateSelect.innerHTML = '';
 
   if (!region || !regionStates[region]) {
-    stateSelect.innerHTML = '<option value="" disabled selected>Select region first</option>';
+    var statePh = typeof t === 'function' ? t('form_state_ph') : 'Select region first';
+    stateSelect.innerHTML = '<option value="" disabled selected>' + statePh + '</option>';
     resetCityToInput();
     return;
   }
@@ -406,7 +459,8 @@ function updateStates() {
   placeholder.value = '';
   placeholder.disabled = true;
   placeholder.selected = true;
-  placeholder.textContent = `Select ${region === 'america' ? 'State / Province' : 'Country'}`;
+  var stateKey = region === 'america' ? 'form_state_america' : 'form_state_europe';
+  placeholder.textContent = typeof t === 'function' ? t(stateKey) : `Select ${region === 'america' ? 'State / Province' : 'Country'}`;
   stateSelect.appendChild(placeholder);
 
   regionStates[region].forEach(state => {
@@ -427,14 +481,15 @@ function updateCities() {
   if (region === 'europe' && state && europeCities[state]) {
     let select = document.getElementById('citySelect');
     if (!select) {
+      var citySelectPh = typeof t === 'function' ? t('form_city_ph') : 'Select city';
       cityContainer.innerHTML = `
         <select id="citySelect" name="city" required>
-          <option value="" disabled selected>Select city</option>
+          <option value="" disabled selected>${citySelectPh}</option>
         </select>
       `;
       select = document.getElementById('citySelect');
     } else {
-      select.innerHTML = '<option value="" disabled selected>Select city</option>';
+      select.innerHTML = '<option value="" disabled selected>' + (typeof t === 'function' ? t('form_city_ph') : 'Select city') + '</option>';
     }
 
     europeCities[state].forEach(city => {
@@ -452,7 +507,8 @@ function resetCityToInput() {
   const cityContainer = document.getElementById('cityContainer');
   const currentInput = cityContainer.querySelector('input');
   if (!currentInput) {
-    cityContainer.innerHTML = '<input type="text" id="cityInput" name="city" placeholder="City" required />';
+    var cityPlaceholder = typeof t === 'function' ? t('form_city_ph') : 'City';
+    cityContainer.innerHTML = '<input type="text" id="cityInput" name="city" placeholder="' + cityPlaceholder + '" required />';
   }
 }
 
@@ -519,4 +575,37 @@ document.addEventListener('DOMContentLoaded', () => {
   initForm();
   initScrollAnimations();
   initSmoothScroll();
+
+  // Re-apply dynamic text on language change
+  document.addEventListener('languageChanged', function() {
+    var readMoreBtns = document.querySelectorAll('.testimonial-read-more');
+    readMoreBtns.forEach(function(btn) {
+      var card = btn.closest('.testimonial-card');
+      var expand = card.querySelector('.testimonial-expand');
+      if (expand && !expand.classList.contains('active')) {
+        btn.textContent = t('testimonial_read_more');
+      }
+    });
+
+    var stateSelect = document.getElementById('state');
+    if (stateSelect) {
+      var region = document.getElementById('region').value;
+      if (!region) {
+        var statePh = t('form_state_ph');
+        if (stateSelect.options.length > 0 && stateSelect.options[0].disabled) {
+          stateSelect.options[0].textContent = statePh;
+        }
+      }
+    }
+
+    var citySelect = document.getElementById('citySelect');
+    if (citySelect && citySelect.options.length > 0 && citySelect.options[0].disabled) {
+      citySelect.options[0].textContent = t('form_city_ph');
+    }
+
+    var cityInput = document.getElementById('cityInput');
+    if (cityInput) {
+      cityInput.placeholder = t('form_city_ph');
+    }
+  });
 });

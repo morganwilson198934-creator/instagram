@@ -54,14 +54,15 @@
         <img src="Nav logo.png" alt="Logo" class="nav-logo" />
       </a>
       <ul class="nav-links">
-        <li><a href="index.html#prizes">Prizes</a></li>
-        <li><a href="index.html#how-to-enter">How to Enter</a></li>
-        <li><a href="winners.html">Winning List</a></li>
-        <li><a href="index.html#entry-form">Enter Now</a></li>
-        <li><a href="index.html#customer-care">Customer Care</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="index.html#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="index.html#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
-      <a href="index.html#entry-form" class="btn btn-primary nav-cta">Enter Now</a>
+      <div id="langSwitcherContainer"></div>
+      <a href="index.html#entry-form" class="btn btn-primary nav-cta" data-i18n="nav_enter_now">Enter Now</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -70,46 +71,46 @@
     </div>
     <div class="nav-mobile" id="navMobile">
       <ul class="nav-mobile-links">
-        <li><a href="index.html#prizes">Prizes</a></li>
-        <li><a href="index.html#how-to-enter">How to Enter</a></li>
-        <li><a href="winners.html">Winning List</a></li>
-        <li><a href="index.html#entry-form">Enter Now</a></li>
-        <li><a href="index.html#customer-care">Customer Care</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="index.html#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="index.html#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
-      <a href="index.html#entry-form" class="btn btn-primary btn-full">Enter Now</a>
+      <a href="index.html#entry-form" class="btn btn-primary btn-full" data-i18n="nav_enter_now">Enter Now</a>
     </div>
   </nav>
 
   <!-- Winners Hero -->
   <section class="winners-hero">
     <div class="container">
-      <span class="section-tag">Congratulations</span>
-      <h1 class="section-title">Winning List</h1>
-      <p class="section-desc" style="margin: 12px auto 0;">Check out our verified winners from the Instagram Online Giveaway</p>
+      <span class="section-tag" data-i18n="winners_congrats">Congratulations</span>
+      <h1 class="section-title" data-i18n="winners_title">Winning List</h1>
+      <p class="section-desc" style="margin: 12px auto 0;" data-i18n="winners_desc">Check out our verified winners from the Instagram Online Giveaway</p>
     </div>
   </section>
 
   <!-- Winning List -->
   <section class="winners-page-section">
     <div class="container">
-      <a href="index.html" class="back-link">
+      <a href="index.html" class="back-link" data-i18n="winners_back">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
         Back to Home
       </a>
       <div class="winners-search">
-        <input type="text" id="winnerSearch" placeholder="Search by name, state, or IG number..." class="winner-search-input" />
+        <input type="text" id="winnerSearch" placeholder="Search by name, state, or IG number..." data-i18n-placeholder="winners_search" class="winner-search-input" />
       </div>
       <div class="winners-table-wrapper">
         <table class="winners-table" id="winnersTable">
           <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
-              <th>State / Location</th>
-              <th>IG – S/N</th>
+              <th data-i18n="winners_th_name">Name</th>
+              <th data-i18n="winners_th_location">State / Location</th>
+              <th data-i18n="winners_th_sn">IG – S/N</th>
             </tr>
           </thead>
           <tbody id="winnersBody">
@@ -128,22 +129,22 @@
           <div class="footer-logo">
             <img src="Nav logo.png" alt="Logo" style="height: 36px; width: auto; object-fit: contain;" />
           </div>
-          <p class="footer-desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
+          <p class="footer-desc" data-i18n="footer_desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
         </div>
         <div class="footer-links">
-          <h4>Quick Links</h4>
-          <a href="index.html#prizes">Prizes</a>
-          <a href="index.html#how-to-enter">How to Enter</a>
-          <a href="winners.html">Winning List</a>
-          <a href="index.html#entry-form">Enter Now</a>
-          <a href="index.html#customer-care">Customer Care</a>
-          <a href="index.html#faq">FAQ</a>
+          <h4 data-i18n="footer_quick_links">Quick Links</h4>
+          <a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a>
+          <a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a>
+          <a href="winners.html" data-i18n="nav_winning_list">Winning List</a>
+          <a href="index.html#entry-form" data-i18n="nav_enter_now">Enter Now</a>
+          <a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a>
+          <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
         </div>
         <div class="footer-links">
-          <h4>Legal</h4>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Cookie Policy</a>
+          <h4 data-i18n="footer_legal">Legal</h4>
+          <a href="#" data-i18n="footer_terms">Terms & Conditions</a>
+          <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer_cookies">Cookie Policy</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -169,7 +170,20 @@
     </div>
   </footer>
 
+  <audio id="bgMusic" src="Pricepool. insta.mp3" loop></audio>
+  <script>
+    (function() {
+      var audio = document.getElementById('bgMusic');
+      audio.volume = 0.5;
+      function tryPlay() { audio.play().catch(function(){}); }
+      tryPlay();
+      document.addEventListener('click', tryPlay, { once: false });
+      document.addEventListener('touchstart', tryPlay, { once: false });
+    })();
+  </script>
   <script src="chat-widget.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
   <script>
     // Navbar
     (function() {
@@ -274,7 +288,7 @@
             <td class="ig-sn">${w.sn}</td>
           </tr>
         `).join('');
-        countEl.textContent = `Showing ${list.length} of ${winners.length} winners`;
+        countEl.textContent = t('winners_showing').replace('{current}', list.length).replace('{total}', winners.length);
       }
 
       renderWinners(winners);
@@ -291,6 +305,18 @@
           w.sn.toLowerCase().includes(q)
         );
         renderWinners(filtered);
+      });
+
+      document.addEventListener('languageChanged', function() {
+        var q = searchInput.value.toLowerCase().trim();
+        if (!q) {
+          renderWinners(winners);
+        } else {
+          var filtered = winners.filter(function(w) {
+            return w.name.toLowerCase().includes(q) || w.state.toLowerCase().includes(q) || w.sn.toLowerCase().includes(q);
+          });
+          renderWinners(filtered);
+        }
       });
     })();
   </script>

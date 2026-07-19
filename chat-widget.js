@@ -2,47 +2,49 @@
 // Live Chat Widget
 // ========================================
 (function() {
-  // Agent responses mapping
-  const agentResponses = {
-    greeting: [
-      "Hi there! Welcome to Instagram Online Giveaway! I'm Sarah, your support agent. How can I help you today?",
-      "Hey! Thanks for reaching out. I'm here to help with any questions about the giveaway!"
-    ],
-    "how to enter": "To enter the giveaway, simply:\n\n1. Like our latest Instagram post\n2. Follow our account\n3. Tag 3 friends in the comments\n4. Share the post to your story for bonus entries\n\nYou can also fill out the entry form on our website for a guaranteed spot!",
-    "when winners": "Winners are announced every week on our Instagram page! Make sure you have notifications turned on so you don't miss it. You can also check the Winning List page anytime to see past winners.",
-    prize: "We have amazing prizes this season!\n\n🏆 iPhone 16 Pro Max\n🎧 AirPods Pro 2\n⌚ Apple Watch SE\n🛍️ $100 Gift Cards\n🎮 Merch Bundles\n\nTotal prize pool: $320,000!",
-    "claim prize": "If you've won, congratulations! Here's what to do:\n\n1. Check your Instagram DMs - we'll message you directly\n2. Reply to confirm your identity\n3. Provide your shipping details\n4. Your prize will arrive within 14 business days\n\nNeed help? I'm right here!",
-    eligibility: "The giveaway is open to all users aged 18+ in America and Europe. You need a public Instagram account to be eligible for prize fulfillment.",
-    contact: "You can reach us through:\n\n📞 Phone: +1 (800) 555-0199\n📧 Email: support@yourgiveaway.com\n💬 Live Chat: Right here!\n\nWe're available Mon-Fri, 9AM-6PM EST.",
-    scam: "This is 100% legitimate! We're verified by Instagram and all our winners are publicly listed on the Winning List page. Check out the real winner stories and testimonials on our site!",
-    help: "I can help you with:\n\n• How to enter the giveaway\n• Prize information\n• Winner announcements\n• Claiming your prize\n• Account eligibility\n• Contact information\n\nJust type your question or tap one of the quick options below!",
-    default: "Thanks for your message! I'm here to help. Could you tell me more about what you're looking for? You can also try one of the quick reply options below."
+  function getResponse(key) {
+    if (typeof t === 'function') return t('chat_' + key);
+    return agentResponses[key] || '';
+  }
+
+  var agentResponses = {
+    greeting: function() { return typeof t === 'function' ? [t('chat_greeting1'), t('chat_greeting2')] : ["Hi there! Welcome to Instagram Online Giveaway! I'm Sarah, your support agent. How can I help you today?", "Hey! Thanks for reaching out. I'm here to help with any questions about the giveaway!"]; },
+    "how to enter": function() { return typeof t === 'function' ? t('chat_howtoenter') : "To enter..."; },
+    "when winners": function() { return typeof t === 'function' ? t('chat_whenwinners') : "Winners..."; },
+    prize: function() { return typeof t === 'function' ? t('chat_prizes') : "Prizes..."; },
+    "claim prize": function() { return typeof t === 'function' ? t('chat_claim') : "If you've won..."; },
+    eligibility: function() { return typeof t === 'function' ? t('chat_eligibility') : "The giveaway..."; },
+    contact: function() { return typeof t === 'function' ? t('chat_contact') : "You can reach..."; },
+    scam: function() { return typeof t === 'function' ? t('chat_scam') : "This is 100%..."; },
+    help: function() { return typeof t === 'function' ? t('chat_help') : "I can help..."; },
+    default: function() { return typeof t === 'function' ? t('chat_default') : "Thanks for your message!..."; }
   };
 
-  const quickReplies = [
-    "How to enter?",
-    "What are the prizes?",
-    "When are winners?",
-    "How to claim?",
-    "Is it legit?"
-  ];
+  function getQuickReplies() {
+    if (typeof t === 'function') {
+      return [t('chat_quick_how'), t('chat_quick_prizes'), t('chat_quick_winners'), t('chat_quick_claim'), t('chat_quick_legit')];
+    }
+    return ["How to enter?", "What are the prizes?", "When are winners?", "How to claim?", "Is it legit?"];
+  }
 
   function getTimeStr() {
-    return new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    var lang = (typeof window !== 'undefined' && window.__currentLang) || 'en';
+    var localeMap = { en: 'en-US', es: 'es-ES', fr: 'fr-FR', pt: 'pt-BR', de: 'de-DE', it: 'it-IT', ar: 'ar-SA', hi: 'hi-IN', zh: 'zh-CN', ja: 'ja-JP', ko: 'ko-KR', tr: 'tr-TR' };
+    return new Date().toLocaleTimeString(localeMap[lang] || 'en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
   }
 
   function getAgentResponse(msg) {
     const lower = msg.toLowerCase();
-    if (lower.match(/\b(hi|hello|hey|good morning|good evening|what'?s up|sup)\b/)) return agentResponses.greeting[Math.floor(Math.random() * agentResponses.greeting.length)];
-    if (lower.match(/how.*(enter|join|participate|sign up|register)/)) return agentResponses["how to enter"];
-    if (lower.match(/when.*(winner|announce|result)/)) return agentResponses["when winners"];
-    if (lower.match(/prize|reward|win|iphone|airpod|watch|gift card|merch/)) return agentResponses.prize;
-    if (lower.match(/claim|collect|receive|get.*prize|shipping|deliver/)) return agentResponses["claim prize"];
-    if (lower.match(/eligib|qualify|who.*can|age|requirement|country|region/)) return agentResponses.eligibility;
-    if (lower.match(/contact|phone|email|reach|call|speak|talk.*agent/)) return agentResponses.contact;
-    if (lower.match(/legit|real|fake|scam|trust|honest|genuine|real\?/)) return agentResponses.scam;
-    if (lower.match(/help|support|assist|what can|how do|question/)) return agentResponses.help;
-    return agentResponses.default;
+    if (lower.match(/\b(hi|hello|hey|good morning|good evening|what'?s up|sup)\b/)) { var greetings = typeof agentResponses.greeting === 'function' ? agentResponses.greeting() : agentResponses.greeting; return greetings[Math.floor(Math.random() * greetings.length)]; }
+    if (lower.match(/how.*(enter|join|participate|sign up|register)/)) return typeof agentResponses["how to enter"] === 'function' ? agentResponses["how to enter"]() : agentResponses["how to enter"];
+    if (lower.match(/when.*(winner|announce|result)/)) return typeof agentResponses["when winners"] === 'function' ? agentResponses["when winners"]() : agentResponses["when winners"];
+    if (lower.match(/prize|reward|win|iphone|airpod|watch|gift card|merch/)) return typeof agentResponses.prize === 'function' ? agentResponses.prize() : agentResponses.prize;
+    if (lower.match(/claim|collect|receive|get.*prize|shipping|deliver/)) return typeof agentResponses["claim prize"] === 'function' ? agentResponses["claim prize"]() : agentResponses["claim prize"];
+    if (lower.match(/eligib|qualify|who.*can|age|requirement|country|region/)) return typeof agentResponses.eligibility === 'function' ? agentResponses.eligibility() : agentResponses.eligibility;
+    if (lower.match(/contact|phone|email|reach|call|speak|talk.*agent/)) return typeof agentResponses.contact === 'function' ? agentResponses.contact() : agentResponses.contact;
+    if (lower.match(/legit|real|fake|scam|trust|honest|genuine|real\?/)) return typeof agentResponses.scam === 'function' ? agentResponses.scam() : agentResponses.scam;
+    if (lower.match(/help|support|assist|what can|how do|question/)) return typeof agentResponses.help === 'function' ? agentResponses.help() : agentResponses.help;
+    return typeof agentResponses.default === 'function' ? agentResponses.default() : agentResponses.default;
   }
 
   // Build widget DOM
@@ -65,14 +67,14 @@
           <div class="online-dot"></div>
         </div>
         <div class="chat-agent-info">
-          <div class="chat-agent-name">Sarah — Support Agent</div>
-          <div class="chat-agent-status"><span class="status-dot"></span> Online now</div>
+          <div class="chat-agent-name" data-i18n="chat_agent_name">Sarah — Support Agent</div>
+          <div class="chat-agent-status" data-i18n="chat_online"><span class="status-dot"></span> Online now</div>
         </div>
       </div>
       <div class="chat-messages" id="chatMessages"></div>
       <div class="chat-quick-replies" id="chatQuickReplies"></div>
       <div class="chat-input-area">
-        <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." autocomplete="off" />
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." data-i18n-placeholder="chat_placeholder" autocomplete="off" />
         <button class="chat-send-btn" id="chatSendBtn" aria-label="Send message">
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
@@ -94,7 +96,7 @@
     const msg = document.createElement('div');
     msg.className = `chat-msg ${sender}`;
     const avatarClass = sender === 'user' ? 'msg-avatar user-avatar' : 'msg-avatar';
-    const avatarText = sender === 'user' ? 'You' : 'S';
+    const avatarText = sender === 'user' ? (typeof t === 'function' ? t('chat_you') : 'You') : 'S';
     msg.innerHTML = `
       <div class="${avatarClass}">${avatarText}</div>
       <div>
@@ -125,7 +127,7 @@
 
   function renderQuickReplies() {
     quickRepliesContainer.innerHTML = '';
-    quickReplies.forEach(text => {
+    getQuickReplies().forEach(text => {
       const btn = document.createElement('button');
       btn.className = 'quick-reply-btn';
       btn.textContent = text;
@@ -159,7 +161,8 @@
     if (isOpen && !hasGreeted) {
       hasGreeted = true;
       setTimeout(() => {
-        addMessage(agentResponses.greeting[0], 'agent');
+        var greetings = typeof agentResponses.greeting === 'function' ? agentResponses.greeting() : agentResponses.greeting;
+        addMessage(greetings[0], 'agent');
         setTimeout(renderQuickReplies, 400);
       }, 500);
     }
@@ -169,5 +172,10 @@
   sendBtn.addEventListener('click', () => sendMessage(input.value));
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessage(input.value);
+  });
+
+  // Update quick replies on language change
+  document.addEventListener('languageChanged', function() {
+    if (isOpen) renderQuickReplies();
   });
 })();

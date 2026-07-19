@@ -292,12 +292,12 @@
     <div class="container">
       <div class="dash-header-left">
         <img src="Nav logo.png" alt="Logo" style="height: 32px; width: auto; object-fit: contain;" />
-        <h1>Admin Dashboard</h1>
-        <span class="admin-badge">Admin</span>
+        <h1 data-i18n="admin_dashboard">Admin Dashboard</h1>
+        <span class="admin-badge" data-i18n="admin_badge">Admin</span>
       </div>
       <div class="dash-header-right">
-        <a href="index.html" class="btn-outline">View Site</a>
-        <button class="btn-danger" id="logoutBtn">Log Out</button>
+        <a href="index.html" class="btn-outline" data-i18n="admin_view_site">View Site</a>
+        <button class="btn-danger" id="logoutBtn" data-i18n="admin_logout">Log Out</button>
       </div>
     </div>
   </header>
@@ -309,22 +309,22 @@
         <div class="dash-stat-card">
           <div class="stat-icon">📝</div>
           <div class="stat-num" id="totalSubmissions">0</div>
-          <div class="stat-lbl">Total Submissions</div>
+          <div class="stat-lbl" data-i18n="admin_total">Total Submissions</div>
         </div>
         <div class="dash-stat-card">
           <div class="stat-icon">📧</div>
           <div class="stat-num" id="uniqueEmails">0</div>
-          <div class="stat-lbl">Unique Emails</div>
+          <div class="stat-lbl" data-i18n="admin_emails">Unique Emails</div>
         </div>
         <div class="dash-stat-card">
           <div class="stat-icon">🏆</div>
           <div class="stat-num">70</div>
-          <div class="stat-lbl">Winners Listed</div>
+          <div class="stat-lbl" data-i18n="admin_winners">Winners Listed</div>
         </div>
         <div class="dash-stat-card">
           <div class="stat-icon">📅</div>
           <div class="stat-num" id="todaySubmissions">0</div>
-          <div class="stat-lbl">Today's Entries</div>
+          <div class="stat-lbl" data-i18n="admin_today">Today's Entries</div>
         </div>
       </div>
     </div>
@@ -334,10 +334,10 @@
   <section class="dash-content">
     <div class="container">
       <div class="dash-toolbar">
-        <h2>Visitor Submissions</h2>
+        <h2 data-i18n="admin_submissions">Visitor Submissions</h2>
         <div class="dash-toolbar-actions">
-          <input type="text" class="dash-search" id="dashSearch" placeholder="Search name, email, state..." />
-          <button class="btn-outline" id="exportBtn">Export CSV</button>
+          <input type="text" class="dash-search" id="dashSearch" data-i18n-placeholder="admin_search" placeholder="Search name, email, state..." />
+          <button class="btn-outline" id="exportBtn" data-i18n="admin_export">Export CSV</button>
         </div>
       </div>
       <div class="dash-table-wrapper">
@@ -345,19 +345,19 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>Region</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Zip</th>
-              <th>Age</th>
-              <th>Marital</th>
-              <th>Home Owner</th>
-              <th>Prize Pref</th>
-              <th>Date</th>
+              <th data-i18n="admin_th_name">Full Name</th>
+              <th data-i18n="admin_th_email">Email</th>
+              <th data-i18n="admin_th_phone">Phone</th>
+              <th data-i18n="admin_th_address">Address</th>
+              <th data-i18n="admin_th_region">Region</th>
+              <th data-i18n="admin_th_city">City</th>
+              <th data-i18n="admin_th_state">State</th>
+              <th data-i18n="admin_th_zip">Zip</th>
+              <th data-i18n="admin_th_age">Age</th>
+              <th data-i18n="admin_th_marital">Marital</th>
+              <th data-i18n="admin_th_home">Home Owner</th>
+              <th data-i18n="admin_th_prize">Prize Pref</th>
+              <th data-i18n="admin_th_date">Date</th>
             </tr>
           </thead>
           <tbody id="dashTableBody">
@@ -368,6 +368,8 @@
     </div>
   </section>
 
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
   <script>
     // Auth check
     if (sessionStorage.getItem('adminAuth') !== 'true') {
@@ -389,7 +391,9 @@
 
     function formatDate(iso) {
       const d = new Date(iso);
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      var lang = (typeof window !== 'undefined' && window.__currentLang) || 'en';
+      var localeMap = { en: 'en-US', es: 'es-ES', fr: 'fr-FR', pt: 'pt-BR', de: 'de-DE', it: 'it-IT', ar: 'ar-SA', hi: 'hi-IN', zh: 'zh-CN', ja: 'ja-JP', ko: 'ko-KR', tr: 'tr-TR' };
+      return d.toLocaleDateString(localeMap[lang] || 'en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     }
 
     function renderTable(list) {
@@ -400,7 +404,7 @@
             <td colspan="14">
               <div class="dash-empty">
                 <div class="empty-icon">📭</div>
-                <p>No submissions found</p>
+                <p>${typeof t === 'function' ? t('admin_empty') : 'No submissions found'}</p>
               </div>
             </td>
           </tr>
@@ -425,7 +429,7 @@
           </tr>
         `).join('');
       }
-      document.getElementById('dashCount').textContent = `Showing ${list.length} of ${allSubmissions.length} submissions`;
+      document.getElementById('dashCount').textContent = (typeof t === 'function' ? t('admin_showing') : 'Showing ' + list.length + ' of ' + allSubmissions.length + ' submissions').replace('{current}', list.length).replace('{total}', allSubmissions.length);
     }
 
     getStats();
@@ -475,6 +479,18 @@
     document.getElementById('logoutBtn').addEventListener('click', function() {
       sessionStorage.removeItem('adminAuth');
       window.location.href = 'admin.html';
+    });
+
+    // Re-render on language change
+    document.addEventListener('languageChanged', function() {
+      renderTable(allSubmissions);
+      var q = document.getElementById('dashSearch').value.toLowerCase().trim();
+      if (q) {
+        var filtered = allSubmissions.filter(function(s) {
+          return s.fullName.toLowerCase().includes(q) || s.email.toLowerCase().includes(q) || s.state.toLowerCase().includes(q) || s.city.toLowerCase().includes(q) || s.phone.includes(q) || s.zip.includes(q) || (s.region && s.region.toLowerCase().includes(q));
+        });
+        renderTable(filtered);
+      }
     });
   </script>
 </body>

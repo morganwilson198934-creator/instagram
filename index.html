@@ -17,14 +17,15 @@
         <img src="Nav logo.png" alt="Logo" class="nav-logo" />
       </a>
       <ul class="nav-links">
-        <li><a href="#prizes">Prizes</a></li>
-        <li><a href="#how-to-enter">How to Enter</a></li>
-        <li><a href="winners.html">Winning List</a></li>
-        <li><a href="#entry-form">Enter Now</a></li>
-        <li><a href="#customer-care">Customer Care</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
-      <a href="#entry-form" class="btn btn-primary nav-cta">Enter Now</a>
+      <div id="langSwitcherContainer"></div>
+      <a href="#entry-form" class="btn btn-primary nav-cta" data-i18n="nav_enter_now">Enter Now</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -34,14 +35,14 @@
     <!-- Mobile Menu -->
     <div class="nav-mobile" id="navMobile">
       <ul class="nav-mobile-links">
-        <li><a href="#prizes">Prizes</a></li>
-        <li><a href="#how-to-enter">How to Enter</a></li>
-        <li><a href="winners.html">Winning List</a></li>
-        <li><a href="#entry-form">Enter Now</a></li>
-        <li><a href="#customer-care">Customer Care</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
-      <a href="#entry-form" class="btn btn-primary btn-full">Enter Now</a>
+      <a href="#entry-form" class="btn btn-primary btn-full" data-i18n="nav_enter_now">Enter Now</a>
     </div>
   </nav>
 
@@ -62,7 +63,7 @@
     </div>
     <div class="hero-content">
       <div class="hero-text">
-        <div class="badge animate-pop">LIMITED TIME OFFER</div>
+        <div class="badge animate-pop" data-i18n="hero_badge">LIMITED TIME OFFER</div>
         <div class="prize-amount animate-pop-delay-1">
           <div class="sparkle sparkle-1"></div>
           <div class="sparkle sparkle-2"></div>
@@ -71,19 +72,19 @@
           <div class="sparkle sparkle-5"></div>
           <div class="sparkle sparkle-6"></div>
           <span class="prize-dollar">$</span><span class="prize-value" id="prizeValue">320,000.00</span>
-          <span class="prize-label">To Be Won</span>
+          <span class="prize-label" data-i18n="hero_to_be_won">To Be Won</span>
         </div>
         <h1 class="hero-title animate-pop-delay-2">
-          <span class="gradient-text">Instagram</span>
-          <br />Online Giveaway
+          <span class="gradient-text" data-i18n="hero_title_line1">Instagram</span>
+          <br /><span data-i18n="hero_title_line2">Online Giveaway</span>
         </h1>
-        <p class="hero-subtitle animate-pop-delay-3">
+        <p class="hero-subtitle animate-pop-delay-3" data-i18n="hero_subtitle">
           Win amazing prizes just by following a few simple steps!
           Don't miss your chance to be a winner.
         </p>
         <div class="hero-cta animate-pop-delay-3">
-          <a href="#how-to-enter" class="btn btn-primary btn-glow">Enter Now</a>
-          <a href="#prizes" class="btn btn-secondary">View Prizes</a>
+          <a href="#how-to-enter" class="btn btn-primary btn-glow" data-i18n="hero_enter_now">Enter Now</a>
+          <a href="#prizes" class="btn btn-secondary" data-i18n="hero_view_prizes">View Prizes</a>
         </div>
       </div>
       <div class="hero-bottom">
@@ -93,26 +94,26 @@
           <button class="hero-dot" data-index="2"></button>
         </div>
         <div class="countdown-wrapper">
-          <p class="countdown-label">Giveaway ends in</p>
+          <p class="countdown-label" data-i18n="hero_countdown_label">Giveaway ends in</p>
           <div class="countdown" id="countdown">
             <div class="countdown-item">
               <span class="countdown-number" id="days">07</span>
-              <span class="countdown-text">Days</span>
+              <span class="countdown-text" data-i18n="countdown_days">Days</span>
             </div>
             <div class="countdown-separator">:</div>
             <div class="countdown-item">
               <span class="countdown-number" id="hours">12</span>
-              <span class="countdown-text">Hours</span>
+              <span class="countdown-text" data-i18n="countdown_hours">Hours</span>
             </div>
             <div class="countdown-separator">:</div>
             <div class="countdown-item">
               <span class="countdown-number" id="minutes">45</span>
-              <span class="countdown-text">Mins</span>
+              <span class="countdown-text" data-i18n="countdown_mins">Mins</span>
             </div>
             <div class="countdown-separator">:</div>
             <div class="countdown-item">
               <span class="countdown-number" id="seconds">30</span>
-              <span class="countdown-text">Secs</span>
+              <span class="countdown-text" data-i18n="countdown_secs">Secs</span>
             </div>
           </div>
         </div>
@@ -125,17 +126,17 @@
     <div class="stats-container">
       <div class="stat-item">
         <span class="stat-number" data-target="15420">0</span>
-        <span class="stat-label">Entries So Far</span>
+        <span class="stat-label" data-i18n="stat_entries">Entries So Far</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <span class="stat-number" data-target="50">0</span>
-        <span class="stat-label">Winners Selected</span>
+        <span class="stat-label" data-i18n="stat_winners">Winners Selected</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <span class="stat-number" data-target="5">0</span>
-        <span class="stat-label">Prize Categories</span>
+        <span class="stat-label" data-i18n="stat_categories">Prize Categories</span>
       </div>
     </div>
   </section>
@@ -145,41 +146,41 @@
     <div class="prizes-bg"></div>
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">What You Can Win</span>
-        <h2 class="section-title">Amazing Prizes</h2>
-        <p class="section-desc">We have incredible prizes up for grabs this giveaway season</p>
+        <span class="section-tag" data-i18n="prizes_tag">What You Can Win</span>
+        <h2 class="section-title" data-i18n="prizes_title">Amazing Prizes</h2>
+        <p class="section-desc" data-i18n="prizes_desc">We have incredible prizes up for grabs this giveaway season</p>
       </div>
       <div class="prizes-grid">
         <div class="prize-card prize-grand">
-          <div class="prize-badge">Grand Prize</div>
+          <div class="prize-badge" data-i18n="prize_grand">Grand Prize</div>
           <div class="prize-icon">🏆</div>
-          <h3 class="prize-name">iPhone 16 Pro Max</h3>
-          <p class="prize-desc">Latest Apple flagship phone with 256GB storage</p>
-          <div class="prize-quantity">1 Winner</div>
+          <h3 class="prize-name" data-i18n="prize_iphone_name">iPhone 16 Pro Max</h3>
+          <p class="prize-desc" data-i18n="prize_iphone_desc">Latest Apple flagship phone with 256GB storage</p>
+          <div class="prize-quantity" data-i18n="prize_iphone_qty">1 Winner</div>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🎧</div>
-          <h3 class="prize-name">AirPods Pro 2</h3>
-          <p class="prize-desc">Active noise cancellation with spatial audio</p>
-          <div class="prize-quantity">3 Winners</div>
+          <h3 class="prize-name" data-i18n="prize_airpods_name">AirPods Pro 2</h3>
+          <p class="prize-desc" data-i18n="prize_airpods_desc">Active noise cancellation with spatial audio</p>
+          <div class="prize-quantity" data-i18n="prize_airpods_qty">3 Winners</div>
         </div>
         <div class="prize-card">
           <div class="prize-icon">⌚</div>
-          <h3 class="prize-name">Apple Watch SE</h3>
-          <p class="prize-desc">Stay connected and track your fitness</p>
-          <div class="prize-quantity">5 Winners</div>
+          <h3 class="prize-name" data-i18n="prize_watch_name">Apple Watch SE</h3>
+          <p class="prize-desc" data-i18n="prize_watch_desc">Stay connected and track your fitness</p>
+          <div class="prize-quantity" data-i18n="prize_watch_qty">5 Winners</div>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🛍️</div>
-          <h3 class="prize-name">$100 Gift Card</h3>
-          <p class="prize-desc">Redeemable at your favorite online stores</p>
-          <div class="prize-quantity">10 Winners</div>
+          <h3 class="prize-name" data-i18n="prize_giftcard_name">$100 Gift Card</h3>
+          <p class="prize-desc" data-i18n="prize_giftcard_desc">Redeemable at your favorite online stores</p>
+          <div class="prize-quantity" data-i18n="prize_giftcard_qty">10 Winners</div>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🎮</div>
-          <h3 class="prize-name">Merch Bundle</h3>
-          <p class="prize-desc">Exclusive branded merchandise pack</p>
-          <div class="prize-quantity">31 Winners</div>
+          <h3 class="prize-name" data-i18n="prize_merch_name">Merch Bundle</h3>
+          <p class="prize-desc" data-i18n="prize_merch_desc">Exclusive branded merchandise pack</p>
+          <div class="prize-quantity" data-i18n="prize_merch_qty">31 Winners</div>
         </div>
       </div>
     </div>
@@ -189,16 +190,16 @@
   <section class="how-to-enter" id="how-to-enter">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Easy Steps</span>
-        <h2 class="section-title">How to Enter</h2>
-        <p class="section-desc">Follow these simple steps to enter the giveaway</p>
+        <span class="section-tag" data-i18n="how_tag">Easy Steps</span>
+        <h2 class="section-title" data-i18n="how_title">How to Enter</h2>
+        <p class="section-desc" data-i18n="how_desc">Follow these simple steps to enter the giveaway</p>
       </div>
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-number">1</div>
           <div class="step-icon">❤️</div>
-          <h3 class="step-title">Like This Post</h3>
-          <p class="step-desc">Like our latest giveaway post on Instagram to show your support</p>
+          <h3 class="step-title" data-i18n="step1_title">Like This Post</h3>
+          <p class="step-desc" data-i18n="step1_desc">Like our latest giveaway post on Instagram to show your support</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 100 20" class="connector-arrow">
@@ -208,8 +209,8 @@
         <div class="step-card">
           <div class="step-number">2</div>
           <div class="step-icon">👤</div>
-          <h3 class="step-title">Follow Us</h3>
-          <p class="step-desc">Follow our Instagram account and stay tuned for winner announcements</p>
+          <h3 class="step-title" data-i18n="step2_title">Follow Us</h3>
+          <p class="step-desc" data-i18n="step2_desc">Follow our Instagram account and stay tuned for winner announcements</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 100 20" class="connector-arrow">
@@ -219,8 +220,8 @@
         <div class="step-card">
           <div class="step-number">3</div>
           <div class="step-icon">💬</div>
-          <h3 class="step-title">Tag 3 Friends</h3>
-          <p class="step-desc">Tag 3 friends in the comments for extra entries</p>
+          <h3 class="step-title" data-i18n="step3_title">Tag 3 Friends</h3>
+          <p class="step-desc" data-i18n="step3_desc">Tag 3 friends in the comments for extra entries</p>
         </div>
         <div class="step-connector">
           <svg viewBox="0 0 100 20" class="connector-arrow">
@@ -230,8 +231,8 @@
         <div class="step-card">
           <div class="step-number">4</div>
           <div class="step-icon">🔄</div>
-          <h3 class="step-title">Share the Post</h3>
-          <p class="step-desc">Share the giveaway post to your story for 5 bonus entries</p>
+          <h3 class="step-title" data-i18n="step4_title">Share the Post</h3>
+          <p class="step-desc" data-i18n="step4_desc">Share the giveaway post to your story for 5 bonus entries</p>
         </div>
       </div>
     </div>
@@ -242,9 +243,9 @@
     <div class="testimonial-glow"></div>
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Real Winner Stories</span>
-        <h2 class="section-title">Life-Changing Wins</h2>
-        <p class="section-desc">Hear from real people whose lives were transformed</p>
+        <span class="section-tag" data-i18n="testimonial_tag">Real Winner Stories</span>
+        <h2 class="section-title" data-i18n="testimonial_title">Life-Changing Wins</h2>
+        <p class="section-desc" data-i18n="testimonial_desc">Hear from real people whose lives were transformed</p>
       </div>
       <div class="testimonial-carousel" id="testimonialCarousel">
         <div class="testimonial-track" id="testimonialTrack">
@@ -255,7 +256,7 @@
               <img src="Winner 1.png" alt="Geraldine Emily" />
               <div class="testimonial-image-badge">
                 <span class="badge-amount">$320,000.00</span>
-                <span class="badge-label">Prize Won</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
               </div>
             </div>
             <div class="testimonial-content">
@@ -266,7 +267,7 @@
               </div>
               <div class="testimonial-header">
                 <h3 class="testimonial-name">Geraldine Emily</h3>
-                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
                 <span class="testimonial-date">June 12, 2026</span>
               </div>
               <div class="testimonial-text">
@@ -295,7 +296,7 @@
               <img src="Winner 2.png" alt="Mark Newmarket" />
               <div class="testimonial-image-badge">
                 <span class="badge-amount">$320,000.00</span>
-                <span class="badge-label">Prize Won</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
               </div>
             </div>
             <div class="testimonial-content">
@@ -306,7 +307,7 @@
               </div>
               <div class="testimonial-header">
                 <h3 class="testimonial-name">Mark Newmarket</h3>
-                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
                 <span class="testimonial-date">May 30, 2026</span>
               </div>
               <div class="testimonial-text">
@@ -335,7 +336,7 @@
               <img src="Winner 3.png" alt="Daljit Brampton" />
               <div class="testimonial-image-badge">
                 <span class="badge-amount">$320,000.00</span>
-                <span class="badge-label">Prize Won</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
               </div>
             </div>
             <div class="testimonial-content">
@@ -346,7 +347,7 @@
               </div>
               <div class="testimonial-header">
                 <h3 class="testimonial-name">Daljit Brampton</h3>
-                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
                 <span class="testimonial-date">October 4, 2022</span>
               </div>
               <div class="testimonial-text">
@@ -375,7 +376,7 @@
               <img src="Winner 4.png" alt="Rose Murphy" />
               <div class="testimonial-image-badge">
                 <span class="badge-amount">$320,000.00</span>
-                <span class="badge-label">Prize Won</span>
+                <span class="badge-label" data-i18n="testimonial_prize_won">Prize Won</span>
               </div>
             </div>
             <div class="testimonial-content">
@@ -386,7 +387,7 @@
               </div>
               <div class="testimonial-header">
                 <h3 class="testimonial-name">Rose Murphy</h3>
-                <span class="testimonial-location">Instagram Giveaway Winner</span>
+                <span class="testimonial-location" data-i18n="testimonial_subtitle">Instagram Giveaway Winner</span>
                 <span class="testimonial-date">March 3, 2026</span>
               </div>
               <div class="testimonial-text">
@@ -440,101 +441,101 @@
         <div class="entry-content">
           <div class="section-header">
             <img src="Nav logo.png" alt="Logo" class="form-logo" />
-            <span class="section-tag">Enter Now</span>
-            <h2 class="section-title">Fill The Form Now</h2>
-            <p class="section-desc">Complete the form below to enter the giveaway</p>
+            <span class="section-tag" data-i18n="form_tag">Enter Now</span>
+            <h2 class="section-title" data-i18n="form_title">Fill The Form Now</h2>
+            <p class="section-desc" data-i18n="form_desc">Complete the form below to enter the giveaway</p>
           </div>
           <form class="giveaway-form" id="giveawayForm">
             <div class="form-row">
               <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter your full name" required />
+                <label for="fullName" data-i18n="form_fullname">Full Name</label>
+                <input type="text" id="fullName" data-i18n-placeholder="form_fullname_ph" placeholder="Enter your full name" required />
               </div>
               <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email address" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" placeholder="Street address" required />
+                <label for="email" data-i18n="form_email">Email Address</label>
+                <input type="email" id="email" data-i18n-placeholder="form_email_ph" placeholder="Enter your email address" required />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="region">Region</label>
+                <label for="address" data-i18n="form_address">Address</label>
+                <input type="text" id="address" data-i18n-placeholder="form_address_ph" placeholder="Street address" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="region" data-i18n="form_region">Region</label>
                 <select id="region" required onchange="updateStates()">
-                  <option value="" disabled selected>Select your region</option>
-                  <option value="america">America (US / Canada)</option>
-                  <option value="europe">Europe</option>
+                  <option value="" disabled selected data-i18n="form_region_ph">Select your region</option>
+                  <option value="america" data-i18n="form_region_america">America (US / Canada)</option>
+                  <option value="europe" data-i18n="form_region_europe">Europe</option>
                 </select>
               </div>
             </div>
             <div class="form-row form-row-3">
               <div class="form-group">
-                <label for="cityInput">City</label>
+                <label for="cityInput" data-i18n="form_city">City</label>
                 <div id="cityContainer">
-                  <input type="text" id="cityInput" name="city" placeholder="City" required />
+                  <input type="text" id="cityInput" name="city" data-i18n-placeholder="form_city_ph" placeholder="City" required />
                 </div>
               </div>
               <div class="form-group">
-                <label for="state">State / Province / Country</label>
+                <label for="state" data-i18n="form_state">State / Province / Country</label>
                 <select id="state" required onchange="updateCities()">
-                  <option value="" disabled selected>Select region first</option>
+                  <option value="" disabled selected data-i18n="form_state_ph">Select region first</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="zip">Zip / Postal Code</label>
-                <input type="text" id="zip" placeholder="Zip code" required />
+                <label for="zip" data-i18n="form_zip">Zip / Postal Code</label>
+                <input type="text" id="zip" data-i18n-placeholder="form_zip_ph" placeholder="Zip code" required />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required />
+                <label for="phone" data-i18n="form_phone">Phone Number</label>
+                <input type="tel" id="phone" data-i18n-placeholder="form_phone_ph" placeholder="+1 (555) 000-0000" required />
               </div>
               <div class="form-group">
-                <label for="occupation">Occupation</label>
-                <input type="text" id="occupation" placeholder="Your occupation" />
+                <label for="occupation" data-i18n="form_occupation">Occupation</label>
+                <input type="text" id="occupation" data-i18n-placeholder="form_occupation_ph" placeholder="Your occupation" />
               </div>
             </div>
             <div class="form-row form-row-3">
               <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" placeholder="Age" min="18" required />
+                <label for="age" data-i18n="form_age">Age</label>
+                <input type="number" id="age" data-i18n-placeholder="form_age_ph" placeholder="Age" min="18" required />
               </div>
               <div class="form-group">
-                <label for="maritalStatus">Single or Married</label>
+                <label for="maritalStatus" data-i18n="form_marital">Single or Married</label>
                 <select id="maritalStatus" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
+                  <option value="" disabled selected data-i18n="form_select">Select</option>
+                  <option value="single" data-i18n="form_single">Single</option>
+                  <option value="married" data-i18n="form_married">Married</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="homeOwner">Do You Own a House</label>
+                <label for="homeOwner" data-i18n="form_homeowner">Do You Own a House</label>
                 <select id="homeOwner" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
+                  <option value="" disabled selected data-i18n="form_select">Select</option>
+                  <option value="yes" data-i18n="form_yes">Yes</option>
+                  <option value="no" data-i18n="form_no">No</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-              <label for="prizePreference">Do You Want Cash or Check</label>
+              <label for="prizePreference" data-i18n="form_prize_pref">Do You Want Cash or Check</label>
               <select id="prizePreference" required>
-                <option value="" disabled selected>Select preference</option>
-                <option value="cash">Cash</option>
-                <option value="check">Check</option>
+                <option value="" disabled selected data-i18n="form_pref_ph">Select preference</option>
+                <option value="cash" data-i18n="form_cash">Cash</option>
+                <option value="check" data-i18n="form_check">Check</option>
               </select>
             </div>
             <div class="form-checkbox">
               <input type="checkbox" id="terms" required />
-              <label for="terms">I agree to the <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></label>
+              <label for="terms"><span data-i18n="form_terms">I agree to the</span> <a href="#" data-i18n="form_terms_link1">terms & conditions</a> <span data-i18n="form_terms_and">and</span> <a href="#" data-i18n="form_terms_link2">privacy policy</a></label>
             </div>
             <button type="submit" class="btn btn-primary btn-full">
-              <span>Submit Entry</span>
+              <span data-i18n="form_submit">Submit Entry</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -546,7 +547,7 @@
           <div class="visual-text">
             <img src="Nav logo.png" alt="Logo" class="visual-logo" />
             <span class="visual-big">15K+</span>
-            <span class="visual-sub">People Have Already Entered</span>
+            <span class="visual-sub" data-i18n="form_people_entered">People Have Already Entered</span>
             <div class="visual-avatars">
               <img class="avatar" src="https://i.pravatar.cc/80?img=32" alt="User" />
               <img class="avatar" src="https://i.pravatar.cc/80?img=47" alt="User" />
@@ -565,9 +566,9 @@
   <section class="customer-care" id="customer-care">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">We're Here to Help</span>
-        <h2 class="section-title">Customer Care Support</h2>
-        <p class="section-desc">Reach out to us anytime — our team is ready to assist you</p>
+        <span class="section-tag" data-i18n="care_tag">We're Here to Help</span>
+        <h2 class="section-title" data-i18n="care_title">Customer Care Support</h2>
+        <p class="section-desc" data-i18n="care_desc">Reach out to us anytime — our team is ready to assist you</p>
       </div>
       <div class="care-grid">
         <div class="care-card">
@@ -576,9 +577,9 @@
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
             </svg>
           </div>
-          <h3 class="care-title">Phone Support</h3>
+          <h3 class="care-title" data-i18n="care_phone">Phone Support</h3>
           <p class="care-info">+1 (800) 555-0199</p>
-          <p class="care-hours">Mon – Fri, 9AM – 6PM EST</p>
+          <p class="care-hours" data-i18n="care_phone_hours">Mon – Fri, 9AM – 6PM EST</p>
         </div>
         <div class="care-card">
           <div class="care-icon">
@@ -587,9 +588,9 @@
               <polyline points="22,6 12,13 2,6"/>
             </svg>
           </div>
-          <h3 class="care-title">Email Support</h3>
+          <h3 class="care-title" data-i18n="care_email">Email Support</h3>
           <p class="care-info">support@yourgiveaway.com</p>
-          <p class="care-hours">Response within 24 hours</p>
+          <p class="care-hours" data-i18n="care_email_hours">Response within 24 hours</p>
         </div>
         <div class="care-card">
           <div class="care-icon">
@@ -597,9 +598,9 @@
               <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
             </svg>
           </div>
-          <h3 class="care-title">Live Chat</h3>
-          <p class="care-info">Chat with us online</p>
-          <p class="care-hours">Available 24/7</p>
+          <h3 class="care-title" data-i18n="care_chat">Live Chat</h3>
+          <p class="care-info" data-i18n="care_chat_info">Chat with us online</p>
+          <p class="care-hours" data-i18n="care_chat_hours">Available 24/7</p>
         </div>
         <div class="care-card">
           <div class="care-icon">
@@ -609,9 +610,9 @@
               <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
           </div>
-          <h3 class="care-title">Help Center</h3>
-          <p class="care-info">Browse FAQs & Guides</p>
-          <p class="care-hours">Self-service resources</p>
+          <h3 class="care-title" data-i18n="care_help">Help Center</h3>
+          <p class="care-info" data-i18n="care_help_info">Browse FAQs & Guides</p>
+          <p class="care-hours" data-i18n="care_help_hours">Self-service resources</p>
         </div>
       </div>
     </div>
@@ -621,63 +622,63 @@
   <section class="faq" id="faq">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Got Questions?</span>
-        <h2 class="section-title">Frequently Asked Questions</h2>
+        <span class="section-tag" data-i18n="faq_tag">Got Questions?</span>
+        <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
       </div>
       <div class="faq-list">
         <div class="faq-item">
           <button class="faq-question">
-            <span>When will the winners be announced?</span>
+            <span data-i18n="faq_q1">When will the winners be announced?</span>
             <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Winners will be announced on our Instagram page within 48 hours after the giveaway ends. Make sure you have notifications turned on so you don't miss it!</p>
+            <p data-i18n="faq_a1">Winners will be announced on our Instagram page within 48 hours after the giveaway ends. Make sure you have notifications turned on so you don't miss it!</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
-            <span>Can I enter multiple times?</span>
+            <span data-i18n="faq_q2">Can I enter multiple times?</span>
             <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Each person can submit one entry through the form. However, you can earn bonus entries by tagging friends and sharing the post to your story!</p>
+            <p data-i18n="faq_a2">Each person can submit one entry through the form. However, you can earn bonus entries by tagging friends and sharing the post to your story!</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
-            <span>Who is eligible to participate?</span>
+            <span data-i18n="faq_q3">Who is eligible to participate?</span>
             <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
           <div class="faq-answer">
-            <p>The giveaway is open to all Instagram users aged 18 and above. Participants must have a public Instagram account to be eligible for prize fulfillment.</p>
+            <p data-i18n="faq_a3">The giveaway is open to all Instagram users aged 18 and above. Participants must have a public Instagram account to be eligible for prize fulfillment.</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
-            <span>How are winners selected?</span>
+            <span data-i18n="faq_q4">How are winners selected?</span>
             <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Winners are selected randomly using a verified random selection tool to ensure fairness and transparency. All entries have an equal chance of winning.</p>
+            <p data-i18n="faq_a4">Winners are selected randomly using a verified random selection tool to ensure fairness and transparency. All entries have an equal chance of winning.</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question">
-            <span>When will I receive my prize?</span>
+            <span data-i18n="faq_q5">When will I receive my prize?</span>
             <svg class="faq-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M6 9l6 6 6-6"/>
             </svg>
           </button>
           <div class="faq-answer">
-            <p>Prizes will be delivered within 14 business days after the winner has been verified and contact details have been confirmed via DM.</p>
+            <p data-i18n="faq_a5">Prizes will be delivered within 14 business days after the winner has been verified and contact details have been confirmed via DM.</p>
           </div>
         </div>
       </div>
@@ -692,26 +693,26 @@
           <div class="footer-logo">
             <img src="Nav logo.png" alt="Logo" style="height: 36px; width: auto; object-fit: contain;" />
           </div>
-          <p class="footer-desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
+          <p class="footer-desc" data-i18n="footer_desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
         </div>
         <div class="footer-links">
-          <h4>Quick Links</h4>
-          <a href="#prizes">Prizes</a>
-          <a href="#how-to-enter">How to Enter</a>
-          <a href="winners.html">Winning List</a>
-          <a href="#entry-form">Enter Now</a>
-          <a href="#customer-care">Customer Care</a>
-          <a href="#faq">FAQ</a>
+          <h4 data-i18n="footer_quick_links">Quick Links</h4>
+          <a href="#prizes" data-i18n="nav_prizes">Prizes</a>
+          <a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a>
+          <a href="winners.html" data-i18n="nav_winning_list">Winning List</a>
+          <a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a>
+          <a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a>
+          <a href="#faq" data-i18n="nav_faq">FAQ</a>
         </div>
         <div class="footer-links">
-          <h4>Legal</h4>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Cookie Policy</a>
+          <h4 data-i18n="footer_legal">Legal</h4>
+          <a href="#" data-i18n="footer_terms">Terms & Conditions</a>
+          <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer_cookies">Cookie Policy</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Instagram Online Giveaway. All rights reserved.</p>
+        <p data-i18n="footer_copyright">&copy; 2026 Instagram Online Giveaway. All rights reserved.</p>
         <div class="footer-socials">
           <a href="#" class="social-link" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -737,12 +738,25 @@
   <div class="modal-overlay" id="successModal">
     <div class="modal">
       <div class="modal-icon">🎉</div>
-      <h3>Entry Submitted!</h3>
-      <p>Your giveaway entry has been successfully submitted. Good luck!</p>
-      <button class="btn btn-primary" onclick="closeModal()">Got it!</button>
+      <h3 data-i18n="modal_title">Entry Submitted!</h3>
+      <p data-i18n="modal_desc">Your giveaway entry has been successfully submitted. Good luck!</p>
+      <button class="btn btn-primary" onclick="closeModal()" data-i18n="modal_btn">Got it!</button>
     </div>
   </div>
 
+  <audio id="bgMusic" src="Pricepool. insta.mp3" loop></audio>
+  <script>
+    (function() {
+      var audio = document.getElementById('bgMusic');
+      audio.volume = 0.5;
+      function tryPlay() { audio.play().catch(function(){}); }
+      tryPlay();
+      document.addEventListener('click', tryPlay, { once: false });
+      document.addEventListener('touchstart', tryPlay, { once: false });
+    })();
+  </script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
   <script src="chat-widget.js"></script>
 </body>
