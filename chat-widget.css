@@ -212,6 +212,21 @@
   background: linear-gradient(135deg, var(--ig-blue), var(--ig-purple));
 }
 
+.msg-avatar.admin-avatar {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.chat-msg.admin {
+  flex-direction: row;
+}
+
+.chat-msg.admin .msg-bubble {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border-bottom-left-radius: 4px;
+  border: none;
+}
+
 .msg-bubble {
   max-width: 260px;
   padding: 10px 14px;
