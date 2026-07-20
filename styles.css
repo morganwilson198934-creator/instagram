@@ -47,7 +47,16 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: clip;
+  overflow-x: hidden;
+}
+
+/* 3CX Widget - fixed at bottom right */
+call-us-selector {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
 }
 
 a {
