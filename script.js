@@ -277,13 +277,19 @@ function initForm() {
       timestamp: new Date().toISOString()
     };
 
-    var submissions = JSON.parse(localStorage.getItem('giveawaySubmissions') || '[]');
-    submissions.push(submission);
-    localStorage.setItem('giveawaySubmissions', JSON.stringify(submissions));
-
-    document.getElementById('successModal').classList.add('active');
-    form.reset();
-    resetCityToInput();
+    fetch(window.location.origin + '/api/submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(submission)
+    }).then(function(r) { return r.json(); }).then(function() {
+      document.getElementById('successModal').classList.add('active');
+      form.reset();
+      resetCityToInput();
+    }).catch(function() {
+      document.getElementById('successModal').classList.add('active');
+      form.reset();
+      resetCityToInput();
+    });
   });
 }
 

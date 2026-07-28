@@ -57,6 +57,15 @@ call-us-selector {
   right: 24px !important;
   z-index: 2147483647 !important;
   pointer-events: auto !important;
+  isolation: isolate;
+}
+
+call-us-selector * {
+  pointer-events: auto !important;
+}
+
+call-us-selector::part(call-button) {
+  pointer-events: auto !important;
 }
 
 a {
@@ -878,7 +887,7 @@ section[id] {
 
 .prizes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 24px;
 }
 
@@ -887,10 +896,9 @@ section[id] {
   background: var(--bg-card);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius-lg);
-  padding: 40px 24px;
+  padding: 32px 16px;
   text-align: center;
   transition: var(--transition);
-  overflow: hidden;
 }
 
 .prize-card::before {
@@ -932,8 +940,8 @@ section[id] {
 }
 
 .prize-icon {
-  width: 100px;
-  height: 100px;
+  width: 180px;
+  height: 180px;
   margin: 0 auto 16px;
   position: relative;
   z-index: 1;
@@ -946,12 +954,30 @@ section[id] {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 4px 20px rgba(225, 48, 108, 0.2));
   transition: transform 0.4s ease;
 }
 
 .prize-card:hover .prize-icon img {
   transform: scale(1.1) translateY(-4px);
+}
+
+.prize-icon-cash {
+  background: linear-gradient(135deg, var(--ig-yellow), var(--ig-orange));
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+}
+
+.prize-cash-amount {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #000;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.prize-card:hover .prize-icon-cash {
+  transform: scale(1.05) translateY(-4px);
+  transition: transform 0.4s ease;
 }
 
 .prize-name {

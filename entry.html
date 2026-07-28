@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter Now - Instagram Online Giveaway</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script>
+  <style>
+    .entry-page-hero {
+      padding: 140px 0 40px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(225, 48, 108, 0.1), var(--bg-primary));
+      position: relative;
+    }
+    .entry-page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ig-orange), var(--ig-red), var(--ig-purple), transparent);
+    }
+    .entry-page-section {
+      padding: 20px 0 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="Nav logo.png" alt="Logo" class="nav-logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="entry.html" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="index.html#faq" data-i18n="nav_faq">FAQ</a></li>
+      </ul>
+      <div id="langSwitcherContainer"></div>
+      <a href="entry.html" class="btn btn-primary nav-cta" data-i18n="nav_enter_now">Enter Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <ul class="nav-mobile-links">
+        <li><a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a></li>
+        <li><a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
+        <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
+        <li><a href="entry.html" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
+        <li><a href="index.html#faq" data-i18n="nav_faq">FAQ</a></li>
+      </ul>
+      <a href="entry.html" class="btn btn-primary btn-full" data-i18n="nav_enter_now">Enter Now</a>
+    </div>
+  </nav>
+
+  <!-- Entry Form Hero -->
+  <section class="entry-page-hero">
+    <div class="container">
+      <span class="section-tag" data-i18n="form_tag">Enter Now</span>
+      <h1 class="section-title" data-i18n="form_title">Fill The Form Now</h1>
+      <p class="section-desc" style="margin: 12px auto 0;" data-i18n="form_desc">Complete the form below to enter the giveaway</p>
+    </div>
+  </section>
+
+  <!-- Entry Form -->
+  <section class="entry-page-section" id="entry-form">
+    <div class="container">
+      <div class="entry-card">
+        <div class="entry-content">
+          <form class="giveaway-form" id="giveawayForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName" data-i18n="form_fullname">Full Name</label>
+                <input type="text" id="fullName" data-i18n-placeholder="form_fullname_ph" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="email" data-i18n="form_email">Email Address</label>
+                <input type="email" id="email" data-i18n-placeholder="form_email_ph" placeholder="Enter your email address" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="address" data-i18n="form_address">Address</label>
+                <input type="text" id="address" data-i18n-placeholder="form_address_ph" placeholder="Street address" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="region" data-i18n="form_region">Region</label>
+                <select id="region" required onchange="updateStates()">
+                  <option value="" disabled selected data-i18n="form_region_ph">Select your region</option>
+                  <option value="america" data-i18n="form_region_america">America (US / Canada)</option>
+                  <option value="europe" data-i18n="form_region_europe">Europe</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label for="cityInput" data-i18n="form_city">City</label>
+                <div id="cityContainer">
+                  <input type="text" id="cityInput" name="city" data-i18n-placeholder="form_city_ph" placeholder="City" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="state" data-i18n="form_state">State / Province / Country</label>
+                <select id="state" required onchange="updateCities()">
+                  <option value="" disabled selected data-i18n="form_state_ph">Select region first</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="zip" data-i18n="form_zip">Zip / Postal Code</label>
+                <input type="text" id="zip" data-i18n-placeholder="form_zip_ph" placeholder="Zip code" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone" data-i18n="form_phone">Phone Number</label>
+                <input type="tel" id="phone" data-i18n-placeholder="form_phone_ph" placeholder="+1 (555) 000-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="occupation" data-i18n="form_occupation">Occupation</label>
+                <input type="text" id="occupation" data-i18n-placeholder="form_occupation_ph" placeholder="Your occupation" />
+              </div>
+            </div>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label for="age" data-i18n="form_age">Age</label>
+                <input type="number" id="age" data-i18n-placeholder="form_age_ph" placeholder="Age" min="18" required />
+              </div>
+              <div class="form-group">
+                <label for="maritalStatus" data-i18n="form_marital">Single or Married</label>
+                <select id="maritalStatus" required>
+                  <option value="" disabled selected data-i18n="form_select">Select</option>
+                  <option value="single" data-i18n="form_single">Single</option>
+                  <option value="married" data-i18n="form_married">Married</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="homeOwner" data-i18n="form_homeowner">Do You Own a House</label>
+                <select id="homeOwner" required>
+                  <option value="" disabled selected data-i18n="form_select">Select</option>
+                  <option value="yes" data-i18n="form_yes">Yes</option>
+                  <option value="no" data-i18n="form_no">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="prizePreference" data-i18n="form_prize_pref">Do You Want Cash or Check</label>
+              <select id="prizePreference" required>
+                <option value="" disabled selected data-i18n="form_pref_ph">Select preference</option>
+                <option value="cash" data-i18n="form_cash">Cash</option>
+                <option value="check" data-i18n="form_check">Check</option>
+              </select>
+            </div>
+            <div class="form-checkbox">
+              <input type="checkbox" id="terms" required />
+              <label for="terms"><span data-i18n="form_terms">I agree to the</span> <a href="#" data-i18n="form_terms_link1">terms & conditions</a> <span data-i18n="form_terms_and">and</span> <a href="#" data-i18n="form_terms_link2">privacy policy</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span data-i18n="form_submit">Submit Entry</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="entry-visual">
+          <div class="visual-pattern"></div>
+          <div class="visual-text">
+            <img src="Nav logo.png" alt="Logo" class="visual-logo" loading="lazy" />
+            <span class="visual-big">15K+</span>
+            <span class="visual-sub" data-i18n="form_people_entered">People Have Already Entered</span>
+            <div class="visual-avatars">
+              <img class="avatar" src="https://i.pravatar.cc/80?img=32" alt="User" loading="lazy" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=47" alt="User" loading="lazy" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=12" alt="User" loading="lazy" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=56" alt="User" loading="lazy" />
+              <img class="avatar" src="https://i.pravatar.cc/80?img=23" alt="User" loading="lazy" />
+              <div class="avatar avatar-more">+15K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="Nav logo.png" alt="Logo" style="height: 36px; width: auto; object-fit: contain;" loading="lazy" />
+          </div>
+          <p class="footer-desc" data-i18n="footer_desc">Follow us on Instagram for the latest giveaways, promotions, and exclusive deals.</p>
+        </div>
+        <div class="footer-links">
+          <h4 data-i18n="footer_quick_links">Quick Links</h4>
+          <a href="index.html#prizes" data-i18n="nav_prizes">Prizes</a>
+          <a href="index.html#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a>
+          <a href="winners.html" data-i18n="nav_winning_list">Winning List</a>
+          <a href="entry.html" data-i18n="nav_enter_now">Enter Now</a>
+          <a href="index.html#customer-care" data-i18n="nav_customer_care">Customer Care</a>
+          <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+        </div>
+        <div class="footer-links">
+          <h4 data-i18n="footer_legal">Legal</h4>
+          <a href="#" data-i18n="footer_terms">Terms & Conditions</a>
+          <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer_cookies">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_copyright">&copy; 2026 Instagram Online Giveaway. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/instagram" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h3 data-i18n="modal_title">Entry Submitted!</h3>
+      <p data-i18n="modal_desc">Your giveaway entry has been successfully submitted. Good luck!</p>
+      <button class="btn btn-primary" onclick="closeModal()" data-i18n="modal_btn">Got it!</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="Pricepool. insta.mp3" loop></audio>
+  <script>
+    (function() {
+      var audio = document.getElementById('bgMusic');
+      audio.volume = 0.5;
+      var savedTime = sessionStorage.getItem('bgMusicTime');
+      if (savedTime) audio.currentTime = parseFloat(savedTime);
+      function tryPlay() { audio.play().catch(function(){}); }
+      tryPlay();
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('a[href^="#"]') || e.target.closest('.btn') || e.target.closest('.chat-send') || e.target.closest('.nav-toggle') || e.target.closest('button')) return;
+        tryPlay();
+      });
+      document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('a[href^="#"]') || e.target.closest('.btn') || e.target.closest('.chat-send') || e.target.closest('.nav-toggle') || e.target.closest('button')) return;
+        tryPlay();
+      });
+      window.addEventListener('beforeunload', function() {
+        if (!audio.paused) sessionStorage.setItem('bgMusicTime', audio.currentTime);
+      });
+      audio.addEventListener('play', function() { sessionStorage.removeItem('bgMusicTime'); });
+    })();
+  </script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
+  <script src="cms.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Load CMS content into page from API
+    (function() {
+      if (typeof CMS === 'undefined') return;
+      CMS.loadContent().then(function() {
+        var c = CMS.getContent();
+        if (!c) return;
+        // Customer care
+        var careCards = document.querySelectorAll('.care-card .care-info');
+        if (careCards.length >= 2) {
+          if (c.customerCare) {
+            careCards[0].textContent = c.customerCare.phone;
+            careCards[1].textContent = c.customerCare.email;
+          }
+        }
+      });
+    })();
+  </script>
+  <call-us-selector phonesystem-url="https://1722.3cx.cloud" party="giveaway"></call-us-selector>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function fixChatButton() {
+        var selector = document.querySelector('call-us-selector');
+        if (!selector) return;
+        selector.style.pointerEvents = 'auto';
+        if (selector.shadowRoot) {
+          selector.shadowRoot.querySelectorAll('*').forEach(function(el) {
+            el.style.pointerEvents = 'auto';
+          });
+          var btn = selector.shadowRoot.querySelector('[class*="call"], [class*="button"], button, a, [role="button"]');
+          if (btn) {
+            btn.style.pointerEvents = 'auto';
+            btn.style.cursor = 'pointer';
+          }
+        }
+      }
+      fixChatButton();
+      setTimeout(fixChatButton, 2000);
+      setTimeout(fixChatButton, 5000);
+      var observer = new MutationObserver(fixChatButton);
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+</body>
+</html>

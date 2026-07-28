@@ -953,17 +953,26 @@
       subs[idx].maritalStatus = document.getElementById('subMarital').value.trim();
       subs[idx].homeOwner = document.getElementById('subHomeOwner').value.trim();
       subs[idx].prizePreference = document.getElementById('subPrizePref').value.trim();
-      localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(subs));
-      closeModal('subModal');
-      renderSubmissions(document.getElementById('subSearch').value);
-      showToast('Submission updated!');
+      fetch(window.location.origin + '/api/submissions/' + editingSubId, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(subs[idx])
+      }).then(function() {
+        closeModal('subModal');
+        return CMS.loadSubmissions();
+      }).then(function() {
+        renderSubmissions(document.getElementById('subSearch').value);
+        showToast('Submission updated!');
+      });
     });
     function deleteSubmission(id) {
       showConfirm('Delete Submission', 'Are you sure you want to delete this submission?', function() {
-        var subs = CMS.getSubmissions().filter(function(s) { return s.id !== id; });
-        localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(subs));
-        renderSubmissions(document.getElementById('subSearch').value);
-        showToast('Submission deleted!');
+        fetch(window.location.origin + '/api/submissions/' + id, { method: 'DELETE' }).then(function() {
+          return CMS.loadSubmissions();
+        }).then(function() {
+          renderSubmissions(document.getElementById('subSearch').value);
+          showToast('Submission deleted!');
+        });
       });
     }
     document.getElementById('subSearch').addEventListener('input', function() {
@@ -971,9 +980,12 @@
     });
     document.getElementById('clearAllSubs').addEventListener('click', function() {
       showConfirm('Clear All Submissions', 'This will permanently delete ALL submissions. Are you sure?', function() {
-        localStorage.setItem(CMS.KEYS.submissions, '[]');
-        renderSubmissions();
-        showToast('All submissions cleared!');
+        fetch(window.location.origin + '/api/submissions', { method: 'DELETE' }).then(function() {
+          return CMS.loadSubmissions();
+        }).then(function() {
+          renderSubmissions();
+          showToast('All submissions cleared!');
+        });
       });
     });
     document.getElementById('exportCSV').addEventListener('click', function() {
@@ -1052,18 +1064,28 @@
       } else {
         winnersData[editingWinnerIdx] = { name: name, state: state, sn: sn };
       }
-      CMS.saveWinners(winnersData);
-      closeModal('winnerModal');
-      renderWinners(document.getElementById('winnerSearch').value);
-      showToast(editingWinnerIdx === -1 ? 'Winner added!' : 'Winner updated!');
+      CMS.saveWinners(winnersData).then(function() {
+        return CMS.loadWinners();
+      }).then(function() {
+        closeModal('winnerModal');
+        renderWinners(document.getElementById('winnerSearch').value);
+        showToast(editingWinnerIdx === -1 ? 'Winner added!' : 'Winner updated!');
+      }).catch(function() {
+        showToast('Error saving winner', true);
+      });
     });
     function deleteWinner(idx) {
       showConfirm('Delete Winner', 'Remove "' + winnersData[idx].name + '" from the winners list?', function() {
         loadWinners();
         winnersData.splice(idx, 1);
-        CMS.saveWinners(winnersData);
-        renderWinners(document.getElementById('winnerSearch').value);
-        showToast('Winner deleted!');
+        CMS.saveWinners(winnersData).then(function() {
+          return CMS.loadWinners();
+        }).then(function() {
+          renderWinners(document.getElementById('winnerSearch').value);
+          showToast('Winner deleted!');
+        }).catch(function() {
+          showToast('Error deleting winner', true);
+        });
       });
     }
     document.getElementById('winnerSearch').addEventListener('input', function() {
@@ -1117,8 +1139,11 @@
       content.stats.entries = parseInt(document.getElementById('statsEntriesInput').value) || 0;
       content.stats.winners = parseInt(document.getElementById('statsWinnersInput').value) || 0;
       content.stats.categories = parseInt(document.getElementById('statsCategoriesInput').value) || 0;
-      CMS.saveContent(content);
-      showToast('Stats saved!');
+      CMS.saveContent(content).then(function() {
+        return CMS.loadContent();
+      }).then(function() {
+        showToast('Stats saved!');
+      });
     });
     document.getElementById('addPrizeBtn').addEventListener('click', function() {
       editingPrizeIdx = -1;
@@ -1158,18 +1183,24 @@
       } else {
         content.prizes[editingPrizeIdx] = prize;
       }
-      CMS.saveContent(content);
-      closeModal('prizeModal');
-      renderPrizes();
-      showToast(editingPrizeIdx === -1 ? 'Prize added!' : 'Prize updated!');
+      CMS.saveContent(content).then(function() {
+        return CMS.loadContent();
+      }).then(function() {
+        closeModal('prizeModal');
+        renderPrizes();
+        showToast(editingPrizeIdx === -1 ? 'Prize added!' : 'Prize updated!');
+      });
     });
     function deletePrize(idx) {
       showConfirm('Delete Prize', 'Remove this prize from the list?', function() {
         var content = CMS.getContent();
         content.prizes.splice(idx, 1);
-        CMS.saveContent(content);
-        renderPrizes();
-        showToast('Prize deleted!');
+        CMS.saveContent(content).then(function() {
+          return CMS.loadContent();
+        }).then(function() {
+          renderPrizes();
+          showToast('Prize deleted!');
+        });
       });
     }
 
@@ -1241,18 +1272,24 @@
       } else {
         content.testimonials[editingTestIdx] = testimonial;
       }
-      CMS.saveContent(content);
-      closeModal('testimonialModal');
-      renderTestimonials();
-      showToast(editingTestIdx === -1 ? 'Testimonial added!' : 'Testimonial updated!');
+      CMS.saveContent(content).then(function() {
+        return CMS.loadContent();
+      }).then(function() {
+        closeModal('testimonialModal');
+        renderTestimonials();
+        showToast(editingTestIdx === -1 ? 'Testimonial added!' : 'Testimonial updated!');
+      });
     });
     function deleteTestimonial(idx) {
       showConfirm('Delete Testimonial', 'Remove this testimonial story?', function() {
         var content = CMS.getContent();
         content.testimonials.splice(idx, 1);
-        CMS.saveContent(content);
-        renderTestimonials();
-        showToast('Testimonial deleted!');
+        CMS.saveContent(content).then(function() {
+          return CMS.loadContent();
+        }).then(function() {
+          renderTestimonials();
+          showToast('Testimonial deleted!');
+        });
       });
     }
 
@@ -1303,18 +1340,24 @@
       } else {
         content.faq[editingFaqIdx] = { q: q, a: a };
       }
-      CMS.saveContent(content);
-      closeModal('faqModal');
-      renderFAQ();
-      showToast(editingFaqIdx === -1 ? 'FAQ added!' : 'FAQ updated!');
+      CMS.saveContent(content).then(function() {
+        return CMS.loadContent();
+      }).then(function() {
+        closeModal('faqModal');
+        renderFAQ();
+        showToast(editingFaqIdx === -1 ? 'FAQ added!' : 'FAQ updated!');
+      });
     });
     function deleteFAQ(idx) {
       showConfirm('Delete FAQ', 'Remove this FAQ item?', function() {
         var content = CMS.getContent();
         content.faq.splice(idx, 1);
-        CMS.saveContent(content);
-        renderFAQ();
-        showToast('FAQ deleted!');
+        CMS.saveContent(content).then(function() {
+          return CMS.loadContent();
+        }).then(function() {
+          renderFAQ();
+          showToast('FAQ deleted!');
+        });
       });
     }
 
@@ -1328,8 +1371,11 @@
       var content = CMS.getContent();
       content.customerCare.phone = document.getElementById('carePhoneInput').value.trim();
       content.customerCare.email = document.getElementById('careEmailInput').value.trim();
-      CMS.saveContent(content);
-      showToast('Customer care info saved!');
+      CMS.saveContent(content).then(function() {
+        return CMS.loadContent();
+      }).then(function() {
+        showToast('Customer care info saved!');
+      });
     });
     document.getElementById('exportAllBtn').addEventListener('click', function() {
       var allData = {
@@ -1345,21 +1391,27 @@
       CMS.importJSON(function(err, data) {
         if (err) { showToast('Invalid JSON file', true); return; }
         showConfirm('Import All Data', 'This will REPLACE all current data. This cannot be undone. Continue?', function() {
-          if (data.winners) CMS.saveWinners(data.winners);
-          if (data.content) CMS.saveContent(data.content);
-          if (data.submissions) localStorage.setItem(CMS.KEYS.submissions, JSON.stringify(data.submissions));
-          showToast('All data imported!');
-          refreshDashboard();
+          fetch(window.location.origin + '/api/import', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          }).then(function() {
+            return Promise.all([CMS.loadWinners(), CMS.loadContent(), CMS.loadSubmissions()]);
+          }).then(function() {
+            showToast('All data imported!');
+            refreshDashboard();
+          });
         });
       });
     });
     document.getElementById('resetAllBtn').addEventListener('click', function() {
       showConfirm('Reset All Data', 'This will reset everything to default values. All customizations will be lost. Continue?', function() {
-        localStorage.removeItem(CMS.KEYS.winners);
-        localStorage.removeItem(CMS.KEYS.content);
-        localStorage.removeItem(CMS.KEYS.submissions);
-        showToast('All data reset to defaults!');
-        refreshDashboard();
+        fetch(window.location.origin + '/api/reset', { method: 'POST' }).then(function() {
+          return Promise.all([CMS.loadWinners(), CMS.loadContent(), CMS.loadSubmissions()]);
+        }).then(function() {
+          showToast('All data reset to defaults!');
+          refreshDashboard();
+        });
       });
     });
 
@@ -1390,7 +1442,11 @@
     }
 
     // ===== Init =====
-    refreshDashboard();
+    Promise.all([CMS.loadWinners(), CMS.loadContent(), CMS.loadSubmissions()]).then(function() {
+      refreshDashboard();
+    }).catch(function() {
+      refreshDashboard();
+    });
   </script>
 </body>
 </html>

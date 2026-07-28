@@ -1,0 +1,84 @@
+{
+  "prizeAmount": "320,000.00",
+  "stats": { "entries": 143, "winners": 70, "categories": 5 },
+  "prizes": [
+    { "name": "Cash Prize", "desc": "Life-changing cash reward for our grand winner", "qty": "70 Winners", "icon": "cash", "badge": "Grand Prize", "isGrand": true },
+    { "name": "iPhone 17 Pro Max", "desc": "Latest Apple flagship phone with 256GB storage", "qty": "679 Winners", "icon": "Iphone 17 Pro Max.png", "badge": "", "isGrand": false },
+    { "name": "Apple Earpods", "desc": "Active noise cancellation with spatial audio", "qty": "1,23 Winners", "icon": "Apple Earpods.png", "badge": "", "isGrand": false },
+    { "name": "$500 Gift Cards", "desc": "Redeemable at your favorite online stores", "qty": "2,449 Winners", "icon": "Gift Cards.png", "badge": "", "isGrand": false },
+    { "name": "Apple Watch", "desc": "Stay connected and track your fitness", "qty": "2,543 Winners", "icon": "Apple Watch.png", "badge": "", "isGrand": false }
+  ],
+  "testimonials": [
+    {
+      "name": "Geraldine Emily", "date": "June 12, 2026", "image": "Winner 1.png", "amount": "$320,000.00",
+      "highlight": "I had to double-check: 'How many zeros are there?'",
+      "paragraphs": [
+        "A woman says she's on \"cloud nine\" after winning a $320,000 prize through our Instagram Online Giveaway that prompted her to move up her retirement plans by months.",
+        "\"December 25 was supposed to be my last day to work, but as soon as I realized I had this kind of money, I figured I can do it now,\" Geraldine said. \"I went in and said goodbye to everybody and turned my computer in.\""
+      ],
+      "expanded": [
+        "Once the reality set in, Geraldine was so happy when she got a message from our online agent about how she can claim her wins. But any hope of a restful night quickly disappeared.",
+        "\"I was up all night,\" she said. \"I couldn't sleep. I didn't let anybody know until the next day. I was pacing up and down, trying to figure out what I should do next.\"",
+        "Geraldine, who worked for a computer services company for 26 years, said the chance to help her family is even more meaningful than the win itself. A mother of two and grandmother of five, she plans to share the winnings with her family.",
+        "\"Thanks Instagram, this is so amazing!!\""
+      ],
+      "tags": ["#WinnerStory", "#InstagramGiveaway", "#LifeChanging"]
+    },
+    {
+      "name": "Mark Newmarket", "date": "May 30, 2026", "image": "Winner 2.png", "amount": "$320,000.00",
+      "highlight": "I stared at my phone for five minutes — I couldn't believe what I was seeing.",
+      "paragraphs": [
+        "Mark Newmarket, a carpenter from Newmarket, won $320,000 through the Instagram Online Giveaway. He entered on a Saturday morning while having his coffee and completely forgot about it.",
+        "\"I was scrolling through my messages and saw the notification. I thought it was spam at first,\" Mark laughed. \"Then I clicked on it and read it three times. My coffee got cold because I just sat there frozen.\""
+      ],
+      "expanded": [
+        "Mark has been working as a carpenter for over 20 years, building furniture and cabinets. He always dreamed of opening his own workshop but could never afford the startup costs.",
+        "\"I called my wife and told her to sit down. She didn't believe me until I showed her the email. Then she started screaming so loud the neighbors came over to check on us,\" he shared with a big smile.",
+        "Mark plans to finally open his own custom woodworking shop and has already started looking at commercial spaces. He also wants to put money aside for his two children's college funds.",
+        "\"After all these years of hard work, this feels like a miracle. Thank you Instagram!\""
+      ],
+      "tags": ["#DreamBuilder", "#GiveawayReal", "#NewChapter"]
+    },
+    {
+      "name": "Daljit Brampton", "date": "October 4, 2022", "image": "Winner 3.png", "amount": "$320,000.00",
+      "highlight": "My wife thought I was joking — I had to show her the screen three times!",
+      "paragraphs": [
+        "Daljit Brampton, a truck driver from Brampton, won $320,000 through the Instagram Online Giveaway. He entered during a rest stop on a long haul and didn't think much of it after.",
+        "\"I was parked at a truck stop in Ohio when I got the message. I read it and my heart started racing,\" Daljit recalled. \"I called my wife right away and she said 'Daljit, stop fooling around.' I had to FaceTime her just to prove it.\""
+      ],
+      "expanded": [
+        "Daljit has been driving trucks for 15 years, spending long weeks on the road away from his family. He always dreamed of bringing his parents from India to Canada but could never afford it.",
+        "\"I Facetimed my parents back home. When I told them, my mother put her hands together and started praying. My father had tears in his eyes. It was the most beautiful moment of my life,\" he shared.",
+        "The family is now planning a trip to India to bring his parents over, and Daljit has already started building a new home with a dedicated room for them.",
+        "\"God answers prayers in ways you never expect. This is a blessing beyond words.\""
+      ],
+      "tags": ["#FamilyReunion", "#Blessed", "#DreamComeTrue"]
+    },
+    {
+      "name": "Rose Murphy", "date": "March 3, 2026", "image": "Winner 4.png", "amount": "$320,000.00",
+      "highlight": "My daughter grabbed my phone and screamed — we'd won $320,000!",
+      "paragraphs": [
+        "Rose Murphy, a nurse from Canada, entered the giveaway while on her night shift break. She'd been following the page for weeks and finally decided to fill out the form.",
+        "\"I was so tired that night. I almost didn't enter. Something just told me to do it,\" Rose said. \"Three days later, my daughter saw the winning notification before I did.\""
+      ],
+      "expanded": [
+        "Rose has worked 12-hour shifts at the hospital for over a decade. The money will help her open the small bakery she's always dreamed of — a dream she put on hold when she became a single mother.",
+        "\"I used to bake cakes for my daughter's school events and everyone always said they were the best. Now I can finally make it a business,\" she said with tears in her eyes.",
+        "Rose also plans to put money aside for her daughter's university education. \"She wants to study medicine like me, but I want her to do it without the debt I had.\"",
+        "\"From one mom to another — never give up on your dreams.\""
+      ],
+      "tags": ["#NurseWins", "#DreamBig", "#SingleMom"]
+    }
+  ],
+  "faq": [
+    { "q": "When will the winners be announced?", "a": "Winners will be announced on our Instagram page within 48 hours after the giveaway ends. Make sure you have notifications turned on so you don't miss it!" },
+    { "q": "Can I enter multiple times?", "a": "Each person can submit one entry through the form. However, you can earn bonus entries by tagging friends and sharing the post to your story!" },
+    { "q": "Who is eligible to participate?", "a": "The giveaway is open to all Instagram users aged 18 and above. Participants must have a public Instagram account to be eligible for prize fulfillment." },
+    { "q": "How are winners selected?", "a": "Winners are selected randomly using a verified random selection tool to ensure fairness and transparency. All entries have an equal chance of winning." },
+    { "q": "When will I receive my prize?", "a": "Prizes will be delivered within 14 business days after the winner has been verified and contact details have been confirmed via DM." }
+  ],
+  "customerCare": {
+    "phone": "+1 (719) 466-6623",
+    "email": "admin@instagiveaway.com"
+  }
+}

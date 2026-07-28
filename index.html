@@ -22,12 +22,12 @@
         <li><a href="#prizes" data-i18n="nav_prizes">Prizes</a></li>
         <li><a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
         <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
-        <li><a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="entry.html" data-i18n="nav_enter_now">Enter Now</a></li>
         <li><a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
         <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
       <div id="langSwitcherContainer"></div>
-      <a href="#entry-form" class="btn btn-primary nav-cta" data-i18n="nav_enter_now">Enter Now</a>
+      <a href="entry.html" class="btn btn-primary nav-cta" data-i18n="nav_enter_now">Enter Now</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -40,11 +40,11 @@
         <li><a href="#prizes" data-i18n="nav_prizes">Prizes</a></li>
         <li><a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a></li>
         <li><a href="winners.html" data-i18n="nav_winning_list">Winning List</a></li>
-        <li><a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a></li>
+        <li><a href="entry.html" data-i18n="nav_enter_now">Enter Now</a></li>
         <li><a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a></li>
         <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
-      <a href="#entry-form" class="btn btn-primary btn-full" data-i18n="nav_enter_now">Enter Now</a>
+      <a href="entry.html" class="btn btn-primary btn-full" data-i18n="nav_enter_now">Enter Now</a>
     </div>
   </nav>
 
@@ -126,12 +126,12 @@
   <section class="stats-bar">
     <div class="stats-container">
       <div class="stat-item">
-        <span class="stat-number" data-target="15420">0</span>
+        <span class="stat-number" data-target="143">0</span>
         <span class="stat-label" data-i18n="stat_entries">Entries So Far</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <span class="stat-number" data-target="50">0</span>
+        <span class="stat-number" data-target="70">0</span>
         <span class="stat-label" data-i18n="stat_winners">Winners Selected</span>
       </div>
       <div class="stat-divider"></div>
@@ -154,34 +154,36 @@
       <div class="prizes-grid">
         <div class="prize-card prize-grand">
           <div class="prize-badge" data-i18n="prize_grand">Grand Prize</div>
-          <div class="prize-icon"><img src="prize-iphone.svg" alt="iPhone 16 Pro Max" loading="lazy" /></div>
-          <h3 class="prize-name" data-i18n="prize_iphone_name">iPhone 16 Pro Max</h3>
+          <div class="prize-icon prize-icon-cash">
+            <span class="prize-cash-amount">$320,000</span>
+          </div>
+          <h3 class="prize-name">Cash Prize</h3>
+          <p class="prize-desc">Life-changing cash reward for our grand winner</p>
+          <div class="prize-quantity">70 Winners</div>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon"><img src="Iphone 17 Pro Max.png" alt="iPhone 17 Pro Max" loading="lazy" /></div>
+          <h3 class="prize-name" data-i18n="prize_iphone_name">iPhone 17 Pro Max</h3>
           <p class="prize-desc" data-i18n="prize_iphone_desc">Latest Apple flagship phone with 256GB storage</p>
-          <div class="prize-quantity" data-i18n="prize_iphone_qty">1 Winner</div>
+          <div class="prize-quantity" data-i18n="prize_iphone_qty">679 Winners</div>
         </div>
         <div class="prize-card">
-          <div class="prize-icon"><img src="prize-airpods.svg" alt="AirPods Pro 2" loading="lazy" /></div>
-          <h3 class="prize-name" data-i18n="prize_airpods_name">AirPods Pro 2</h3>
+          <div class="prize-icon"><img src="Apple Earpods.png" alt="Apple Earpods" loading="lazy" /></div>
+          <h3 class="prize-name" data-i18n="prize_airpods_name">Apple Earpods</h3>
           <p class="prize-desc" data-i18n="prize_airpods_desc">Active noise cancellation with spatial audio</p>
-          <div class="prize-quantity" data-i18n="prize_airpods_qty">3 Winners</div>
+          <div class="prize-quantity" data-i18n="prize_airpods_qty">1,23 Winners</div>
         </div>
         <div class="prize-card">
-          <div class="prize-icon"><img src="prize-watch.svg" alt="Apple Watch SE" loading="lazy" /></div>
-          <h3 class="prize-name" data-i18n="prize_watch_name">Apple Watch SE</h3>
-          <p class="prize-desc" data-i18n="prize_watch_desc">Stay connected and track your fitness</p>
-          <div class="prize-quantity" data-i18n="prize_watch_qty">5 Winners</div>
-        </div>
-        <div class="prize-card">
-          <div class="prize-icon"><img src="prize-giftcard.svg" alt="$100 Gift Card" loading="lazy" /></div>
-          <h3 class="prize-name" data-i18n="prize_giftcard_name">$100 Gift Card</h3>
+          <div class="prize-icon"><img src="Gift Cards.png" alt="$500 Gift Cards" loading="lazy" /></div>
+          <h3 class="prize-name">$500 Gift Cards</h3>
           <p class="prize-desc" data-i18n="prize_giftcard_desc">Redeemable at your favorite online stores</p>
-          <div class="prize-quantity" data-i18n="prize_giftcard_qty">10 Winners</div>
+          <div class="prize-quantity" data-i18n="prize_giftcard_qty">2,449 Winners</div>
         </div>
         <div class="prize-card">
-          <div class="prize-icon"><img src="prize-merch.svg" alt="Merch Bundle" loading="lazy" /></div>
-          <h3 class="prize-name" data-i18n="prize_merch_name">Merch Bundle</h3>
-          <p class="prize-desc" data-i18n="prize_merch_desc">Exclusive branded merchandise pack</p>
-          <div class="prize-quantity" data-i18n="prize_merch_qty">31 Winners</div>
+          <div class="prize-icon"><img src="Apple Watch.png" alt="Apple Watch" loading="lazy" /></div>
+          <h3 class="prize-name" data-i18n="prize_watch_name">Apple Watch</h3>
+          <p class="prize-desc" data-i18n="prize_watch_desc">Stay connected and track your fitness</p>
+          <div class="prize-quantity" data-i18n="prize_watch_qty">2,543 Winners</div>
         </div>
       </div>
     </div>
@@ -446,7 +448,7 @@
       <div class="video-grid">
         <div class="video-card">
           <div class="video-wrapper">
-            <video src="test 1.mp4" preload="none" controls playsinline muted class="video-player" poster="Winner 1.png" loading="lazy"></video>
+            <video src="test 1.mp4" preload="none" controls playsinline muted class="video-player" poster="Winner 2.png" loading="lazy"></video>
           </div>
           <div class="video-card-info">
             <h3 class="video-card-title">Winner Testimonial #1</h3>
@@ -455,139 +457,11 @@
         </div>
         <div class="video-card">
           <div class="video-wrapper">
-            <video src="test 2.mp4" preload="none" controls playsinline muted class="video-player" poster="Winner 2.png" loading="lazy"></video>
+            <video src="test 2.mp4" preload="none" controls playsinline muted class="video-player" poster="Winner 1.png" loading="lazy"></video>
           </div>
           <div class="video-card-info">
             <h3 class="video-card-title">Winner Testimonial #2</h3>
             <span class="video-card-badge">$320,000 Winner</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Entry Form -->
-  <section class="entry-section" id="entry-form">
-    <div class="container">
-      <div class="entry-card">
-        <div class="entry-content">
-          <div class="section-header">
-            <img src="Nav logo.png" alt="Logo" class="form-logo" loading="lazy" />
-            <span class="section-tag" data-i18n="form_tag">Enter Now</span>
-            <h2 class="section-title" data-i18n="form_title">Fill The Form Now</h2>
-            <p class="section-desc" data-i18n="form_desc">Complete the form below to enter the giveaway</p>
-          </div>
-          <form class="giveaway-form" id="giveawayForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="fullName" data-i18n="form_fullname">Full Name</label>
-                <input type="text" id="fullName" data-i18n-placeholder="form_fullname_ph" placeholder="Enter your full name" required />
-              </div>
-              <div class="form-group">
-                <label for="email" data-i18n="form_email">Email Address</label>
-                <input type="email" id="email" data-i18n-placeholder="form_email_ph" placeholder="Enter your email address" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="address" data-i18n="form_address">Address</label>
-                <input type="text" id="address" data-i18n-placeholder="form_address_ph" placeholder="Street address" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="region" data-i18n="form_region">Region</label>
-                <select id="region" required onchange="updateStates()">
-                  <option value="" disabled selected data-i18n="form_region_ph">Select your region</option>
-                  <option value="america" data-i18n="form_region_america">America (US / Canada)</option>
-                  <option value="europe" data-i18n="form_region_europe">Europe</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row form-row-3">
-              <div class="form-group">
-                <label for="cityInput" data-i18n="form_city">City</label>
-                <div id="cityContainer">
-                  <input type="text" id="cityInput" name="city" data-i18n-placeholder="form_city_ph" placeholder="City" required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="state" data-i18n="form_state">State / Province / Country</label>
-                <select id="state" required onchange="updateCities()">
-                  <option value="" disabled selected data-i18n="form_state_ph">Select region first</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="zip" data-i18n="form_zip">Zip / Postal Code</label>
-                <input type="text" id="zip" data-i18n-placeholder="form_zip_ph" placeholder="Zip code" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone" data-i18n="form_phone">Phone Number</label>
-                <input type="tel" id="phone" data-i18n-placeholder="form_phone_ph" placeholder="+1 (555) 000-0000" required />
-              </div>
-              <div class="form-group">
-                <label for="occupation" data-i18n="form_occupation">Occupation</label>
-                <input type="text" id="occupation" data-i18n-placeholder="form_occupation_ph" placeholder="Your occupation" />
-              </div>
-            </div>
-            <div class="form-row form-row-3">
-              <div class="form-group">
-                <label for="age" data-i18n="form_age">Age</label>
-                <input type="number" id="age" data-i18n-placeholder="form_age_ph" placeholder="Age" min="18" required />
-              </div>
-              <div class="form-group">
-                <label for="maritalStatus" data-i18n="form_marital">Single or Married</label>
-                <select id="maritalStatus" required>
-                  <option value="" disabled selected data-i18n="form_select">Select</option>
-                  <option value="single" data-i18n="form_single">Single</option>
-                  <option value="married" data-i18n="form_married">Married</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="homeOwner" data-i18n="form_homeowner">Do You Own a House</label>
-                <select id="homeOwner" required>
-                  <option value="" disabled selected data-i18n="form_select">Select</option>
-                  <option value="yes" data-i18n="form_yes">Yes</option>
-                  <option value="no" data-i18n="form_no">No</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="prizePreference" data-i18n="form_prize_pref">Do You Want Cash or Check</label>
-              <select id="prizePreference" required>
-                <option value="" disabled selected data-i18n="form_pref_ph">Select preference</option>
-                <option value="cash" data-i18n="form_cash">Cash</option>
-                <option value="check" data-i18n="form_check">Check</option>
-              </select>
-            </div>
-            <div class="form-checkbox">
-              <input type="checkbox" id="terms" required />
-              <label for="terms"><span data-i18n="form_terms">I agree to the</span> <a href="#" data-i18n="form_terms_link1">terms & conditions</a> <span data-i18n="form_terms_and">and</span> <a href="#" data-i18n="form_terms_link2">privacy policy</a></label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span data-i18n="form_submit">Submit Entry</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
-          </form>
-        </div>
-        <div class="entry-visual">
-          <div class="visual-pattern"></div>
-          <div class="visual-text">
-            <img src="Nav logo.png" alt="Logo" class="visual-logo" loading="lazy" />
-            <span class="visual-big">15K+</span>
-            <span class="visual-sub" data-i18n="form_people_entered">People Have Already Entered</span>
-            <div class="visual-avatars">
-              <img class="avatar" src="https://i.pravatar.cc/80?img=32" alt="User" loading="lazy" />
-              <img class="avatar" src="https://i.pravatar.cc/80?img=47" alt="User" loading="lazy" />
-              <img class="avatar" src="https://i.pravatar.cc/80?img=12" alt="User" loading="lazy" />
-              <img class="avatar" src="https://i.pravatar.cc/80?img=56" alt="User" loading="lazy" />
-              <img class="avatar" src="https://i.pravatar.cc/80?img=23" alt="User" loading="lazy" />
-              <div class="avatar avatar-more">+15K</div>
-            </div>
           </div>
         </div>
       </div>
@@ -732,7 +606,7 @@
           <a href="#prizes" data-i18n="nav_prizes">Prizes</a>
           <a href="#how-to-enter" data-i18n="nav_how_to_enter">How to Enter</a>
           <a href="winners.html" data-i18n="nav_winning_list">Winning List</a>
-          <a href="#entry-form" data-i18n="nav_enter_now">Enter Now</a>
+          <a href="entry.html" data-i18n="nav_enter_now">Enter Now</a>
           <a href="#customer-care" data-i18n="nav_customer_care">Customer Care</a>
           <a href="#faq" data-i18n="nav_faq">FAQ</a>
         </div>
@@ -794,10 +668,12 @@
   <script src="cms.js"></script>
   <script src="script.js"></script>
   <script>
-    // Load CMS content into page
+    // Load CMS content into page from API
     (function() {
       if (typeof CMS === 'undefined') return;
+      CMS.loadContent().then(function() {
       var c = CMS.getContent();
+      if (!c || !c.prizes) return;
       // Prize amount
       var prizeEl = document.getElementById('prizeValue');
       if (prizeEl) prizeEl.textContent = c.prizeAmount;
@@ -814,8 +690,14 @@
         prizesGrid.innerHTML = c.prizes.map(function(p) {
           var cls = p.isGrand ? 'prize-card prize-grand' : 'prize-card';
           var badge = p.badge ? '<div class="prize-badge">' + p.badge + '</div>' : '';
+          var icon;
+          if (p.icon === 'cash') {
+            icon = '<div class="prize-icon prize-icon-cash"><span class="prize-cash-amount">$320,000</span></div>';
+          } else {
+            icon = '<div class="prize-icon"><img src="' + p.icon + '" alt="' + p.name + '" loading="lazy" /></div>';
+          }
           return '<div class="' + cls + '">' + badge +
-            '<div class="prize-icon"><img src="' + p.icon + '" alt="' + p.name + '" loading="lazy" /></div>' +
+            icon +
             '<h3 class="prize-name">' + p.name + '</h3>' +
             '<p class="prize-desc">' + p.desc + '</p>' +
             '<div class="prize-quantity">' + p.qty + '</div>' +
@@ -886,8 +768,34 @@
         careCards[0].textContent = c.customerCare.phone;
         careCards[1].textContent = c.customerCare.email;
       }
+      });
     })();
   </script>
   <call-us-selector phonesystem-url="https://1722.3cx.cloud" party="giveaway"></call-us-selector>
+  <script>
+    // Ensure 3CX chat button is clickable
+    document.addEventListener('DOMContentLoaded', function() {
+      function fixChatButton() {
+        var selector = document.querySelector('call-us-selector');
+        if (!selector) return;
+        selector.style.pointerEvents = 'auto';
+        if (selector.shadowRoot) {
+          selector.shadowRoot.querySelectorAll('*').forEach(function(el) {
+            el.style.pointerEvents = 'auto';
+          });
+          var btn = selector.shadowRoot.querySelector('[class*="call"], [class*="button"], button, a, [role="button"]');
+          if (btn) {
+            btn.style.pointerEvents = 'auto';
+            btn.style.cursor = 'pointer';
+          }
+        }
+      }
+      fixChatButton();
+      setTimeout(fixChatButton, 2000);
+      setTimeout(fixChatButton, 5000);
+      var observer = new MutationObserver(fixChatButton);
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
 </body>
 </html>

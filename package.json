@@ -1,0 +1,12 @@
+{
+  "name": "instagram-online-giveaway",
+  "version": "1.0.0",
+  "description": "Instagram Online Giveaway Website",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.38.0"
+  }
+}
